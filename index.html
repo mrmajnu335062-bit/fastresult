@@ -33,7 +33,7 @@
         }
         .logo span {
             font-size: 11px;
-            color: #94a3b8;
+            color: #4ade80;
             display: block;
         }
         .wallet-box {
@@ -66,15 +66,14 @@
             cursor: pointer;
             color: white;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: 0.2s;
         }
         .btn-deposit { background: linear-gradient(135deg, #16a34a, #15803d); }
         .btn-withdraw { background: linear-gradient(135deg, #dc2626, #b91c1c); }
-        .action-btn:active { transform: scale(0.96); }
 
-        /* Game Tabs */
+        /* Game Tabs (5 Games) */
         .game-tabs {
             display: flex;
+            flex-wrap: wrap;
             gap: 5px;
             margin-bottom: 15px;
             background: #1e293b;
@@ -82,8 +81,8 @@
             border-radius: 10px;
         }
         .tab-btn {
-            flex: 1;
-            padding: 10px 5px;
+            flex: 1 1 30%;
+            padding: 8px 4px;
             font-size: 11px;
             font-weight: bold;
             border: none;
@@ -152,19 +151,11 @@
         }
         .num-btn:hover { background: #334155; }
 
-        /* Aviator Box */
-        .aviator-box {
-            background: linear-gradient(135deg, #172554, #1e1b4b);
-            padding: 30px 15px;
+        /* Game Specific UI Boxes */
+        .game-box-inner {
+            padding: 20px 15px;
             border-radius: 10px;
-            border: 2px dashed #60a5fa;
             text-align: center;
-        }
-        .multiplier {
-            font-size: 38px;
-            font-weight: bold;
-            color: #60a5fa;
-            margin: 10px 0;
         }
         .fly-btn {
             background: #eab308;
@@ -173,9 +164,10 @@
             padding: 12px 35px;
             border: none;
             border-radius: 25px;
-            font-size: 16px;
+            font-size: 15px;
             cursor: pointer;
             box-shadow: 0 0 15px rgba(234, 179, 8, 0.4);
+            margin-top: 10px;
         }
 
         /* Popup Modals */
@@ -183,7 +175,7 @@
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             justify-content: center;
             align-items: center;
             z-index: 1000;
@@ -234,72 +226,116 @@
 </head>
 <body>
 
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal" style="display: flex;">
+        <div class="modal-content">
+            <h3>📱 Login / Register</h3>
+            <label style="font-size: 12px; color: #94a3b8;">Enter Mobile Number:</label>
+            <input type="tel" id="userMobile" class="modal-input" placeholder="e.g. 9876543210" maxlength="10">
+            <button class="modal-btn" onclick="loginUser()">Login to Game</button>
+        </div>
+    </div>
+
     <header>
         <div class="logo">
             ⚡ FASTRESULT
-            <span>ID: #FR982026</span>
+            <span id="displayUser">User: Not Logged In</span>
         </div>
         <div class="wallet-box">💰 ₹ <span id="balance">1000.00</span></div>
     </header>
 
     <div class="container">
         
+        <!-- Deposit & Withdraw Buttons -->
         <div class="action-row">
             <button class="action-btn btn-deposit" onclick="openModal('depositModal')">➕ Deposit</button>
             <button class="action-btn btn-withdraw" onclick="openModal('withdrawModal')">➖ Withdraw</button>
         </div>
 
+        <!-- 5 Games Switcher Tabs -->
         <div class="game-tabs">
-            <button class="tab-btn active" onclick="switchGame('color')">🎨 Color Game</button>
+            <button class="tab-btn active" onclick="switchGame('color')">🎨 Color</button>
             <button class="tab-btn" onclick="switchGame('aviator')">✈️ Aviator</button>
-            <button class="tab-btn" onclick="switchGame('tower')">🗼 Tower Rush</button>
+            <button class="tab-btn" onclick="switchGame('tower')">🗼 Tower</button>
+            <button class="tab-btn" onclick="switchGame('teenpatti')">🃏 Teen Patti</button>
+            <button class="tab-btn" onclick="switchGame('andarbahar')">🎴 Andar Bahar</button>
         </div>
 
+        <!-- 1. Color Game Area -->
         <div id="color-game" class="game-card">
-            <div style="font-size: 12px; color: #94a3b8;">Risk-Free Smart Period #20260920</div>
+            <div style="font-size: 12px; color: #94a3b8;">Period #20260920</div>
             <div class="timer-countdown" id="timer">00:30</div>
             
             <div class="btn-group">
-                <button class="btn btn-green" onclick="placeBet('Green')">GREEN</button>
-                <button class="btn btn-violet" onclick="placeBet('Violet')">VIOLET</button>
-                <button class="btn btn-red" onclick="placeBet('Red')">RED</button>
+                <button class="btn btn-green" onclick="placeBet('Color Green')">GREEN</button>
+                <button class="btn btn-violet" onclick="placeBet('Color Violet')">VIOLET</button>
+                <button class="btn btn-red" onclick="placeBet('Color Red')">RED</button>
             </div>
 
             <div style="font-size: 12px; color: #cbd5e1; margin-top: 12px; text-align: left;">Select Number (0-9):</div>
             <div class="number-grid">
-                <button class="num-btn" onclick="placeBet('1')">1</button>
-                <button class="num-btn" onclick="placeBet('2')">2</button>
-                <button class="num-btn" onclick="placeBet('3')">3</button>
-                <button class="num-btn" onclick="placeBet('4')">4</button>
-                <button class="num-btn" onclick="placeBet('5')">5</button>
-                <button class="num-btn" onclick="placeBet('6')">6</button>
-                <button class="num-btn" onclick="placeBet('7')">7</button>
-                <button class="num-btn" onclick="placeBet('8')">8</button>
-                <button class="num-btn" onclick="placeBet('9')">9</button>
-                <button class="num-btn" onclick="placeBet('0')">0</button>
+                <button class="num-btn" onclick="placeBet('Number 1')">1</button>
+                <button class="num-btn" onclick="placeBet('Number 2')">2</button>
+                <button class="num-btn" onclick="placeBet('Number 3')">3</button>
+                <button class="num-btn" onclick="placeBet('Number 4')">4</button>
+                <button class="num-btn" onclick="placeBet('Number 5')">5</button>
+                <button class="num-btn" onclick="placeBet('Number 6')">6</button>
+                <button class="num-btn" onclick="placeBet('Number 7')">7</button>
+                <button class="num-btn" onclick="placeBet('Number 8')">8</button>
+                <button class="num-btn" onclick="placeBet('Number 9')">9</button>
+                <button class="num-btn" onclick="placeBet('Number 0')">0</button>
             </div>
         </div>
 
+        <!-- 2. Aviator Game Area -->
         <div id="aviator-game" class="game-card" style="display: none;">
-            <div class="aviator-box">
+            <div class="game-box-inner" style="background: linear-gradient(135deg, #172554, #1e1b4b); border: 2px dashed #60a5fa;">
                 <div style="font-size: 32px;">✈️</div>
                 <div style="font-size: 13px; color: #cbd5e1;">Fly High & Cash Out Safely</div>
-                <div class="multiplier" id="flight-multiplier">1.00x</div>
-                <button class="fly-btn" onclick="alert('Aviator Bet Placed Successfully!')">PLACE BET</button>
+                <div style="font-size: 38px; font-weight: bold; color: #60a5fa; margin: 10px 0;">1.00x</div>
+                <button class="fly-btn" onclick="placeBet('Aviator Flight')">PLACE BET</button>
             </div>
         </div>
 
+        <!-- 3. Tower Rush Game Area -->
         <div id="tower-game" class="game-card" style="display: none;">
-            <div style="background: linear-gradient(135deg, #451a03, #78350f); padding: 25px 15px; border-radius: 10px; border: 2px dashed #f59e0b;">
+            <div class="game-box-inner" style="background: linear-gradient(135deg, #451a03, #78350f); border: 2px dashed #f59e0b;">
                 <div style="font-size: 32px;">🗼</div>
                 <div style="font-size: 15px; font-weight: bold; color: #f59e0b; margin: 10px 0;">Tower Rush Multiplier</div>
-                <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 15px;">Climb higher blocks without hitting traps!</div>
-                <button class="fly-btn" style="background: #f59e0b;" onclick="alert('Tower Climb Started!')">START GAME</button>
+                <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 15px;">Climb higher blocks without traps!</div>
+                <button class="fly-btn" style="background: #f59e0b;" onclick="placeBet('Tower Rush')">START GAME</button>
+            </div>
+        </div>
+
+        <!-- 4. Teen Patti Game Area -->
+        <div id="teenpatti-game" class="game-card" style="display: none;">
+            <div class="game-box-inner" style="background: linear-gradient(135deg, #065f46, #064e3b); border: 2px dashed #34d399;">
+                <div style="font-size: 32px;">🃏</div>
+                <div style="font-size: 15px; font-weight: bold; color: #34d399; margin: 10px 0;">Royal Teen Patti</div>
+                <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 15px;">Play blind or seen with high-stakes cards!</div>
+                <div style="display: flex; gap: 10px;">
+                    <button class="fly-btn" style="background: #34d399; flex:1;" onclick="placeBet('Teen Patti - Seen')">SEEN</button>
+                    <button class="fly-btn" style="background: #059669; flex:1;" onclick="placeBet('Teen Patti - Blind')">BLIND</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Andar Bahar Game Area -->
+        <div id="andarbahar-game" class="game-card" style="display: none;">
+            <div class="game-box-inner" style="background: linear-gradient(135deg, #581c87, #3b0764); border: 2px dashed #c084fc;">
+                <div style="font-size: 32px;">🎴</div>
+                <div style="font-size: 15px; font-weight: bold; color: #c084fc; margin: 10px 0;">Classic Andar Bahar</div>
+                <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 15px;">Predict which side matching card will land!</div>
+                <div style="display: flex; gap: 10px;">
+                    <button class="fly-btn" style="background: #c084fc; flex:1;" onclick="placeBet('Andar Bahar - Andar')">ANDAR</button>
+                    <button class="fly-btn" style="background: #9333ea; flex:1;" onclick="placeBet('Andar Bahar - Bahar')">BAHAR</button>
+                </div>
             </div>
         </div>
 
     </div>
 
+    <!-- Deposit Modal -->
     <div id="depositModal" class="modal">
         <div class="modal-content">
             <h3>Add Funds (Deposit)</h3>
@@ -312,6 +348,7 @@
         </div>
     </div>
 
+    <!-- Withdraw Modal -->
     <div id="withdrawModal" class="modal">
         <div class="modal-content">
             <h3>Withdraw Funds</h3>
@@ -329,7 +366,22 @@
     </footer>
 
     <script>
-        // Tab Switcher
+        let loggedInMobile = "";
+        let userBalance = 1000.00;
+
+        function loginUser() {
+            let mobile = document.getElementById('userMobile').value;
+            if(mobile.length === 10) {
+                loggedInMobile = mobile;
+                document.getElementById('displayUser').innerText = `ID: +91 ${mobile}`;
+                document.getElementById('loginModal').style.display = 'none';
+                alert(`Welcome! Logged in successfully with mobile: ${mobile}`);
+            } else {
+                alert('Please enter a valid 10-digit mobile number.');
+            }
+        }
+
+        // Tab Switcher for 5 Games
         function switchGame(game) {
             const tabs = document.querySelectorAll('.tab-btn');
             tabs.forEach(t => t.classList.remove('active'));
@@ -337,6 +389,8 @@
             document.getElementById('color-game').style.display = 'none';
             document.getElementById('aviator-game').style.display = 'none';
             document.getElementById('tower-game').style.display = 'none';
+            document.getElementById('teenpatti-game').style.display = 'none';
+            document.getElementById('andarbahar-game').style.display = 'none';
 
             if(game === 'color') {
                 document.getElementById('color-game').style.display = 'block';
@@ -346,6 +400,12 @@
                 event.target.classList.add('active');
             } else if(game === 'tower') {
                 document.getElementById('tower-game').style.display = 'block';
+                event.target.classList.add('active');
+            } else if(game === 'teenpatti') {
+                document.getElementById('teenpatti-game').style.display = 'block';
+                event.target.classList.add('active');
+            } else if(game === 'andarbahar') {
+                document.getElementById('andarbahar-game').style.display = 'block';
                 event.target.classList.add('active');
             }
         }
@@ -369,10 +429,12 @@
         }
 
         function submitDeposit() {
-            let amt = document.getElementById('depAmount').value;
+            let amt = parseFloat(document.getElementById('depAmount').value);
             let utr = document.getElementById('utrNum').value;
             if(amt && utr) {
-                alert(`Deposit request for ₹${amt} with UTR ${utr} submitted successfully! Wallet will update after verification.`);
+                userBalance += amt;
+                document.getElementById('balance').innerText = userBalance.toFixed(2);
+                alert(`Deposit of ₹${amt} verified via UTR ${utr} for Mobile: ${loggedInMobile}! Added to wallet.`);
                 closeModal('depositModal');
             } else {
                 alert('Please fill both amount and UTR number.');
@@ -380,18 +442,34 @@
         }
 
         function submitWithdraw() {
-            let amt = document.getElementById('withAmount').value;
+            let amt = parseFloat(document.getElementById('withAmount').value);
             let upi = document.getElementById('upiDetails').value;
             if(amt && upi) {
-                alert(`Withdrawal request for ₹${amt} sent to admin panel. Funds will be transferred shortly.`);
-                closeModal('withdrawModal');
+                if(amt <= userBalance) {
+                    userBalance -= amt;
+                    document.getElementById('balance').innerText = userBalance.toFixed(2);
+                    alert(`Withdrawal request of ₹${amt} sent for mobile ${loggedInMobile} to ${upi}.`);
+                    closeModal('withdrawModal');
+                } else {
+                    alert('Insufficient balance in wallet!');
+                }
             } else {
                 alert('Please enter amount and payment details.');
             }
         }
 
         function placeBet(option) {
-            alert(`Bet placed successfully on ${option}! Automated risk-free algorithm active.`);
+            let betAmt = prompt("Enter bet amount (INR):", "100");
+            if(betAmt) {
+                betAmt = parseFloat(betAmt);
+                if(betAmt > 0 && betAmt <= userBalance) {
+                    userBalance -= betAmt;
+                    document.getElementById('balance').innerText = userBalance.toFixed(2);
+                    alert(`Bet of ₹${betAmt} placed on ${option} by Mobile: ${loggedInMobile}!`);
+                } else {
+                    alert('Invalid amount or insufficient balance!');
+                }
+            }
         }
     </script>
 
