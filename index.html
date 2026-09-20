@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP Royal Casino - Pro Marketing Edition</title>
+    <title>VIP Royal Casino - International Pro Edition</title>
     <style>
         body { 
             background: #030712; 
@@ -41,6 +41,29 @@
         .ticker-bar { background: linear-gradient(90deg, #b45309, #d97706); color: #fff; font-size: 12px; font-weight: bold; padding: 8px 12px; overflow: hidden; white-space: nowrap; border-bottom: 1px solid #f59e0b; }
         .ticker-text { display: inline-block; animation: ticker 20s linear infinite; }
         @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        /* सेलिब्रिटी / ब्रांड एंबेसडर बैनर (1xBet स्टाइल) */
+        .promo-banner {
+            background: linear-gradient(135deg, #1e1b4b, #311042);
+            border: 1px solid #a855f7;
+            border-radius: 14px;
+            margin: 12px 15px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 15px rgba(168,85,247,0.3);
+        }
+        .ambassador-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid #facc15;
+            object-fit: cover;
+            background: #475569;
+        }
+        .banner-info h4 { margin: 0 0 4px 0; font-size: 14px; color: #facc15; }
+        .banner-info p { margin: 0; font-size: 11px; color: #cbd5e1; }
 
         .content { padding: 15px; overflow-y: auto; flex: 1; padding-bottom: 75px; }
         .hidden { display: none !important; }
@@ -93,6 +116,11 @@
         .mines-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 15px 0; }
         .mine-tile { background: #0f172a; height: 55px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; border: 1px solid #475569; transition: 0.2s; }
 
+        /* पेमेंट पार्टनर लोगो और फुटर */
+        .payment-badges { display: flex; justify-content: center; gap: 8px; margin: 15px 0; font-size: 10px; color: #94a3b8; font-weight: bold; }
+        .p-badge { background: #0f172a; border: 1px solid #334155; padding: 4px 8px; border-radius: 6px; }
+        .footer-legal { text-align: center; font-size: 10px; color: #64748b; margin-top: 20px; line-height: 1.4; border-top: 1px solid #1e293b; padding-top: 10px; }
+
         /* बॉटम नेविगेशन बार */
         .bottom-nav { position: absolute; bottom: 0; width: 100%; display: flex; background: #1e293b; border-top: 1px solid #334155; padding: 10px 0; z-index: 100; box-sizing: border-box; }
         .nav-item { flex: 1; text-align: center; font-size: 11px; color: #94a3b8; cursor: pointer; font-weight: 600; }
@@ -105,20 +133,25 @@
 
     <div class="app-container">
         
-        <!-- हेडर -->
         <div class="header">
             <span>👑 <b>VIP ROYAL CLUB</b> <span style="font-size:10px; background:#ef4444; padding:2px 6px; border-radius:4px;">500x PRO</span></span>
             <div class="wallet-box">💰 ₹<span id="balance">1500</span></div>
         </div>
 
-        <!-- मार्केटिंग और ऑफर टिकर -->
         <div class="ticker-bar">
-            <span class="ticker-text">🔥 धमाकेदार ऑफर: पहले डिपॉजिट पर पाएं 50% एक्स्ट्रा बोनस! ⚡ यूजर Gagan ने एविएटर में 500x अर्निंग करके ₹10,000 जीते! 💰 आज का जैकपॉट पूल एक्टिव है, तुरंत खेलें!</span>
+            <span class="ticker-text">🔥 धमाकेदार ऑफर: पहले डिपॉजिट पर पाएं 50% एक्स्ट्रा बोनस! ⚡ यूजर Gagan ने एविएटर में 500x अर्निंग करके ₹10,000 जीते! 💰 ग्लोबल ब्रांड एंबेसडर Alex के साथ खेलें और जीतें!</span>
+        </div>
+
+        <div class="promo-banner">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Ambassador" class="default-img ambassador-img">
+            <div class="banner-info">
+                <h4>⭐ Official Brand Ambassador</h4>
+                <p><b>Alex (International Star)</b> प्रमोट कर रहे हैं VIP Royal को! अभी खेलें और 5000x जैकपॉट जीतें।</p>
+            </div>
         </div>
 
         <div class="content">
             
-            <!-- लॉगिन सेक्शन -->
             <div id="login-section" class="login-card">
                 <h2>🚀 वीआईपी प्रो गेमिंग</h2>
                 <p style="font-size: 12px; color: #94a3b8;">मोबाइल नंबर या मास्टर की (777) दर्ज करें</p>
@@ -127,19 +160,17 @@
                 <p id="msg" style="color: #f87171; font-size: 13px;"></p>
             </div>
 
-            <!-- डैशबोर्ड -->
             <div id="dashboard-section" class="hidden">
                 
                 <div class="game-grid">
                     <div class="game-card active" onclick="switchGame('color')">🎨 कलर & नंबर</div>
                     <div class="game-card" onclick="switchGame('aviator')">✈️ एविएटर प्रो</div>
-                    <div class="game-card" onclick="switchGame('spin')">🎡 स्पिन व्हील</div>
+                    <div class="game-card" onclick="switchGame('spin')">🎡 सुपर व्हील</div>
                     <div class="game-card" onclick="switchGame('andar')">🃏 अंदर-बाहर</div>
                     <div class="game-card" onclick="switchGame('mines')">💎 डायमंड माइंस</div>
                     <div class="game-card" onclick="switchGame('walletTab')" style="background: #b45309;">💳 वॉलेट</div>
                 </div>
 
-                <!-- 1. कलर और नंबर प्रेडिक्शन (हिस्ट्री के साथ) -->
                 <div id="game-color" class="game-panel">
                     <h3>🎨 कलर और नंबर प्रेडिक्शन</h3>
                     <div class="time-tabs">
@@ -170,17 +201,13 @@
                         <button class="num-btn" onclick="playNumber(9)">9</button>
                     </div>
                     
-                    <!-- पिछले 10 परिणामों की हिस्ट्री टेबल -->
                     <div class="history-container">
                         <div class="history-title"><span>📊 पिछले 10 राउंड्स की हिस्ट्री</span><span style="color:#38bdf8;">लाइव ट्रेंड</span></div>
-                        <div class="history-scroll" id="colorHistoryBar">
-                            <!-- JS द्वारा डायनेमिक भरे जाएंगे -->
-                        </div>
+                        <div class="history-scroll" id="colorHistoryBar"></div>
                     </div>
                     <p id="colorResult" class="res-text"></p>
                 </div>
 
-                <!-- 2. एविएटर प्रो (क्रैश हिस्ट्री के साथ) -->
                 <div id="game-aviator" class="game-panel hidden">
                     <h3>✈️ एविएटर क्रैश प्रो</h3>
                     <div class="aviator-screen">
@@ -190,25 +217,21 @@
                     </div>
                     <button class="btn-primary" id="aviatorBtn" onclick="startAviator()" style="margin-top: 12px;">रॉकेट लॉन्च करें</button>
                     
-                    <!-- एविएटर पिछली क्रैश हिस्ट्री -->
                     <div class="history-container">
                         <div class="history-title"><span>🚀 पिछले 10 क्रैश पॉइंट्स</span><span style="color:#facc15;">मल्टीप्लायर ट्रेंड</span></div>
-                        <div class="history-scroll" id="aviatorHistoryBar">
-                            <!-- JS द्वारा भरे जाएंगे -->
-                        </div>
+                        <div class="history-scroll" id="aviatorHistoryBar"></div>
                     </div>
                     <p id="aviatorResult" class="res-text"></p>
                 </div>
 
-                <!-- 3. फॉर्च्यून स्पिन व्हील -->
                 <div id="game-spin" class="game-panel hidden">
-                    <h3>🎡 रॉयल फॉर्च्यून स्पिन</h3>
+                    <h3>🎡 व्हील ऑफ फॉर्च्यून (5000x प्रो)</h3>
                     <div style="text-align: center; font-size: 55px; margin: 15px 0; transition: transform 1s ease-in-out;" id="wheelIcon">🎰</div>
+                    <p style="font-size: 11px; color: #facc15; text-align: center;">मैक्सिमम जैकपॉट मल्टीप्लायर: 5000x उपलब्ध!</p>
                     <button class="btn-primary" onclick="playSpin()">स्पिन करें (दांव: ₹50)</button>
                     <p id="spinResult" class="res-text"></p>
                 </div>
 
-                <!-- 4. अंदर-बाहर (हिस्ट्री के साथ) -->
                 <div id="game-andar" class="game-panel hidden">
                     <h3>🃏 अंदर-बाहर लाइव टेबल</h3>
                     <div class="ab-table">
@@ -221,7 +244,6 @@
                         <button class="btn-primary" onclick="playAndarBahar('Bahar')" style="background: #d97706;">बाहर (Bahar 1.9x)</button>
                     </div>
 
-                    <!-- अंदर-बाहर हिस्ट्री -->
                     <div class="history-container">
                         <div class="history-title"><span>🃏 पिछली 10 बाजी का रिकॉर्ड</span></div>
                         <div class="history-scroll" id="abHistoryBar"></div>
@@ -229,7 +251,6 @@
                     <p id="abResult" class="res-text"></p>
                 </div>
 
-                <!-- 5. डायमंड माइंस गेम -->
                 <div id="game-mines" class="game-panel hidden">
                     <h3>💎 सेफ डायमंड माइंस</h3>
                     <p style="font-size: 12px; color: #94a3b8;">डायमंड खोजें और 500x तक जीतें!</p>
@@ -238,7 +259,6 @@
                     <p id="minesResult" class="res-text"></p>
                 </div>
 
-                <!-- वॉलेट टैब (50% बोनस ऑफर के साथ) -->
                 <div id="wallet-panel" class="game-panel hidden">
                     <h3>💳 यूपीआई वॉलेट & 50% बोनस</h3>
                     <div style="background:#0f172a; padding:10px; border-radius:8px; margin-bottom:10px; border:1px dashed #f59e0b; font-size:12px; color:#facc15;">
@@ -246,12 +266,18 @@
                     </div>
                     <input type="number" id="depositAmount" placeholder="राशि दर्ज करें (जैसे 500)">
                     <button class="btn-primary" onclick="addMoney()">डिपॉजिट करें & 50% बोनस पाएं</button>
+                    
+                    <div class="payment-badges">
+                        <div class="p-badge">🔒 UPI Secure</div>
+                        <div class="p-badge">⚡ GPay / PhonePe</div>
+                        <div class="p-badge">💳 Visa / Master</div>
+                    </div>
+
                     <hr style="border-color: #334155; margin: 15px 0;">
                     <button class="btn-primary" onclick="withdrawMoney()" style="background: #ef4444;">विड्रॉल लगाएं (Instant)</button>
                     <p id="walletMsg" class="res-text"></p>
                 </div>
 
-                <!-- प्रमोशन टैब -->
                 <div id="promo-panel" class="game-panel hidden">
                     <h3>📢 रेफरल & 500x अर्निंग प्रोग्राम</h3>
                     <p style="font-size: 12px; color: #94a3b8;">लिंक शेयर करें और हर दोस्त की जीत पर कमीशन कमाएं!</p>
@@ -259,10 +285,13 @@
                     <button class="btn-primary" onclick="shareOnWhatsApp()" style="background: #25d366; margin-top: 8px;">📲 WhatsApp पर शेयर करें</button>
                 </div>
 
+                <div class="footer-legal">
+                    18+ | इस खेल में वित्तीय जोखिम शामिल है। कृपया जिम्मेदारी से खेलें। © 2026 VIP Royal Club International. All Rights Reserved.
+                </div>
+
             </div>
         </div>
 
-        <!-- बॉटम नेविगेशन बार -->
         <div class="bottom-nav">
             <div class="nav-item active" id="nav-home" onclick="switchNav('home')">🏠 होम</div>
             <div class="nav-item" id="nav-promo" onclick="switchNav('promo')">📢 प्रमोशन</div>
@@ -286,7 +315,7 @@
             if (inputVal === "777" || (inputVal.length === 10 && !isNaN(inputVal))) {
                 if (inputVal === "777") {
                     userBalance += 1000; 
-                    alert("✨ मास्टर की (Master Key) एक्टिवेट! वीआईपी वीआईपी एक्सेस मिल गया है।");
+                    alert("✨ मास्टर की (Master Key) एक्टिवेट! वीआईपी प्रो एक्सेस मिल गया है।");
                 } else {
                     userBalance += 500; // साइनअप + 50% ऑफर बोनस
                 }
@@ -333,7 +362,7 @@
                 switchGame('promoTab');
             } else if (tab === 'account') {
                 document.getElementById('nav-account').classList.add('active');
-                alert("👤 वीआईपी अकाउंट: यूजर Gagan | मास्टर 500x एक्सेस सक्रिय है।");
+                alert("👤 वीआईपी अकाउंट: यूजर | मास्टर 500x एक्सेस सक्रिय है।");
             }
         }
 
@@ -522,7 +551,7 @@
 
             setTimeout(() => {
                 wheel.style.transform = "rotate(0deg)";
-                const prizes = [0, 0, 50, 100, 250, 0, 500, 1000];
+                const prizes = [0, 0, 100, 250, 500, 1000, 2500, 5000];
                 const prize = prizes[Math.floor(Math.random() * prizes.length)];
                 if (prize > 0) {
                     userBalance += prize;
@@ -598,7 +627,6 @@
         function addMoney() {
             const amt = parseInt(document.getElementById('depositAmount').value);
             if (isNaN(amt) || amt <= 0) { alert("कृपया सही राशि दर्ज करें!"); return; }
-            // 50% बोनस जोड़कर राशि क्रेडिट करें
             const bonus = Math.floor(amt * 0.5);
             const totalAdded = amt + bonus;
             userBalance += totalAdded;
@@ -608,11 +636,11 @@
         }
 
         function withdrawMoney() {
-            alert("🔒 विड्रॉल रिक्वेस्ट सफलतापूर्वक सबमिट हो गई है। आपके खाते में राशि भेजी जा रही है।");
+            alert("🔒 विड्रॉल रिक्वेस्ट दर्ज कर ली गई है। आपके बैंक/UPI खाते में राशि भेजी जा रही है।");
         }
 
         function shareOnWhatsApp() {
-            const text = encodeURIComponent("🔥 भाई इस प्रो कैसीनो ऐप पर आ जाओ, यहाँ 50% बोनस और 500x अर्निंग मिल रही है! अभी ज्वाइन करो: https://viproyalcasino.com/join?ref=VIP777");
+            const text = encodeURIComponent("🔥 भाई इस प्रो कैसीनो ऐप पर आ जाओ, ग्लोबल ब्रांड एंबेसडर Alex के साथ यहाँ 50% बोनस और 5000x अर्निंग मिल रही है! अभी ज्वाइन करो: https://viproyalcasino.com/join?ref=VIP777");
             window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
         }
     </script>
