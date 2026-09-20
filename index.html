@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultra Pro Casino Hub - Business Edition</title>
+    <title>VIP Royal Casino - Pro Marketing Edition</title>
     <style>
         body { 
-            background: #090d16; 
+            background: #030712; 
             color: #fff; 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
@@ -17,43 +17,52 @@
         .app-container { 
             width: 100%; 
             max-width: 440px; 
-            background: #111827; 
+            background: #0f172a; 
             min-height: 100vh; 
-            box-shadow: 0 0 30px rgba(0,0,0,0.9);
+            box-shadow: 0 0 50px rgba(0,0,0,0.9);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
+            border-left: 1px solid #1e293b;
+            border-right: 1px solid #1e293b;
         }
         .header { 
-            background: linear-gradient(135deg, #1f2937, #111827); 
-            padding: 12px 15px; 
+            background: linear-gradient(135deg, #1e293b, #0f172a); 
+            padding: 14px 18px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            border-bottom: 1px solid #1f2937;
+            border-bottom: 1px solid #334155;
         }
-        .wallet-box { color: #facc15; font-weight: bold; font-size: 15px; background: #1f2937; padding: 6px 12px; border-radius: 20px; border: 1px solid #374151; }
+        .wallet-box { color: #facc15; font-weight: bold; font-size: 16px; background: #1e293b; padding: 6px 14px; border-radius: 25px; border: 1px solid #475569; box-shadow: inset 0 2px 4px rgba(0,0,0,0.4); }
         
-        .ticker-bar { background: #1f2937; color: #34d399; font-size: 12px; padding: 6px 10px; overflow: hidden; white-space: nowrap; border-bottom: 1px solid #374151; }
-        .ticker-text { display: inline-block; animation: ticker 15s linear infinite; }
+        /* मार्केटिंग टिकर */
+        .ticker-bar { background: linear-gradient(90deg, #b45309, #d97706); color: #fff; font-size: 12px; font-weight: bold; padding: 8px 12px; overflow: hidden; white-space: nowrap; border-bottom: 1px solid #f59e0b; }
+        .ticker-text { display: inline-block; animation: ticker 20s linear infinite; }
         @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        .content { padding: 15px; overflow-y: auto; flex: 1; padding-bottom: 70px; }
+        .content { padding: 15px; overflow-y: auto; flex: 1; padding-bottom: 75px; }
         .hidden { display: none !important; }
 
-        .login-card { background: #1f2937; padding: 25px; border-radius: 16px; margin-top: 30px; text-align: center; border: 1px solid #374151; }
-        input, select, button { width: 100%; padding: 14px; margin: 10px 0; border-radius: 10px; border: none; font-size: 15px; box-sizing: border-box; }
-        input, select { background: #334155; color: #fff; outline: none; border: 1px solid #475569; }
+        .login-card { background: #1e293b; padding: 25px; border-radius: 18px; margin-top: 35px; text-align: center; border: 1px solid #475569; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        input, select, button { width: 100%; padding: 14px; margin: 10px 0; border-radius: 12px; border: none; font-size: 15px; box-sizing: border-box; }
+        input, select { background: #0f172a; color: #fff; outline: none; border: 1px solid #475569; }
         input:focus { border-color: #38bdf8; }
-        .btn-primary { background: linear-gradient(90deg, #10b981, #059669); color: #fff; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .btn-primary { background: linear-gradient(90deg, #10b981, #059669); color: #fff; font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 15px rgba(16,185,129,0.4); }
         .btn-primary:active { transform: scale(0.98); }
 
-        .game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 15px; }
-        .game-card { background: #1f2937; border: 1px solid #374151; padding: 12px 5px; border-radius: 10px; color: #fff; font-weight: bold; font-size: 12px; cursor: pointer; text-align: center; }
-        .game-card.active { background: #3b82f6; border-color: #60a5fa; }
+        .game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; }
+        .game-card { background: #1e293b; border: 1px solid #475569; padding: 14px 6px; border-radius: 12px; color: #fff; font-weight: bold; font-size: 12px; cursor: pointer; text-align: center; transition: 0.2s; }
+        .game-card.active { background: #2563eb; border-color: #60a5fa; box-shadow: 0 0 15px rgba(37,99,235,0.4); }
 
-        .game-panel { background: #1f2937; padding: 15px; border-radius: 14px; margin-bottom: 15px; border: 1px solid #374151; }
+        .game-panel { background: #1e293b; padding: 18px; border-radius: 16px; margin-bottom: 15px; border: 1px solid #334155; }
+        
+        /* कलर & नंबर प्रेडिक्शन */
+        .timer-box { display: flex; justify-content: space-between; align-items: center; background: #0f172a; padding: 10px 15px; border-radius: 10px; margin-bottom: 12px; border: 1px solid #334155; font-size: 13px; }
+        .time-tabs { display: flex; gap: 5px; margin-bottom: 12px; }
+        .t-tab { flex: 1; padding: 8px; background: #0f172a; border: 1px solid #475569; border-radius: 8px; font-size: 11px; cursor: pointer; text-align: center; color: #94a3b8; font-weight: bold; }
+        .t-tab.active { background: #3b82f6; color: #fff; border-color: #60a5fa; }
         
         .color-btns { display: flex; gap: 8px; margin: 10px 0; }
         .c-btn { flex: 1; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: white; font-size: 13px; }
@@ -61,40 +70,60 @@
         .bg-violet { background: #8b5cf6; }
         .bg-red { background: #ef4444; }
 
-        .aviator-screen { background: #0f172a; height: 130px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px dashed #334155; }
-        .multiplier { font-size: 30px; font-weight: bold; color: #facc15; }
+        .number-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 12px; }
+        .num-btn { background: #0f172a; border: 1px solid #475569; color: #fff; padding: 10px 0; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 14px; text-align: center; }
+        .num-btn:hover { background: #334155; }
 
+        /* हिस्ट्री बार / ट्रेंड बॉक्स */
+        .history-container { margin-top: 15px; background: #0f172a; padding: 10px; border-radius: 10px; border: 1px solid #334155; }
+        .history-title { font-size: 11px; color: #94a3b8; margin-bottom: 6px; font-weight: bold; display: flex; justify-content: space-between; }
+        .history-scroll { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+        .history-badge { min-width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; color: #fff; flex-shrink: 0; }
+
+        /* एविएटर प्रो स्क्रीन */
+        .aviator-screen { background: radial-gradient(circle, #1e293b 0%, #030712 100%); height: 160px; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px solid #334155; position: relative; overflow: hidden; }
+        .rocket-icon { font-size: 40px; transition: transform 0.2s; display: inline-block; }
+        .multiplier { font-size: 36px; font-weight: bold; color: #facc15; text-shadow: 0 0 12px rgba(250,204,21,0.6); }
+
+        /* अंदर-बाहर कार्ड टेबल */
+        .ab-table { display: flex; justify-content: space-around; margin: 15px 0; }
+        .card-box { background: #fff; color: #000; width: 65px; height: 90px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); border: 2px solid #cbd5e1; }
+
+        /* माइंस गेम */
         .mines-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 15px 0; }
-        .mine-tile { background: #334155; height: 50px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; border: 1px solid #475569; }
+        .mine-tile { background: #0f172a; height: 55px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; border: 1px solid #475569; transition: 0.2s; }
 
-        .bottom-nav { position: absolute; bottom: 0; width: 100%; display: flex; background: #1f2937; border-top: 1px solid #374151; padding: 10px 0; z-index: 100; box-sizing: border-box; }
-        .nav-item { flex: 1; text-align: center; font-size: 11px; color: #9ca3af; cursor: pointer; }
-        .nav-item.active { color: #38bdf8; font-weight: bold; }
+        /* बॉटम नेविगेशन बार */
+        .bottom-nav { position: absolute; bottom: 0; width: 100%; display: flex; background: #1e293b; border-top: 1px solid #334155; padding: 10px 0; z-index: 100; box-sizing: border-box; }
+        .nav-item { flex: 1; text-align: center; font-size: 11px; color: #94a3b8; cursor: pointer; font-weight: 600; }
+        .nav-item.active { color: #38bdf8; }
 
-        .res-text { font-size: 13px; margin-top: 8px; font-weight: bold; min-height: 20px; }
+        .res-text { font-size: 13px; margin-top: 10px; font-weight: bold; min-height: 22px; text-align: center; }
     </style>
 </head>
 <body>
 
     <div class="app-container">
         
+        <!-- हेडर -->
         <div class="header">
-            <span>🔥 <b>VIP CASINO PRO</b></span>
-            <div class="wallet-box">💰 ₹<span id="balance">500</span></div>
+            <span>👑 <b>VIP ROYAL CLUB</b> <span style="font-size:10px; background:#ef4444; padding:2px 6px; border-radius:4px;">500x PRO</span></span>
+            <div class="wallet-box">💰 ₹<span id="balance">1500</span></div>
         </div>
 
+        <!-- मार्केटिंग और ऑफर टिकर -->
         <div class="ticker-bar">
-            <span class="ticker-text">🎉 यूजर Rahul ने गेम से ₹200 जीते! ⚡ नया दांव लगाएं और बड़ा जैकपॉट जीतें! 💰 मास्टर वीआईपी पोर्टल सक्रिय है।</span>
+            <span class="ticker-text">🔥 धमाकेदार ऑफर: पहले डिपॉजिट पर पाएं 50% एक्स्ट्रा बोनस! ⚡ यूजर Gagan ने एविएटर में 500x अर्निंग करके ₹10,000 जीते! 💰 आज का जैकपॉट पूल एक्टिव है, तुरंत खेलें!</span>
         </div>
 
         <div class="content">
             
             <!-- लॉगिन सेक्शन -->
             <div id="login-section" class="login-card">
-                <h2>🚀 वीआईपी लॉगिन</h2>
-                <p style="font-size: 12px; color: #9ca3af;">मोबाइल नंबर या मास्टर कोड (777) दर्ज करें</p>
-                <input type="text" id="mobileInput" placeholder="मोबाइल नंबर या मास्टर कोड">
-                <button class="btn-primary" onclick="handleLogin()">लॉगिन करें (+₹100 बोनस)</button>
+                <h2>🚀 वीआईपी प्रो गेमिंग</h2>
+                <p style="font-size: 12px; color: #94a3b8;">मोबाइल नंबर या मास्टर की (777) दर्ज करें</p>
+                <input type="text" id="mobileInput" placeholder="मोबाइल नंबर या मास्टर की (777)">
+                <button class="btn-primary" onclick="handleLogin()">सुरक्षित प्रवेश करें (+₹500 बोनस)</button>
                 <p id="msg" style="color: #f87171; font-size: 13px;"></p>
             </div>
 
@@ -102,103 +131,173 @@
             <div id="dashboard-section" class="hidden">
                 
                 <div class="game-grid">
-                    <div class="game-card active" onclick="switchGame('color')">🎨 कलर गेम</div>
-                    <div class="game-card" onclick="switchGame('aviator')">✈️ एविएटर</div>
-                    <div class="game-card" onclick="switchGame('spin')">🎡 स्पिन</div>
+                    <div class="game-card active" onclick="switchGame('color')">🎨 कलर & नंबर</div>
+                    <div class="game-card" onclick="switchGame('aviator')">✈️ एविएटर प्रो</div>
+                    <div class="game-card" onclick="switchGame('spin')">🎡 स्पिन व्हील</div>
                     <div class="game-card" onclick="switchGame('andar')">🃏 अंदर-बाहर</div>
-                    <div class="game-card" onclick="switchGame('mines')">💎 माइंस गेम</div>
+                    <div class="game-card" onclick="switchGame('mines')">💎 डायमंड माइंस</div>
                     <div class="game-card" onclick="switchGame('walletTab')" style="background: #b45309;">💳 वॉलेट</div>
                 </div>
 
-                <!-- कलर प्रेडिक्शन -->
+                <!-- 1. कलर और नंबर प्रेडिक्शन (हिस्ट्री के साथ) -->
                 <div id="game-color" class="game-panel">
-                    <h3>🎨 कलर प्रेडिक्शन (बैलेंस्ड)</h3>
+                    <h3>🎨 कलर और नंबर प्रेडिक्शन</h3>
+                    <div class="time-tabs">
+                        <div class="t-tab active" onclick="setTimerType(30)">30 सेकंड</div>
+                        <div class="t-tab" onclick="setTimerType(60)">1 मिनट</div>
+                        <div class="t-tab" onclick="setTimerType(180)">3 मिनट</div>
+                    </div>
+                    <div class="timer-box">
+                        <span>पीरियड: <b id="periodNum">2026092045</b></span>
+                        <span>अगला परिणाम: <b id="countdownTimer" style="color: #facc15;">00:30</b></span>
+                    </div>
                     <div class="color-btns">
                         <button class="c-btn bg-green" onclick="playColor('Green')">हरा (2x)</button>
-                        <button class="c-btn bg-violet" onclick="playColor('Violet')|">बैंगनी (4x)</button>
+                        <button class="c-btn bg-violet" onclick="playColor('Violet')">बैंगनी (4.5x)</button>
                         <button class="c-btn bg-red" onclick="playColor('Red')">लाल (2x)</button>
+                    </div>
+                    <p style="font-size: 12px; color: #94a3b8; text-align: center; margin: 10px 0 5px 0;">या नंबर चुनें (9x रिटर्न):</p>
+                    <div class="number-grid">
+                        <button class="num-btn" onclick="playNumber(0)">0</button>
+                        <button class="num-btn" onclick="playNumber(1)">1</button>
+                        <button class="num-btn" onclick="playNumber(2)">2</button>
+                        <button class="num-btn" onclick="playNumber(3)">3</button>
+                        <button class="num-btn" onclick="playNumber(4)">4</button>
+                        <button class="num-btn" onclick="playNumber(5)">5</button>
+                        <button class="num-btn" onclick="playNumber(6)">6</button>
+                        <button class="num-btn" onclick="playNumber(7)">7</button>
+                        <button class="num-btn" onclick="playNumber(8)">8</button>
+                        <button class="num-btn" onclick="playNumber(9)">9</button>
+                    </div>
+                    
+                    <!-- पिछले 10 परिणामों की हिस्ट्री टेबल -->
+                    <div class="history-container">
+                        <div class="history-title"><span>📊 पिछले 10 राउंड्स की हिस्ट्री</span><span style="color:#38bdf8;">लाइव ट्रेंड</span></div>
+                        <div class="history-scroll" id="colorHistoryBar">
+                            <!-- JS द्वारा डायनेमिक भरे जाएंगे -->
+                        </div>
                     </div>
                     <p id="colorResult" class="res-text"></p>
                 </div>
 
-                <!-- एविएटर क्रैश -->
+                <!-- 2. एविएटर प्रो (क्रैश हिस्ट्री के साथ) -->
                 <div id="game-aviator" class="game-panel hidden">
-                    <h3>✈️ एविएटर क्रैश गेम</h3>
+                    <h3>✈️ एविएटर क्रैश प्रो</h3>
                     <div class="aviator-screen">
+                        <div class="rocket-icon" id="rocketObj">🚀</div>
                         <div class="multiplier" id="aviatorMultiplier">1.00x</div>
-                        <div style="font-size: 11px; color: #64748b;" id="aviatorStatus">उड़ान भरने को तैयार</div>
+                        <div style="font-size: 11px; color: #94a3b8;" id="aviatorStatus">उड़ान के लिए तैयार (बेट: ₹50)</div>
                     </div>
-                    <button class="btn-primary" id="aviatorBtn" onclick="startAviator()" style="margin-top: 10px;">उड़ान भरें (बेट ₹50)</button>
+                    <button class="btn-primary" id="aviatorBtn" onclick="startAviator()" style="margin-top: 12px;">रॉकेट लॉन्च करें</button>
+                    
+                    <!-- एविएटर पिछली क्रैश हिस्ट्री -->
+                    <div class="history-container">
+                        <div class="history-title"><span>🚀 पिछले 10 क्रैश पॉइंट्स</span><span style="color:#facc15;">मल्टीप्लायर ट्रेंड</span></div>
+                        <div class="history-scroll" id="aviatorHistoryBar">
+                            <!-- JS द्वारा भरे जाएंगे -->
+                        </div>
+                    </div>
                     <p id="aviatorResult" class="res-text"></p>
                 </div>
 
-                <!-- फॉर्च्यून स्पिन -->
+                <!-- 3. फॉर्च्यून स्पिन व्हील -->
                 <div id="game-spin" class="game-panel hidden">
-                    <h3>🎡 व्हील ऑफ फॉर्च्यून</h3>
-                    <div style="text-align: center; font-size: 35px; margin: 10px 0;" id="wheelIcon">🎰</div>
+                    <h3>🎡 रॉयल फॉर्च्यून स्पिन</h3>
+                    <div style="text-align: center; font-size: 55px; margin: 15px 0; transition: transform 1s ease-in-out;" id="wheelIcon">🎰</div>
                     <button class="btn-primary" onclick="playSpin()">स्पिन करें (दांव: ₹50)</button>
                     <p id="spinResult" class="res-text"></p>
                 </div>
 
-                <!-- अंदर-बाहर -->
+                <!-- 4. अंदर-बाहर (हिस्ट्री के साथ) -->
                 <div id="game-andar" class="game-panel hidden">
-                    <h3>🃏 अंदर-बाहर गेम</h3>
+                    <h3>🃏 अंदर-बाहर लाइव टेबल</h3>
+                    <div class="ab-table">
+                        <div style="text-align:center;"><span style="font-size:11px; color:#94a3b8;">मेन कार्ड</span><div class="card-box" id="mainCard">Q♠</div></div>
+                        <div style="text-align:center;"><span style="font-size:11px; color:#94a3b8;">रिजल्ट</span><div class="card-box" id="resultCard" style="background:#1e293b; color:#fff;">?</div></div>
+                    </div>
+                    <p style="font-size: 12px; color: #94a3b8; text-align: center;">चुनें कि पत्ता किस तरफ खुलेगा:</p>
                     <div style="display: flex; gap: 10px; margin: 10px 0;">
-                        <button class="btn-primary" onclick="playAndarBahar('Andar')" style="background: #2563eb;">अंदर (Andar)</button>
-                        <button class="btn-primary" onclick="playAndarBahar('Bahar')" style="background: #d97706;">बाहर (Bahar)</button>
+                        <button class="btn-primary" onclick="playAndarBahar('Andar')" style="background: #2563eb;">अंदर (Andar 1.9x)</button>
+                        <button class="btn-primary" onclick="playAndarBahar('Bahar')" style="background: #d97706;">बाहर (Bahar 1.9x)</button>
+                    </div>
+
+                    <!-- अंदर-बाहर हिस्ट्री -->
+                    <div class="history-container">
+                        <div class="history-title"><span>🃏 पिछली 10 बाजी का रिकॉर्ड</span></div>
+                        <div class="history-scroll" id="abHistoryBar"></div>
                     </div>
                     <p id="abResult" class="res-text"></p>
                 </div>
 
-                <!-- माइंस गेम -->
+                <!-- 5. डायमंड माइंस गेम -->
                 <div id="game-mines" class="game-panel hidden">
-                    <h3>💎 माइंस सेफ बॉक्स गेम</h3>
+                    <h3>💎 सेफ डायमंड माइंस</h3>
+                    <p style="font-size: 12px; color: #94a3b8;">डायमंड खोजें और 500x तक जीतें!</p>
                     <div class="mines-grid" id="minesContainer"></div>
-                    <button class="btn-primary" onclick="initMinesGame()" style="background: #475569;">रीसेट गेम</button>
+                    <button class="btn-primary" onclick="initMinesGame()" style="background: #475569;">बोर्ड रीसेट करें</button>
                     <p id="minesResult" class="res-text"></p>
                 </div>
 
-                <!-- वॉलेट टैब -->
+                <!-- वॉलेट टैब (50% बोनस ऑफर के साथ) -->
                 <div id="wallet-panel" class="game-panel hidden">
-                    <h3>💳 यूपीआई डिपॉजिट और विड्रॉल</h3>
-                    <input type="number" id="depositAmount" placeholder="रुपये दर्ज करें (जैसे 500)">
-                    <button class="btn-primary" onclick="addMoney()">डिपॉजिट करें (UPI)</button>
-                    <hr style="border-color: #374151; margin: 15px 0;">
-                    <button class="btn-primary" onclick="withdrawMoney()" style="background: #ef4444;">विड्रॉल लगाएं</button>
+                    <h3>💳 यूपीआई वॉलेट & 50% बोनस</h3>
+                    <div style="background:#0f172a; padding:10px; border-radius:8px; margin-bottom:10px; border:1px dashed #f59e0b; font-size:12px; color:#facc15;">
+                        🎁 स्पेशल ऑफर: आज न्यूनतम ₹500 डिपॉजिट करने पर पाएं **50% एक्स्ट्रा इंस्टेंट बोनस**!
+                    </div>
+                    <input type="number" id="depositAmount" placeholder="राशि दर्ज करें (जैसे 500)">
+                    <button class="btn-primary" onclick="addMoney()">डिपॉजिट करें & 50% बोनस पाएं</button>
+                    <hr style="border-color: #334155; margin: 15px 0;">
+                    <button class="btn-primary" onclick="withdrawMoney()" style="background: #ef4444;">विड्रॉल लगाएं (Instant)</button>
                     <p id="walletMsg" class="res-text"></p>
+                </div>
+
+                <!-- प्रमोशन टैब -->
+                <div id="promo-panel" class="game-panel hidden">
+                    <h3>📢 रेफरल & 500x अर्निंग प्रोग्राम</h3>
+                    <p style="font-size: 12px; color: #94a3b8;">लिंक शेयर करें और हर दोस्त की जीत पर कमीशन कमाएं!</p>
+                    <input type="text" id="refLink" value="https://viproyalcasino.com/join?ref=VIP777" readonly style="font-size: 12px; text-align: center;">
+                    <button class="btn-primary" onclick="shareOnWhatsApp()" style="background: #25d366; margin-top: 8px;">📲 WhatsApp पर शेयर करें</button>
                 </div>
 
             </div>
         </div>
 
+        <!-- बॉटम नेविगेशन बार -->
         <div class="bottom-nav">
-            <div class="nav-item active" onclick="switchNav('home')">🏠 होम</div>
-            <div class="nav-item" onclick="switchNav('promo')">📢 प्रमोशन</div>
-            <div class="nav-item" onclick="switchNav('wallet')">💼 वॉलेट</div>
-            <div class="nav-item" onclick="switchNav('account')">👤 अकाउंट</div>
+            <div class="nav-item active" id="nav-home" onclick="switchNav('home')">🏠 होम</div>
+            <div class="nav-item" id="nav-promo" onclick="switchNav('promo')">📢 प्रमोशन</div>
+            <div class="nav-item" id="nav-wallet" onclick="switchNav('wallet')">💼 वॉलेट</div>
+            <div class="nav-item" id="nav-account" onclick="switchNav('account')">👤 अकाउंट</div>
         </div>
     </div>
 
     <script>
-        let userBalance = 500;
+        let userBalance = 1500;
+
+        // हिस्ट्री डेटा एरे
+        let colorHistoryData = ['Red', 'Green', 'Red', 'Violet', 'Green', 'Red', 'Green', 'Red', 'Violet', 'Green'];
+        let aviatorHistoryData = ['1.25x', '2.40x', '1.02x', '4.50x', '1.15x', '3.10x', '1.05x', '2.80x', '1.50x', '5.20x'];
+        let abHistoryData = ['Andar', 'Bahar', 'Andar', 'Andar', 'Bahar', 'Bahar', 'Andar', 'Bahar', 'Andar', 'Bahar'];
 
         function handleLogin() {
             const inputVal = document.getElementById('mobileInput').value.trim();
             const msg = document.getElementById('msg');
 
-            if (inputVal === "777" || inputVal === "9950493066" || (inputVal.length === 10 && !isNaN(inputVal))) {
+            if (inputVal === "777" || (inputVal.length === 10 && !isNaN(inputVal))) {
                 if (inputVal === "777") {
-                    userBalance += 500; // मास्टर कोड बोनस सीमित किया गया
-                    alert("✨ मास्टर की एक्टिवेट! वीआईपी एक्सेस मिल गया है।");
+                    userBalance += 1000; 
+                    alert("✨ मास्टर की (Master Key) एक्टिवेट! वीआईपी वीआईपी एक्सेस मिल गया है।");
                 } else {
-                    userBalance += 100;
+                    userBalance += 500; // साइनअप + 50% ऑफर बोनस
                 }
                 document.getElementById('balance').innerText = userBalance;
                 document.getElementById('login-section').classList.add('hidden');
                 document.getElementById('dashboard-section').classList.remove('hidden');
                 initMinesGame();
+                startGlobalTimer();
+                renderAllHistories();
             } else {
-                msg.innerText = "⚠️ कृपया सही 10-अंकों का मोबाइल नंबर या मास्टर कोड (777) डालें!";
+                msg.innerText = "⚠️ कृपया सही 10-अंकों का मोबाइल नंबर या मास्टर की (777) डालें!";
             }
         }
 
@@ -210,6 +309,7 @@
             document.getElementById('game-andar').classList.add('hidden');
             document.getElementById('game-mines').classList.add('hidden');
             document.getElementById('wallet-panel').classList.add('hidden');
+            document.getElementById('promo-panel').classList.add('hidden');
 
             if (gameType === 'color') document.getElementById('game-color').classList.remove('hidden');
             else if (gameType === 'aviator') document.getElementById('game-aviator').classList.remove('hidden');
@@ -217,38 +317,125 @@
             else if (gameType === 'andar') document.getElementById('game-andar').classList.remove('hidden');
             else if (gameType === 'mines') document.getElementById('game-mines').classList.remove('hidden');
             else if (gameType === 'walletTab') document.getElementById('wallet-panel').classList.remove('hidden');
+            else if (gameType === 'promoTab') document.getElementById('promo-panel').classList.remove('hidden');
         }
 
         function switchNav(tab) {
-            if (tab === 'home') switchGame('color');
-            else if (tab === 'wallet') switchGame('walletTab');
-            else if (tab === 'promo') alert("📢 प्रमोशन: अपने दोस्तों को लिंक शेयर करें!");
-            else if (tab === 'account') alert("👤 वीआईपी अकाउंट: मास्टर एक्सेस");
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            if (tab === 'home') {
+                document.getElementById('nav-home').classList.add('active');
+                switchGame('color');
+            } else if (tab === 'wallet') {
+                document.getElementById('nav-wallet').classList.add('active');
+                switchGame('walletTab');
+            } else if (tab === 'promo') {
+                document.getElementById('nav-promo').classList.add('active');
+                switchGame('promoTab');
+            } else if (tab === 'account') {
+                document.getElementById('nav-account').classList.add('active');
+                alert("👤 वीआईपी अकाउंट: यूजर Gagan | मास्टर 500x एक्सेस सक्रिय है।");
+            }
         }
 
-        // 1. कलर प्रेडिक्शन (हाउस एज मजबूत: 60% हारने के चांस)
-        function playColor(chosenColor) {
-            if (userBalance < 30) { alert("बैलेंस कम है!"); return; }
-            userBalance -= 30;
-            
-            // हाउस फेवर लॉजिक: जीतने के कॉम्बिनेशन कम किए गए
-            const outcomes = ['Red', 'Red', 'Green', 'Green', 'Red', 'Violet'];
-            const winningColor = outcomes[Math.floor(Math.random() * outcomes.length)];
-            const res = document.getElementById('colorResult');
+        // समय और टाइमर
+        let currentTimeLeft = 30;
+        function startGlobalTimer() {
+            setInterval(() => {
+                currentTimeLeft--;
+                if (currentTimeLeft < 0) currentTimeLeft = 30;
+                let secStr = currentTimeLeft < 10 ? "0" + currentTimeLeft : currentTimeLeft;
+                document.getElementById('countdownTimer').innerText = "00:" + secStr;
+            }, 1000);
+        }
 
+        function setTimerType(sec) {
+            currentTimeLeft = sec;
+            document.querySelectorAll('.t-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // हिस्ट्री रेंडरिंग फंक्शन्स
+        function renderAllHistories() {
+            // कलर हिस्ट्री
+            const colorBar = document.getElementById('colorHistoryBar');
+            colorBar.innerHTML = '';
+            colorHistoryData.slice(-10).forEach(item => {
+                const badge = document.createElement('div');
+                badge.className = 'history-badge';
+                badge.innerText = item === 'Red' ? 'R' : (item === 'Green' ? 'G' : 'V');
+                badge.style.background = item === 'Red' ? '#ef4444' : (item === 'Green' ? '#10b981' : '#8b5cf6');
+                colorBar.appendChild(badge);
+            });
+
+            // एविएटर हिस्ट्री
+            const avBar = document.getElementById('aviatorHistoryBar');
+            avBar.innerHTML = '';
+            aviatorHistoryData.slice(-10).forEach(item => {
+                const badge = document.createElement('div');
+                badge.className = 'history-badge';
+                badge.style.minWidth = '42px';
+                badge.style.borderRadius = '6px';
+                badge.style.fontSize = '10px';
+                badge.style.background = parseFloat(item) > 2.0 ? '#10b981' : '#334155';
+                badge.innerText = item;
+                avBar.appendChild(badge);
+            });
+
+            // अंदर-बाहर हिस्ट्री
+            const abBar = document.getElementById('abHistoryBar');
+            abBar.innerHTML = '';
+            abHistoryData.slice(-10).forEach(item => {
+                const badge = document.createElement('div');
+                badge.className = 'history-badge';
+                badge.style.minWidth = '45px';
+                badge.style.borderRadius = '6px';
+                badge.style.fontSize = '10px';
+                badge.style.background = item === 'Andar' ? '#2563eb' : '#d97706';
+                badge.innerText = item === 'Andar' ? 'अंदर' : 'बाहर';
+                abBar.appendChild(badge);
+            });
+        }
+
+        function playColor(chosenColor) {
+            if (userBalance < 40) { alert("बैलेंस कम है!"); return; }
+            userBalance -= 40;
+            const outcomes = ['Red', 'Green', 'Red', 'Green', 'Violet'];
+            const winningColor = outcomes[Math.floor(Math.random() * outcomes.length)];
+            
+            colorHistoryData.push(winningColor);
+            renderAllHistories();
+
+            const res = document.getElementById('colorResult');
             if (chosenColor === winningColor) {
-                let winAmt = winningColor === 'Violet' ? 100 : 50;
+                let winAmt = winningColor === 'Violet' ? 180 : 80;
                 userBalance += winAmt;
                 res.style.color = "#34d399";
-                res.innerText = `🎉 जीत गए! सही रंग: ${winningColor} (+₹${winAmt})`;
+                res.innerText = `🎉 शानदार जीत! रंग आया: ${winningColor} (+₹${winAmt})`;
             } else {
                 res.style.color = "#f87171";
-                res.innerText = `❌ हार गए! सही रंग: ${winningColor} (-₹30)`;
+                res.innerText = `❌ हार गए! सही रंग था: ${winningColor} (-₹40)`;
             }
             document.getElementById('balance').innerText = userBalance;
         }
 
-        // 2. एविएटर क्रैश (ज्यादातर जल्दी क्रैश होने का लॉजिक)
+        function playNumber(num) {
+            if (userBalance < 30) { alert("बैलेंस कम है!"); return; }
+            userBalance -= 30;
+            const winningNum = Math.floor(Math.random() * 10);
+            const res = document.getElementById('colorResult');
+
+            if (num === winningNum) {
+                userBalance += 270; // 9x रिटर्न
+                res.style.color = "#34d399";
+                res.innerText = `🎰 जैकपॉट! नंबर ${winningNum} खुल गया! (+₹270)`;
+            } else {
+                res.style.color = "#f87171";
+                res.innerText = `❌ गलत अनुमान! खुला नंबर: ${winningNum} (-₹30)`;
+            }
+            document.getElementById('balance').innerText = userBalance;
+        }
+
+        // एविएटर प्रो
         let aviatorInterval;
         function startAviator() {
             if (userBalance < 50) { alert("बैलेंस कम है!"); return; }
@@ -256,75 +443,86 @@
             document.getElementById('balance').innerText = userBalance;
 
             let mult = 1.00;
-            // 70% चांस है कि रॉकेट 1.02x से 1.35x के बीच ही क्रैश हो जाएगा
-            const crashAt = (Math.random() < 0.7) ? (Math.random() * 0.35 + 1.02).toFixed(2) : (Math.random() * 2.5 + 1.4).toFixed(2);
+            const crashAt = (Math.random() < 0.6) ? (Math.random() * 0.4 + 1.05).toFixed(2) : (Math.random() * 4.0 + 1.4).toFixed(2);
             
             const mText = document.getElementById('aviatorMultiplier');
             const status = document.getElementById('aviatorStatus');
             const btn = document.getElementById('aviatorBtn');
             const res = document.getElementById('aviatorResult');
+            const rocket = document.getElementById('rocketObj');
 
             btn.innerText = "कैश आउट करें";
-            btn.setAttribute("onclick", "cashOut()");
-            status.innerText = "रॉकेट उड़ रहा है...";
+            btn.setAttribute("onclick", "cashOutAviator()");
+            status.innerText = "🚀 रॉकेट हवा में उड़ रहा है...";
             res.innerText = "";
 
             window.currentMult = mult;
             window.crashAtVal = parseFloat(crashAt);
             window.isFlying = true;
 
+            let deg = 0;
             aviatorInterval = setInterval(() => {
                 if (!window.isFlying) return;
-                window.currentMult += 0.03;
+                window.currentMult += 0.05;
                 mText.innerText = window.currentMult.toFixed(2) + 'x';
+                deg = (deg + 5) % 25;
+                rocket.style.transform = `translateY(-${window.currentMult * 4}px) rotate(${deg}deg)`;
 
                 if (window.currentMult >= window.crashAtVal) {
                     clearInterval(aviatorInterval);
                     window.isFlying = false;
-                    status.innerText = "💥 क्रैश हो गया!";
+                    
+                    aviatorHistoryData.push(window.crashAtVal + 'x');
+                    renderAllHistories();
+
+                    status.innerText = "💥 रॉकेट क्रैश हो गया!";
                     mText.style.color = "#ef4444";
                     res.style.color = "#f87171";
-                    res.innerText = `रॉकेट ${window.crashAtVal}x पर क्रैश हुआ। आप हार गए।`;
+                    res.innerText = `क्रैश पॉइंट: ${window.crashAtVal}x. आप हार गए।`;
                     resetAviatorBtn();
                 }
-            }, 120);
+            }, 100);
         }
 
-        function cashOut() {
+        function cashOutAviator() {
             if (!window.isFlying) return;
             clearInterval(aviatorInterval);
             window.isFlying = false;
+
+            aviatorHistoryData.push(window.currentMult.toFixed(2) + 'x');
+            renderAllHistories();
 
             const winAmt = Math.floor(50 * window.currentMult);
             userBalance += winAmt;
             document.getElementById('balance').innerText = userBalance;
 
-            document.getElementById('aviatorStatus').innerText = "✅ सफल कैश आउट!";
+            document.getElementById('aviatorStatus').innerText = "✅ सुरक्षित कैश आउट!";
             document.getElementById('aviatorResult').style.color = "#34d399";
-            document.getElementById('aviatorResult').innerText = `शानदार! ${window.currentMult.toFixed(2)}x पर ₹${winAmt} जीते!`;
+            document.getElementById('aviatorResult').innerText = `बधाई हो! ${window.currentMult.toFixed(2)}x पर ₹${winAmt} जीत लिए!`;
             resetAviatorBtn();
         }
 
         function resetAviatorBtn() {
             const btn = document.getElementById('aviatorBtn');
-            btn.innerText = "उड़ान भरें (बेट ₹50)";
+            btn.innerText = "रॉकेट लॉन्च करें";
             btn.setAttribute("onclick", "startAviator()");
+            document.getElementById('rocketObj').style.transform = "translateY(0px) rotate(0deg)";
             setTimeout(() => { document.getElementById('aviatorMultiplier').style.color = "#facc15"; }, 2000);
         }
 
-        // 3. स्पिन व्हील (ज्यादातर खाली रहने वाला लॉजिक)
+        // स्पिन व्हील
         function playSpin() {
             if (userBalance < 50) { alert("बैलेंस कम है!"); return; }
             userBalance -= 50;
             document.getElementById('balance').innerText = userBalance;
             const wheel = document.getElementById('wheelIcon');
             const res = document.getElementById('spinResult');
-            wheel.style.transform = "rotate(720deg)";
-            res.innerText = "घुम रहा है...";
+            wheel.style.transform = "rotate(1080deg)";
+            res.innerText = "पहिया घूम रहा है...";
 
             setTimeout(() => {
                 wheel.style.transform = "rotate(0deg)";
-                const prizes = [0, 0, 50, 100, 0, 0, 200, 0]; // ज्यादातर 0
+                const prizes = [0, 0, 50, 100, 250, 0, 500, 1000];
                 const prize = prizes[Math.floor(Math.random() * prizes.length)];
                 if (prize > 0) {
                     userBalance += prize;
@@ -332,75 +530,90 @@
                     res.innerText = `🎉 जैकपॉट! ₹${prize} जीत लिए!`;
                 } else {
                     res.style.color = "#f87171";
-                    res.innerText = `❌ खाली हाथ रहे।`;
+                    res.innerText = `❌ इस बार कुछ नहीं मिला।`;
                 }
                 document.getElementById('balance').innerText = userBalance;
             }, 1000);
         }
 
-        // 4. अंदर-बाहर
+        // अंदर-बाहर
         function playAndarBahar(choice) {
-            if (userBalance < 30) { alert("बैलेंस कम है!"); return; }
-            userBalance -= 30;
-            const outcomes = ['Andar', 'Bahar', 'Bahar', 'Andar']; // बैलेंस्ड
-            const winner = outcomes[Math.floor(Math.random() * outcomes.length)];
+            if (userBalance < 40) { alert("बैलेंस कम है!"); return; }
+            userBalance -= 40;
+            const sides = ['Andar', 'Bahar'];
+            const winner = sides[Math.floor(Math.random() * sides.length)];
+
+            abHistoryData.push(winner);
+            renderAllHistories();
+
             const res = document.getElementById('abResult');
+            document.getElementById('resultCard').innerText = winner === 'Andar' ? 'K♦' : '10♥';
+            document.getElementById('resultCard').style.background = '#fff';
+            document.getElementById('resultCard').style.color = '#000';
 
             if (choice === winner) {
-                userBalance += 55;
+                userBalance += 76;
                 res.style.color = "#34d399";
-                res.innerText = `🎉 जीत गए! सही पत्ता: ${winner} (+₹55)`;
+                res.innerText = `🎉 सही प्रेडिक्शन! पत्ता खुला ${winner === 'Andar' ? 'अंदर' : 'बाहर'} (+₹76)`;
             } else {
                 res.style.color = "#f87171";
-                res.innerText = `❌ हार गए! सही पत्ता: ${winner} (-₹30)`;
+                res.innerText = `❌ गलत प्रेडिक्शन! पत्ता खुला ${winner === 'Andar' ? 'अंदर' : 'बाहर'} (-₹40)`;
             }
             document.getElementById('balance').innerText = userBalance;
         }
 
-        // 5. माइंस गेम (40% बम चांस - रिस्की)
+        // माइंस गेम
         function initMinesGame() {
             const container = document.getElementById('minesContainer');
             container.innerHTML = '';
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < 12; i++) {
                 const tile = document.createElement('div');
                 tile.className = 'mine-tile';
                 tile.innerText = '❓';
-                tile.onclick = () => revealTile(tile);
+                tile.onclick = () => revealMineTile(tile);
                 container.appendChild(tile);
             }
             document.getElementById('minesResult').innerText = '';
         }
 
-        function revealTile(tile) {
+        function revealMineTile(tile) {
             if (tile.innerText !== '❓') return;
-            const isMine = Math.random() < 0.40; // 40% बम का खतरा
+            const isMine = Math.random() < 0.35;
             const res = document.getElementById('minesResult');
             if (isMine) {
                 tile.innerText = '💣';
                 tile.style.background = '#ef4444';
                 res.style.color = "#f87171";
-                res.innerText = "💥 बम फट गया! सब हार गए।";
+                res.innerText = "💥 बम फूट गया! गेम ओवर!";
             } else {
                 tile.innerText = '💎';
                 tile.style.background = '#10b981';
-                userBalance += 35;
+                userBalance += 50;
                 document.getElementById('balance').innerText = userBalance;
                 res.style.color = "#34d399";
-                res.innerText = "💎 डायमंड मिल गया (+₹35)!";
+                res.innerText = "💎 शानदार हीरा मिला (+₹50)!";
             }
         }
 
         function addMoney() {
             const amt = parseInt(document.getElementById('depositAmount').value);
-            if (isNaN(amt) || amt <= 0) { alert("मान्य राशि दर्ज करें!"); return; }
-            userBalance += amt;
+            if (isNaN(amt) || amt <= 0) { alert("कृपया सही राशि दर्ज करें!"); return; }
+            // 50% बोनस जोड़कर राशि क्रेडिट करें
+            const bonus = Math.floor(amt * 0.5);
+            const totalAdded = amt + bonus;
+            userBalance += totalAdded;
             document.getElementById('balance').innerText = userBalance;
             document.getElementById('walletMsg').style.color = "#34d399";
-            document.getElementById('walletMsg').innerText = `✅ सफलतापूर्वक ₹${amt} जमा हो गए!`;
+            document.getElementById('walletMsg').innerText = `✅ ₹${amt} जमा हुए + ₹${bonus} (50% बोनस) मिला! कुल: ₹${totalAdded}`;
         }
 
         function withdrawMoney() {
-            alert("🔒 विड्रॉल रिक्वेस्ट दर्ज कर ली गई है।");
+            alert("🔒 विड्रॉल रिक्वेस्ट सफलतापूर्वक सबमिट हो गई है। आपके खाते में राशि भेजी जा रही है।");
+        }
+
+        function shareOnWhatsApp() {
+            const text = encodeURIComponent("🔥 भाई इस प्रो कैसीनो ऐप पर आ जाओ, यहाँ 50% बोनस और 500x अर्निंग मिल रही है! अभी ज्वाइन करो: https://viproyalcasino.com/join?ref=VIP777");
+            window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
         }
     </script>
 </body>
