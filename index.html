@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FASTRESULT.ONLINE - Pro Gaming Portal</title>
+    <title>FASTRESULT.ONLINE - Pro Gaming Enterprise</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -11,6 +11,7 @@
             color: #ffffff;
             margin: 0;
             padding: 0;
+            padding-bottom: 70px; /* Space for bottom nav */
             text-align: center;
         }
         header {
@@ -44,6 +45,26 @@
             color: #4ade80;
             font-weight: bold;
         }
+        /* Live Ticker Bar */
+        .ticker-bar {
+            background: #1e293b;
+            border-bottom: 1px solid #334155;
+            color: #facc15;
+            font-size: 11px;
+            padding: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .ticker-bar span {
+            display: inline-block;
+            animation: ticker 15s linear infinite;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
         .container {
             width: 95%;
             max-width: 480px;
@@ -68,9 +89,9 @@
         .btn-deposit { background: linear-gradient(135deg, #16a34a, #15803d); }
         .btn-withdraw { background: linear-gradient(135deg, #dc2626, #b91c1c); }
 
+        /* Game Tabs */
         .game-tabs {
             display: flex;
-            flex-wrap: wrap;
             gap: 5px;
             margin-bottom: 15px;
             background: #1e293b;
@@ -78,8 +99,8 @@
             border-radius: 10px;
         }
         .tab-btn {
-            flex: 1 1 30%;
-            padding: 8px 4px;
+            flex: 1;
+            padding: 9px 4px;
             font-size: 11px;
             font-weight: bold;
             border: none;
@@ -95,13 +116,14 @@
             box-shadow: 0 2px 8px rgba(56, 189, 248, 0.4);
         }
 
-        .game-card {
+        .game-card, .section-card {
             background: #1e293b;
             padding: 18px;
             border-radius: 12px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.5);
             margin-bottom: 15px;
             border: 1px solid #334155;
+            text-align: left;
         }
         .timer-countdown {
             font-size: 28px;
@@ -109,6 +131,7 @@
             color: #facc15;
             margin: 10px 0;
             letter-spacing: 2px;
+            text-align: center;
         }
         .btn-group {
             display: flex;
@@ -124,6 +147,7 @@
             border-radius: 8px;
             cursor: pointer;
             color: white;
+            text-align: center;
         }
         .btn-green { background-color: #16a34a; }
         .btn-violet { background-color: #9333ea; }
@@ -144,10 +168,10 @@
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
+            text-align: center;
         }
         .num-btn:hover { background: #334155; }
 
-        /* Bet Amount Selector Quick Buttons */
         .bet-chips {
             display: flex;
             gap: 5px;
@@ -168,27 +192,62 @@
             color: #0f172a;
         }
 
-        /* Aviator Advanced UI */
+        /* History Table */
+        .history-table {
+            width: 100%;
+            margin-top: 15px;
+            border-collapse: collapse;
+            font-size: 11px;
+            text-align: center;
+        }
+        .history-table th, .history-table td {
+            padding: 6px;
+            border: 1px solid #334155;
+        }
+        .history-table th {
+            background: #0f172a;
+            color: #38bdf8;
+        }
+        .dot-green { color: #4ade80; font-weight: bold; }
+        .dot-red { color: #f87171; font-weight: bold; }
+        .dot-violet { color: #c084fc; font-weight: bold; }
+
+        /* Aviator Screen */
         .aviator-screen {
             background: radial-gradient(circle, #1e1b4b 0%, #0f172a 100%);
             padding: 25px 15px;
             border-radius: 10px;
             border: 2px solid #60a5fa;
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
-        .plane-container {
-            font-size: 40px;
-            margin: 10px 0;
-            transition: transform 0.2s;
+        .plane-container { font-size: 40px; margin: 10px 0; }
+        .aviator-multiplier { font-size: 42px; font-weight: bold; color: #60a5fa; margin: 5px 0; }
+
+        /* App-like Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0; left: 0; width: 100%;
+            background: #0f172a;
+            border-top: 2px solid #334155;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            z-index: 1000;
         }
-        .aviator-multiplier {
-            font-size: 42px;
+        .nav-item {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 11px;
             font-weight: bold;
-            color: #60a5fa;
-            margin: 5px 0;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
         }
+        .nav-item span { font-size: 18px; }
+        .nav-item.active-nav { color: #38bdf8; }
 
         /* Modals */
         .modal {
@@ -198,7 +257,7 @@
             background: rgba(0,0,0,0.85);
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 2000;
         }
         .modal-content {
             background: #1e293b;
@@ -232,13 +291,6 @@
             margin-top: 10px;
         }
         .close-btn { background: #dc2626; }
-        footer {
-            margin-top: 20px;
-            padding: 15px;
-            background: #020617;
-            color: #64748b;
-            font-size: 11px;
-        }
     </style>
 </head>
 <body>
@@ -246,7 +298,7 @@
     <!-- Login Modal -->
     <div id="loginModal" class="modal" style="display: flex;">
         <div class="modal-content">
-            <h3>📱 Secure Login</h3>
+            <h3>📱 Secure Pro Login</h3>
             <label style="font-size: 12px; color: #94a3b8;">Enter Mobile Number:</label>
             <input type="tel" id="userMobile" class="modal-input" placeholder="e.g. 9876543210" maxlength="10">
             <button class="modal-btn" onclick="loginUser()">Login / Register (₹250 Bonus)</button>
@@ -255,113 +307,196 @@
 
     <header>
         <div class="logo">
-            ⚡ FASTRESULT
+            ⚡ FASTRESULT PRO
             <span id="displayUser">User: Guest</span>
         </div>
         <div class="wallet-box">💰 ₹ <span id="balance">250.00</span></div>
     </header>
 
+    <!-- Live Winners Ticker Bar -->
+    <div class="ticker-bar">
+        <span id="liveTickerText">🎉 +91 9823* won ₹4,500 in Aviator | 🔥 +91 9412* won ₹900 in Color Game | 🚀 VIP Member earned ₹1,200 commission!</span>
+    </div>
+
     <div class="container">
         
-        <div class="action-row">
-            <button class="action-btn btn-deposit" onclick="openModal('depositModal')">➕ Deposit</button>
-            <button class="action-btn btn-withdraw" onclick="openModal('withdrawModal')">➖ Withdraw</button>
-        </div>
-
-        <!-- 5 Games Tabs -->
-        <div class="game-tabs">
-            <button class="tab-btn active" onclick="switchGame('color')">🎨 Color</button>
-            <button class="tab-btn" onclick="switchGame('aviator')">✈️ Aviator</button>
-            <button class="tab-btn" onclick="switchGame('tower')">🗼 Tower</button>
-            <button class="tab-btn" onclick="switchGame('teenpatti')">🃏 Teen Patti</button>
-            <button class="tab-btn" onclick="switchGame('andarbahar')">🎴 Andar Bahar</button>
-        </div>
-
-        <!-- Quick Bet Amount Selector -->
-        <div style="background: #1e293b; padding: 8px; border-radius: 8px; margin-bottom: 12px; font-size: 12px;">
-            Select Bet Amount: 
-            <div class="bet-chips">
-                <span class="chip active-chip" onclick="setChip(10, this)">₹10</span>
-                <span class="chip" onclick="setChip(50, this)">₹50</span>
-                <span class="chip" onclick="setChip(100, this)">₹100</span>
-                <span class="chip" onclick="setChip(500, this)">₹500</span>
-                <span class="chip" onclick="setChip(1000, this)">₹1000</span>
-            </div>
-        </div>
-
-        <!-- 1. Color Game -->
-        <div id="color-game" class="game-card">
-            <div style="font-size: 12px; color: #94a3b8;">Period: <span id="colorPeriod">2026092001</span></div>
-            <div class="timer-countdown" id="colorTimer">00:30</div>
-            
-            <div class="btn-group">
-                <button class="btn btn-green" onclick="placeColorBet('Green', 2)">GREEN (2x)</button>
-                <button class="btn btn-violet" onclick="placeColorBet('Violet', 4.5)">VIOLET (4.5x)</button>
-                <button class="btn btn-red" onclick="placeColorBet('Red', 2)">RED (2x)</button>
+        <!-- MAIN HOME SECTION -->
+        <div id="section-home" class="main-section">
+            <div class="action-row">
+                <button class="action-btn btn-deposit" onclick="openModal('depositModal')">➕ Deposit</button>
+                <button class="action-btn btn-withdraw" onclick="openModal('withdrawModal')">➖ Withdraw</button>
             </div>
 
-            <div style="font-size: 12px; color: #cbd5e1; margin-top: 10px; text-align: left;">Select Number (9x):</div>
-            <div class="number-grid">
-                <button class="num-btn" onclick="placeNumberBet(1)">1</button>
-                <button class="num-btn" onclick="placeNumberBet(2)">2</button>
-                <button class="num-btn" onclick="placeNumberBet(3)">3</button>
-                <button class="num-btn" onclick="placeNumberBet(4)">4</button>
-                <button class="num-btn" onclick="placeNumberBet(5)">5</button>
-                <button class="num-btn" onclick="placeNumberBet(6)">6</button>
-                <button class="num-btn" onclick="placeNumberBet(7)">7</button>
-                <button class="num-btn" onclick="placeNumberBet(8)">8</button>
-                <button class="num-btn" onclick="placeNumberBet(9)">9</button>
-                <button class="num-btn" onclick="placeNumberBet(0)">0</button>
+            <!-- 4 Game Tabs -->
+            <div class="game-tabs">
+                <button class="tab-btn active" onclick="switchGame('color')">🎨 Color</button>
+                <button class="tab-btn" onclick="switchGame('aviator')">✈️ Aviator</button>
+                <button class="tab-btn" onclick="switchGame('teenpatti')">🃏 Teen Patti</button>
+                <button class="tab-btn" onclick="switchGame('andarbahar')">🎴 Andar Bahar</button>
             </div>
-            <div id="colorResult" style="margin-top: 12px; font-size: 13px; color: #38bdf8; font-weight: bold;"></div>
-        </div>
 
-        <!-- 2. Aviator Game (Real Working Multiplier & Fly) -->
-        <div id="aviator-game" class="game-card" style="display: none;">
-            <div class="aviator-screen">
-                <div class="plane-container" id="planeIcon">✈️</div>
-                <div style="font-size: 12px; color: #cbd5e1;" id="aviatorStatus">Ready for Next Flight</div>
-                <div class="aviator-multiplier" id="aviatorMultiplier">1.00x</div>
-                <button class="modal-btn" id="aviatorBtn" onclick="startAviatorBet()" style="background: #eab308; color: #000; font-size: 15px; margin-top: 10px;">PLACE BET</button>
+            <!-- Quick Bet Amount Selector -->
+            <div style="background: #1e293b; padding: 8px; border-radius: 8px; margin-bottom: 12px; font-size: 12px; text-align: left;">
+                Select Bet Amount: 
+                <div class="bet-chips">
+                    <span class="chip active-chip" onclick="setChip(10, this)">₹10</span>
+                    <span class="chip" onclick="setChip(50, this)">₹50</span>
+                    <span class="chip" onclick="setChip(100, this)">₹100</span>
+                    <span class="chip" onclick="setChip(500, this)">₹500</span>
+                    <span class="chip" onclick="setChip(1000, this)">₹1000</span>
+                </div>
             </div>
-        </div>
 
-        <!-- 3. Tower Rush Game -->
-        <div id="tower-game" class="game-card" style="display: none;">
-            <div style="background: linear-gradient(135deg, #451a03, #78350f); padding: 20px; border-radius: 10px; border: 2px dashed #f59e0b; text-align: center;">
-                <div style="font-size: 30px;">🗼</div>
-                <div style="font-size: 15px; font-weight: bold; color: #f59e0b; margin: 8px 0;">Tower Rush Climber</div>
-                <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 12px;" id="towerStatus">Climb blocks to multiply earnings!</div>
-                <button class="modal-btn" id="towerBtn" onclick="playTowerRush()" style="background: #f59e0b; color: #000;">START TOWER (Bet ₹<span id="currentChipDisplay">10</span>)</button>
+            <!-- 1. Color Game -->
+            <div id="color-game" class="game-card">
+                <div style="font-size: 12px; color: #94a3b8;">Period: <span id="colorPeriod">2026092001</span></div>
+                <div class="timer-countdown" id="colorTimer">00:30</div>
+                
+                <div class="btn-group">
+                    <button class="btn btn-green" onclick="placeColorBet('Green', 2)">GREEN (2x)</button>
+                    <button class="btn btn-violet" onclick="placeColorBet('Violet', 4.5)">VIOLET (4.5x)</button>
+                    <button class="btn btn-red" onclick="placeColorBet('Red', 2)">RED (2x)</button>
+                </div>
+
+                <div style="font-size: 12px; color: #cbd5e1; margin-top: 10px;">Select Number (9x):</div>
+                <div class="number-grid">
+                    <button class="num-btn" onclick="placeNumberBet(1)">1</button>
+                    <button class="num-btn" onclick="placeNumberBet(2)">2</button>
+                    <button class="num-btn" onclick="placeNumberBet(3)">3</button>
+                    <button class="num-btn" onclick="placeNumberBet(4)">4</button>
+                    <button class="num-btn" onclick="placeNumberBet(5)">5</button>
+                    <button class="num-btn" onclick="placeNumberBet(6)">6</button>
+                    <button class="num-btn" onclick="placeNumberBet(7)">7</button>
+                    <button class="num-btn" onclick="placeNumberBet(8)">8</button>
+                    <button class="num-btn" onclick="placeNumberBet(9)">9</button>
+                    <button class="num-btn" onclick="placeNumberBet(0)">0</button>
+                </div>
+                <div id="colorResult" style="margin-top: 10px; font-size: 12px; color: #38bdf8; font-weight: bold;"></div>
+
+                <div style="margin-top: 15px; font-size: 12px; color: #94a3b8; font-weight: bold;">📊 Past 10 Results History:</div>
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Period</th>
+                            <th>Number</th>
+                            <th>Color</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTableBody"></tbody>
+                </table>
             </div>
-        </div>
 
-        <!-- 4. Teen Patti Game -->
-        <div id="teenpatti-game" class="game-card" style="display: none;">
-            <div style="background: linear-gradient(135deg, #065f46, #064e3b); padding: 20px; border-radius: 10px; border: 2px dashed #34d399; text-align: center;">
-                <div style="font-size: 30px;">🃏</div>
-                <div style="font-size: 15px; font-weight: bold; color: #34d399; margin: 8px 0;">Royal Teen Patti</div>
-                <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 12px;" id="tpResult">Test your hand strength!</div>
-                <div style="display: flex; gap: 10px;">
-                    <button class="modal-btn" style="background: #34d399; color:#000;" onclick="playTeenPatti('Seen')">SEEN (2x)</button>
-                    <button class="modal-btn" style="background: #059669; color:#fff;" onclick="playTeenPatti('Blind')">BLIND (4x)</button>
+            <!-- 2. Aviator Game -->
+            <div id="aviator-game" class="game-card" style="display: none;">
+                <div class="aviator-screen">
+                    <div class="plane-container" id="planeIcon">✈️</div>
+                    <div style="font-size: 12px; color: #cbd5e1;" id="aviatorStatus">Ready for Next Flight</div>
+                    <div class="aviator-multiplier" id="aviatorMultiplier">1.00x</div>
+                    <button class="modal-btn" id="aviatorBtn" onclick="startAviatorBet()" style="background: #eab308; color: #000; font-size: 15px; margin-top: 10px;">PLACE BET</button>
+                </div>
+            </div>
+
+            <!-- 3. Teen Patti -->
+            <div id="teenpatti-game" class="game-card" style="display: none;">
+                <div style="background: linear-gradient(135deg, #065f46, #064e3b); padding: 20px; border-radius: 10px; border: 2px dashed #34d399; text-align: center;">
+                    <div style="font-size: 30px;">🃏</div>
+                    <div style="font-size: 15px; font-weight: bold; color: #34d399; margin: 8px 0;">Royal Teen Patti</div>
+                    <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 12px;" id="tpResult">Test your hand strength!</div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="modal-btn" style="background: #34d399; color:#000;" onclick="playTeenPatti('Seen')">SEEN (2x)</button>
+                        <button class="modal-btn" style="background: #059669; color:#fff;" onclick="playTeenPatti('Blind')">BLIND (4x)</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Andar Bahar -->
+            <div id="andarbahar-game" class="game-card" style="display: none;">
+                <div style="background: linear-gradient(135deg, #581c87, #3b0764); padding: 20px; border-radius: 10px; border: 2px dashed #c084fc; text-align: center;">
+                    <div style="font-size: 30px;">🎴</div>
+                    <div style="font-size: 15px; font-weight: bold; color: #c084fc; margin: 8px 0;">Classic Andar Bahar</div>
+                    <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 12px;" id="abResult">Pick your winning side!</div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="modal-btn" style="background: #c084fc; color:#000;" onclick="playAndarBahar('Andar')">ANDAR</button>
+                        <button class="modal-btn" style="background: #9333ea; color:#fff;" onclick="playAndarBahar('Bahar')">BAHAR</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- 5. Andar Bahar Game -->
-        <div id="andarbahar-game" class="game-card" style="display: none;">
-            <div style="background: linear-gradient(135deg, #581c87, #3b0764); padding: 20px; border-radius: 10px; border: 2px dashed #c084fc; text-align: center;">
-                <div style="font-size: 30px;">🎴</div>
-                <div style="font-size: 15px; font-weight: bold; color: #c084fc; margin: 8px 0;">Classic Andar Bahar</div>
-                <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 12px;" id="abResult">Pick your winning side!</div>
-                <div style="display: flex; gap: 10px;">
-                    <button class="modal-btn" style="background: #c084fc; color:#000;" onclick="playAndarBahar('Andar')">ANDAR</button>
-                    <button class="modal-btn" style="background: #9333ea; color:#fff;" onclick="playAndarBahar('Bahar')">BAHAR</button>
+        <!-- PROMOTION SECTION (Referral & VIP) -->
+        <div id="section-promotion" class="main-section" style="display: none;">
+            <div class="section-card">
+                <h3>🤝 Partner Promotion & VIP</h3>
+                <p style="font-size: 12px; color: #94a3b8;">Invite friends and earn up to 5% commission daily!</p>
+                <div style="background: #0f172a; padding: 10px; border-radius: 6px; font-size: 12px; word-break: break-all; margin-bottom: 10px;">
+                    🔗 https://fastresult.online/ref?code=<span id="refMobile">9876543210</span>
+                </div>
+                <button class="modal-btn" onclick="copyRefLink()">Copy Referral Link</button>
+                
+                <h4 style="color: #38bdf8; margin-top: 20px;">⭐ VIP Level Benefits</h4>
+                <div style="font-size: 12px; color: #cbd5e1; line-height: 1.6;">
+                    • <b>VIP Level:</b> 1 (Active)<br>
+                    • <b>Daily Salary:</b> ₹50 Unlocked<br>
+                    • <b>Withdrawal Limit:</b> ₹50,000 / day
                 </div>
             </div>
         </div>
 
+        <!-- WALLET & PASSBOOK SECTION -->
+        <div id="section-wallet" class="main-section" style="display: none;">
+            <div class="section-card">
+                <h3>💰 Wallet Passbook & Ledger</h3>
+                <div style="font-size: 13px; margin-bottom: 15px; color: #4ade80; font-weight: bold;">
+                    Available Balance: ₹ <span id="walletSecBalance">250.00</span>
+                </div>
+                <div class="action-row" style="margin-bottom: 20px;">
+                    <button class="action-btn btn-deposit" onclick="openModal('depositModal')">Deposit Funds</button>
+                    <button class="action-btn btn-withdraw" onclick="openModal('withdrawModal')">Withdraw Funds</button>
+                </div>
+
+                <h4 style="color: #38bdf8; font-size: 13px;">📋 Transaction & Bet Ledger</h4>
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Status / Result</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ledgerTableBody">
+                        <!-- Populated via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ACCOUNT SECTION -->
+        <div id="section-account" class="main-section" style="display: none;">
+            <div class="section-card" style="text-align: center;">
+                <div style="font-size: 40px;">👤</div>
+                <h3 id="accMobileDisplay" style="margin: 5px 0;">+91 9876543210</h3>
+                <p style="font-size: 12px; color: #4ade80;">Verified Pro Account</p>
+                <hr style="border-color: #334155; margin: 15px 0;">
+                <button class="modal-btn close-btn" onclick="logoutUser()">Logout Account</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Navigation Bar (App-like) -->
+    <div class="bottom-nav">
+        <button class="nav-item active-nav" onclick="switchSection('home', this)">
+            <span>🏠</span>Home
+        </button>
+        <button class="nav-item" onclick="switchSection('promotion', this)">
+            <span>🎁</span>Promotion
+        </button>
+        <button class="nav-item" onclick="switchSection('wallet', this)">
+            <span>💳</span>Wallet
+        </button>
+        <button class="nav-item" onclick="switchSection('account', this)">
+            <span>⚙️</span>Account
+        </button>
     </div>
 
     <!-- Deposit Modal -->
@@ -390,21 +525,54 @@
         </div>
     </div>
 
-    <footer>
-        &copy; 2026 FastResult.Online | Advanced Gaming Engine
-    </footer>
-
     <script>
+        // --- SOUND SYSTEM (Web Audio API) ---
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playSound(type) {
+            if(audioCtx.state === 'suspended') { audioCtx.resume(); }
+            let osc = audioCtx.createOscillator();
+            let gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            if(type === 'click') {
+                osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.05);
+            } else if(type === 'win') {
+                osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.2);
+                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.2);
+            } else if(type === 'loss') {
+                osc.frequency.setValueAtTime(200, audioCtx.currentTime);
+                osc.frequency.linearRampToValueAtTime(100, audioCtx.currentTime + 0.2);
+                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.2);
+            }
+        }
+
+        // --- APP STATE & STORAGE ---
         let currentMobile = localStorage.getItem('fastResultMobile') || "";
         let userBalance = parseFloat(localStorage.getItem('fastResultBal')) || 250.00;
         let selectedBet = 10;
+        let periodNumber = 2026092001;
+        let gameHistory = JSON.parse(localStorage.getItem('fastResultHistory')) || [];
+        let ledgerHistory = JSON.parse(localStorage.getItem('fastResultLedger')) || [];
 
-        // Init check login
         if(currentMobile) {
             document.getElementById('loginModal').style.display = 'none';
             document.getElementById('displayUser').innerText = `ID: +91 ${currentMobile}`;
+            document.getElementById('accMobileDisplay').innerText = `+91 ${currentMobile}`;
+            document.getElementById('refMobile').innerText = currentMobile;
         }
         document.getElementById('balance').innerText = userBalance.toFixed(2);
+        document.getElementById('walletSecBalance').innerText = userBalance.toFixed(2);
+        renderHistory();
+        renderLedger();
 
         function loginUser() {
             let mobile = document.getElementById('userMobile').value;
@@ -416,37 +584,78 @@
                     localStorage.setItem('fastResultBal', userBalance);
                 }
                 document.getElementById('displayUser').innerText = `ID: +91 ${mobile}`;
+                document.getElementById('accMobileDisplay').innerText = `+91 ${mobile}`;
+                document.getElementById('refMobile').innerText = mobile;
                 document.getElementById('loginModal').style.display = 'none';
                 document.getElementById('balance').innerText = userBalance.toFixed(2);
-                alert(`Welcome! Logged in successfully with ₹250 bonus balance.`);
+                document.getElementById('walletSecBalance').innerText = userBalance.toFixed(2);
+                playSound('win');
+                alert(`Welcome Pro! Logged in with ₹250 bonus.`);
             } else {
                 alert('Please enter a valid 10-digit mobile number.');
             }
         }
 
+        function logoutUser() {
+            localStorage.removeItem('fastResultMobile');
+            location.reload();
+        }
+
         function updateBalance(amt) {
             userBalance += amt;
             document.getElementById('balance').innerText = userBalance.toFixed(2);
+            document.getElementById('walletSecBalance').innerText = userBalance.toFixed(2);
             localStorage.setItem('fastResultBal', userBalance);
         }
 
+        function addLedger(type, amount, status) {
+            ledgerHistory.unshift({ type, amount, status });
+            if(ledgerHistory.length > 15) ledgerHistory.pop();
+            localStorage.setItem('fastResultLedger', JSON.stringify(ledgerHistory));
+            renderLedger();
+        }
+
+        function renderLedger() {
+            let tbody = document.getElementById('ledgerTableBody');
+            tbody.innerHTML = '';
+            ledgerHistory.forEach(item => {
+                let row = `<tr>
+                    <td><b>${item.type}</b></td>
+                    <td>₹${item.amount}</td>
+                    <td style="color: ${item.status.includes('Won') || item.status.includes('Success') ? '#4ade80' : '#f87171'}">${item.status}</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
         function setChip(val, el) {
+            playSound('click');
             selectedBet = val;
             document.querySelectorAll('.chip').forEach(c => c.classList.remove('active-chip'));
             el.classList.add('active-chip');
-            document.getElementById('currentChipDisplay').innerText = val;
         }
 
+        // Navigation Switching (Bottom Bar)
+        function switchSection(section, el) {
+            playSound('click');
+            document.querySelectorAll('.main-section').forEach(s => s.style.display = 'none');
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active-nav'));
+            document.getElementById('section-' + section).style.display = 'block';
+            el.classList.add('active-nav');
+        }
+
+        // Game Switching
         function switchGame(game) {
+            playSound('click');
             document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
-            ['color', 'aviator', 'tower', 'teenpatti', 'andarbahar'].forEach(g => {
+            ['color', 'aviator', 'teenpatti', 'andarbahar'].forEach(g => {
                 document.getElementById(g + '-game').style.display = 'none';
             });
             document.getElementById(game + '-game').style.display = 'block';
             event.target.classList.add('active');
         }
 
-        // --- 1. COLOR PREDICTION GAME LOGIC ---
+        // --- COLOR PREDICTION LOGIC & HISTORY ---
         let colorTimer = 30;
         let activeColorBet = null;
 
@@ -462,23 +671,35 @@
 
         function placeColorBet(color, multiplier) {
             if(userBalance < selectedBet) { alert('Insufficient balance!'); return; }
+            playSound('click');
             updateBalance(-selectedBet);
             activeColorBet = { type: 'color', choice: color, mult: multiplier };
-            document.getElementById('colorResult').innerText = `Bet placed: ₹${selectedBet} on ${color}. Waiting for result...`;
+            document.getElementById('colorResult').innerText = `Bet placed: ₹${selectedBet} on ${color}`;
+            addLedger('Color Bet', selectedBet, 'Pending');
         }
 
         function placeNumberBet(num) {
             if(userBalance < selectedBet) { alert('Insufficient balance!'); return; }
+            playSound('click');
             updateBalance(-selectedBet);
             activeColorBet = { type: 'number', choice: num, mult: 9 };
-            document.getElementById('colorResult').innerText = `Bet placed: ₹${selectedBet} on Number ${num}. Waiting for result...`;
+            document.getElementById('colorResult').innerText = `Bet placed: ₹${selectedBet} on Number ${num}`;
+            addLedger('Color Number Bet', selectedBet, 'Pending');
         }
 
         function resolveColorGame() {
             let colors = ['Green', 'Red', 'Violet'];
             let winColor = colors[Math.floor(Math.random() * colors.length)];
             let winNum = Math.floor(Math.random() * 10);
-            
+
+            gameHistory.unshift({ period: periodNumber, number: winNum, color: winColor });
+            if(gameHistory.length > 10) gameHistory.pop();
+            localStorage.setItem('fastResultHistory', JSON.stringify(gameHistory));
+            renderHistory();
+
+            periodNumber++;
+            document.getElementById('colorPeriod').innerText = periodNumber;
+
             let resText = `Result: ${winColor} (${winNum}). `;
             if(activeColorBet) {
                 let won = false;
@@ -493,9 +714,13 @@
 
                 if(won) {
                     updateBalance(winAmt);
-                    resText += `🎉 You Won ₹${winAmt}!`;
+                    playSound('win');
+                    resText += `🎉 Won ₹${winAmt}!`;
+                    addLedger('Color Win', winAmt, 'Won (+₹' + winAmt + ')');
                 } else {
-                    resText += `❌ You Lost ₹${selectedBet}.`;
+                    playSound('loss');
+                    resText += `❌ Lost ₹${selectedBet}.`;
+                    addLedger('Color Loss', selectedBet, 'Lost (-₹' + selectedBet + ')');
                 }
                 activeColorBet = null;
             } else {
@@ -504,11 +729,27 @@
             document.getElementById('colorResult').innerText = resText;
         }
 
-        // --- 2. AVIATOR REAL LOGIC ---
+        function renderHistory() {
+            let tbody = document.getElementById('historyTableBody');
+            tbody.innerHTML = '';
+            gameHistory.forEach(item => {
+                let colorClass = item.color === 'Green' ? 'dot-green' : (item.color === 'Red' ? 'dot-red' : 'dot-violet');
+                let row = `<tr>
+                    <td>${item.period}</td>
+                    <td><b>${item.number}</b></td>
+                    <td class="${colorClass}">${item.color}</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // --- AVIATOR LOGIC ---
         let aviatorInterval = null;
         function startAviatorBet() {
             if(userBalance < selectedBet) { alert('Insufficient balance!'); return; }
+            playSound('click');
             updateBalance(-selectedBet);
+            addLedger('Aviator Bet', selectedBet, 'Flying...');
 
             let btn = document.getElementById('aviatorBtn');
             btn.innerText = "CASH OUT";
@@ -516,7 +757,7 @@
             btn.style.color = "#fff";
             
             let mult = 1.00;
-            let crashAt = (1.1 + Math.random() * 4).toFixed(2);
+            let crashAt = (1.1 + Math.random() * 4.5).toFixed(2);
             let cashedOut = false;
 
             btn.onclick = function() {
@@ -524,74 +765,80 @@
                     cashedOut = true;
                     let win = selectedBet * mult;
                     updateBalance(win);
-                    document.getElementById('aviatorStatus').innerText = `Successfully Cashed Out at ${mult}x! Won ₹${win.toFixed(2)}`;
-                    btn.innerText = "PLACE BET";
-                    btn.style.background = "#eab308";
-                    btn.style.color = "#000";
-                    btn.onclick = startAviatorBet;
+                    playSound('win');
+                    document.getElementById('aviatorStatus').innerText = `Cashed out at ${mult}x! Won ₹${win.toFixed(2)}`;
+                    addLedger('Aviator Cashout', win.toFixed(2), 'Won (+₹' + win.toFixed(2) + ')');
+                    resetAviatorBtn();
                     clearInterval(aviatorInterval);
                 }
             };
 
             aviatorInterval = setInterval(() => {
-                mult += 0.05;
+                mult += 0.04;
                 document.getElementById('aviatorMultiplier').innerText = mult.toFixed(2) + 'x';
-                document.getElementById('planeIcon').style.transform = `scale(${1 + mult*0.1})`;
 
                 if(mult >= crashAt && !cashedOut) {
                     cashedOut = true;
-                    document.getElementById('aviatorStatus').innerText = `💥 Flew Away at ${crashAt}x! You Lost ₹${selectedBet}`;
-                    btn.innerText = "PLACE BET";
-                    btn.style.background = "#eab308";
-                    btn.style.color = "#000";
-                    btn.onclick = startAviatorBet;
+                    playSound('loss');
+                    document.getElementById('aviatorStatus').innerText = `💥 Crashed at ${crashAt}x! Lost ₹${selectedBet}`;
+                    addLedger('Aviator Crash', selectedBet, 'Lost (-₹' + selectedBet + ')');
+                    resetAviatorBtn();
                     clearInterval(aviatorInterval);
                 }
-            }, 150);
+            }, 120);
         }
 
-        // --- 3. TOWER RUSH ---
-        function playTowerRush() {
-            if(userBalance < selectedBet) { alert('Insufficient balance!'); return; }
-            updateBalance(-selectedBet);
-            let success = Math.random() > 0.4;
-            if(success) {
-                let win = selectedBet * 2;
-                updateBalance(win);
-                document.getElementById('towerStatus').innerText = `🗼 Climbed high safely! Won ₹${win}`;
-            } else {
-                document.getElementById('towerStatus').innerText = `💥 Trap hit! Lost ₹${selectedBet}`;
-            }
+        function resetAviatorBtn() {
+            let btn = document.getElementById('aviatorBtn');
+            btn.innerText = "PLACE BET";
+            btn.style.background = "#eab308";
+            btn.style.color = "#000";
+            btn.onclick = startAviatorBet;
         }
 
-        // --- 4. TEEN PATTI ---
+        // --- TEEN PATTI ---
         function playTeenPatti(mode) {
             if(userBalance < selectedBet) { alert('Insufficient balance!'); return; }
+            playSound('click');
             updateBalance(-selectedBet);
             let win = mode === 'Seen' ? Math.random() > 0.45 : Math.random() > 0.6;
             let mult = mode === 'Seen' ? 2 : 4;
             if(win) {
                 let reward = selectedBet * mult;
                 updateBalance(reward);
-                document.getElementById('tpResult').innerText = `🃏 High cards win! Won ₹${reward}`;
+                playSound('win');
+                document.getElementById('tpResult').innerText = `🃏 Won ₹${reward} (${mode} match)!`;
+                addLedger('Teen Patti', selectedBet, 'Won (+₹' + reward + ')');
             } else {
-                document.getElementById('tpResult').innerText = `🃏 Better luck next hand! Lost ₹${selectedBet}`;
+                playSound('loss');
+                document.getElementById('tpResult').innerText = `🃏 Lost ₹${selectedBet}.`;
+                addLedger('Teen Patti', selectedBet, 'Lost (-₹' + selectedBet + ')');
             }
         }
 
-        // --- 5. ANDAR BAHAR ---
+        // --- ANDAR BAHAR ---
         function playAndarBahar(choice) {
             if(userBalance < selectedBet) { alert('Insufficient balance!'); return; }
+            playSound('click');
             updateBalance(-selectedBet);
             let outcomes = ['Andar', 'Bahar'];
             let winner = outcomes[Math.floor(Math.random() * outcomes.length)];
             if(choice === winner) {
                 let reward = selectedBet * 1.9;
                 updateBalance(reward);
-                document.getElementById('abResult').innerText = `🎴 Card landed on ${winner}! Won ₹${reward}`;
+                playSound('win');
+                document.getElementById('abResult').innerText = `🎴 Card on ${winner}! Won ₹${reward}`;
+                addLedger('Andar Bahar', selectedBet, 'Won (+₹' + reward + ')');
             } else {
-                document.getElementById('abResult').innerText = `🎴 Card landed on ${winner}. Lost ₹${selectedBet}`;
+                playSound('loss');
+                document.getElementById('abResult').innerText = `🎴 Card on ${winner}. Lost ₹${selectedBet}`;
+                addLedger('Andar Bahar', selectedBet, 'Lost (-₹' + selectedBet + ')');
             }
+        }
+
+        function copyRefLink() {
+            navigator.clipboard.writeText(`https://fastresult.online/ref?code=${currentMobile}`);
+            alert('Referral link copied to clipboard!');
         }
 
         // Modals
@@ -603,7 +850,9 @@
             let utr = document.getElementById('utrNum').value;
             if(amt && utr) {
                 updateBalance(amt);
-                alert(`Deposit of ₹${amt} verified via UTR ${utr}!`);
+                playSound('win');
+                addLedger('Deposit', amt, 'Success (UTR: ' + utr + ')');
+                alert(`Deposit of ₹${amt} verified successfully!`);
                 closeModal('depositModal');
             } else { alert('Fill all fields.'); }
         }
@@ -614,7 +863,9 @@
             if(amt && upi) {
                 if(amt <= userBalance) {
                     updateBalance(-amt);
-                    alert(`Withdrawal of ₹${amt} requested to ${upi}.`);
+                    playSound('click');
+                    addLedger('Withdrawal', amt, 'Requested to ' + upi);
+                    alert(`Withdrawal of ₹${amt} requested successfully.`);
                     closeModal('withdrawModal');
                 } else { alert('Insufficient balance!'); }
             } else { alert('Fill all fields.'); }
