@@ -3,189 +3,396 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FASTRESULT.ONLINE - Live Color & Number Prediction</title>
+    <title>FASTRESULT.ONLINE - Pro Gaming Portal</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0b0f19;
             color: #ffffff;
             margin: 0;
             padding: 0;
             text-align: center;
         }
         header {
-            background: linear-gradient(135deg, #d32f2f, #388e3c);
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #334155;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         .logo {
-            font-size: 28px;
+            font-size: 18px;
             font-weight: bold;
-            letter-spacing: 2px;
-            color: #ffeb3b;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+            color: #38bdf8;
+            letter-spacing: 1px;
+            text-align: left;
         }
-        .tagline {
+        .logo span {
+            font-size: 11px;
+            color: #94a3b8;
+            display: block;
+        }
+        .wallet-box {
+            background: #1e293b;
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid #38bdf8;
             font-size: 13px;
-            margin-top: 5px;
-            color: #ffffff;
+            color: #4ade80;
+            font-weight: bold;
         }
         .container {
             width: 95%;
-            max-width: 500px;
-            margin: 20px auto;
-            background: #1e1e1e;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            max-width: 480px;
+            margin: 15px auto;
         }
-        .timer-box {
-            background: #2d2d2d;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border: 2px dashed #ffeb3b;
+        /* Action Buttons Row */
+        .action-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
         }
-        .timer-title {
+        .action-btn {
+            flex: 1;
+            padding: 12px;
             font-size: 14px;
-            color: #aaa;
-        }
-        .countdown {
-            font-size: 32px;
             font-weight: bold;
-            color: #ffeb3b;
-            margin-top: 5px;
-        }
-        .result-display {
-            background: #333;
-            padding: 15px;
+            border: none;
             border-radius: 8px;
-            margin-bottom: 20px;
+            cursor: pointer;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: 0.2s;
         }
-        .winning-number {
-            font-size: 40px;
+        .btn-deposit { background: linear-gradient(135deg, #16a34a, #15803d); }
+        .btn-withdraw { background: linear-gradient(135deg, #dc2626, #b91c1c); }
+        .action-btn:active { transform: scale(0.96); }
+
+        /* Game Tabs */
+        .game-tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 15px;
+            background: #1e293b;
+            padding: 6px;
+            border-radius: 10px;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 10px 5px;
+            font-size: 11px;
             font-weight: bold;
-            color: #4caf50;
-            background: #fff;
-            width: 70px;
-            height: 70px;
-            line-height: 70px;
-            margin: 10px auto;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #4caf50;
+            border: none;
+            background: transparent;
+            color: #94a3b8;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+        .tab-btn.active {
+            background: #38bdf8;
+            color: #0f172a;
+            box-shadow: 0 2px 8px rgba(56, 189, 248, 0.4);
+        }
+
+        /* Game Card Box */
+        .game-card {
+            background: #1e293b;
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            margin-bottom: 15px;
+            border: 1px solid #334155;
+        }
+        .timer-countdown {
+            font-size: 30px;
+            font-weight: bold;
+            color: #facc15;
+            margin: 10px 0;
+            letter-spacing: 2px;
         }
         .btn-group {
             display: flex;
-            justify-content: space-between;
             gap: 10px;
-            margin-bottom: 20px;
+            margin: 15px 0;
         }
         .btn {
             flex: 1;
             padding: 12px;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             color: white;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
         }
-        .btn-green { background-color: #388e3c; }
-        .btn-violet { background-color: #7b1fa2; }
-        .btn-red { background-color: #d32f2f; }
-        
+        .btn-green { background-color: #16a34a; }
+        .btn-violet { background-color: #9333ea; }
+        .btn-red { background-color: #dc2626; }
+
         .number-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 8px;
+            margin-top: 10px;
         }
         .num-btn {
-            background: #333;
+            background: #0f172a;
             color: white;
-            border: 1px solid #555;
-            padding: 15px 0;
-            font-size: 18px;
+            border: 1px solid #475569;
+            padding: 12px 0;
+            font-size: 16px;
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
         }
-        .num-btn:hover {
-            background: #555;
+        .num-btn:hover { background: #334155; }
+
+        /* Aviator Box */
+        .aviator-box {
+            background: linear-gradient(135deg, #172554, #1e1b4b);
+            padding: 30px 15px;
+            border-radius: 10px;
+            border: 2px dashed #60a5fa;
+            text-align: center;
+        }
+        .multiplier {
+            font-size: 38px;
+            font-weight: bold;
+            color: #60a5fa;
+            margin: 10px 0;
+        }
+        .fly-btn {
+            background: #eab308;
+            color: #000;
+            font-weight: bold;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(234, 179, 8, 0.4);
+        }
+
+        /* Popup Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: #1e293b;
+            padding: 20px;
+            width: 90%;
+            max-width: 350px;
+            border-radius: 12px;
+            border: 1px solid #475569;
+            text-align: left;
+        }
+        .modal-content h3 { margin-top: 0; color: #38bdf8; text-align: center; }
+        .modal-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background: #0f172a;
+            border: 1px solid #475569;
+            color: white;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        .modal-btn {
+            width: 100%;
+            padding: 10px;
+            background: #16a34a;
+            color: white;
+            border: none;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .close-btn {
+            background: #dc2626;
+            margin-top: 5px;
         }
         footer {
-            margin-top: 30px;
+            margin-top: 25px;
             padding: 15px;
-            background: #000;
-            color: #777;
-            font-size: 12px;
+            background: #020617;
+            color: #64748b;
+            font-size: 11px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">⚡ FASTRESULT.ONLINE ⚡</div>
-        <div class="tagline">Live Color & Number Prediction Game Portal</div>
+        <div class="logo">
+            ⚡ FASTRESULT
+            <span>ID: #FR982026</span>
+        </div>
+        <div class="wallet-box">💰 ₹ <span id="balance">1000.00</span></div>
     </header>
 
     <div class="container">
         
-        <!-- Timer Section -->
-        <div class="timer-box">
-            <div class="timer-title">Next Draw Result In</div>
-            <div class="countdown" id="timer">01:00</div>
+        <div class="action-row">
+            <button class="action-btn btn-deposit" onclick="openModal('depositModal')">➕ Deposit</button>
+            <button class="action-btn btn-withdraw" onclick="openModal('withdrawModal')">➖ Withdraw</button>
         </div>
 
-        <!-- Latest Result Section -->
-        <div class="result-display">
-            <div style="font-size: 14px; color: #ccc;">Last Winning Result</div>
-            <div class="winning-number">7</div>
-            <div style="font-size: 15px; color: #ffeb3b; font-weight: bold;">Green / Big</div>
+        <div class="game-tabs">
+            <button class="tab-btn active" onclick="switchGame('color')">🎨 Color Game</button>
+            <button class="tab-btn" onclick="switchGame('aviator')">✈️ Aviator</button>
+            <button class="tab-btn" onclick="switchGame('tower')">🗼 Tower Rush</button>
         </div>
 
-        <!-- Color Betting Buttons -->
-        <div class="btn-group">
-            <button class="btn btn-green">GREEN</button>
-            <button class="btn btn-violet">VIOLET</button>
-            <button class="btn btn-red">RED</button>
+        <div id="color-game" class="game-card">
+            <div style="font-size: 12px; color: #94a3b8;">Risk-Free Smart Period #20260920</div>
+            <div class="timer-countdown" id="timer">00:30</div>
+            
+            <div class="btn-group">
+                <button class="btn btn-green" onclick="placeBet('Green')">GREEN</button>
+                <button class="btn btn-violet" onclick="placeBet('Violet')">VIOLET</button>
+                <button class="btn btn-red" onclick="placeBet('Red')">RED</button>
+            </div>
+
+            <div style="font-size: 12px; color: #cbd5e1; margin-top: 12px; text-align: left;">Select Number (0-9):</div>
+            <div class="number-grid">
+                <button class="num-btn" onclick="placeBet('1')">1</button>
+                <button class="num-btn" onclick="placeBet('2')">2</button>
+                <button class="num-btn" onclick="placeBet('3')">3</button>
+                <button class="num-btn" onclick="placeBet('4')">4</button>
+                <button class="num-btn" onclick="placeBet('5')">5</button>
+                <button class="num-btn" onclick="placeBet('6')">6</button>
+                <button class="num-btn" onclick="placeBet('7')">7</button>
+                <button class="num-btn" onclick="placeBet('8')">8</button>
+                <button class="num-btn" onclick="placeBet('9')">9</button>
+                <button class="num-btn" onclick="placeBet('0')">0</button>
+            </div>
         </div>
 
-        <!-- Number Selection (1 to 10/0) -->
-        <div style="text-align: left; font-size: 14px; margin-bottom: 8px; color: #aaa;">Select Number (0 to 9):</div>
-        <div class="number-grid">
-            <button class="num-btn">1</button>
-            <button class="num-btn">2</button>
-            <button class="num-btn">3</button>
-            <button class="num-btn">4</button>
-            <button class="num-btn">5</button>
-            <button class="num-btn">6</button>
-            <button class="num-btn">7</button>
-            <button class="num-btn">8</button>
-            <button class="num-btn">9</button>
-            <button class="num-btn">0</button>
+        <div id="aviator-game" class="game-card" style="display: none;">
+            <div class="aviator-box">
+                <div style="font-size: 32px;">✈️</div>
+                <div style="font-size: 13px; color: #cbd5e1;">Fly High & Cash Out Safely</div>
+                <div class="multiplier" id="flight-multiplier">1.00x</div>
+                <button class="fly-btn" onclick="alert('Aviator Bet Placed Successfully!')">PLACE BET</button>
+            </div>
+        </div>
+
+        <div id="tower-game" class="game-card" style="display: none;">
+            <div style="background: linear-gradient(135deg, #451a03, #78350f); padding: 25px 15px; border-radius: 10px; border: 2px dashed #f59e0b;">
+                <div style="font-size: 32px;">🗼</div>
+                <div style="font-size: 15px; font-weight: bold; color: #f59e0b; margin: 10px 0;">Tower Rush Multiplier</div>
+                <div style="font-size: 12px; color: #cbd5e1; margin-bottom: 15px;">Climb higher blocks without hitting traps!</div>
+                <button class="fly-btn" style="background: #f59e0b;" onclick="alert('Tower Climb Started!')">START GAME</button>
+            </div>
         </div>
 
     </div>
 
+    <div id="depositModal" class="modal">
+        <div class="modal-content">
+            <h3>Add Funds (Deposit)</h3>
+            <label style="font-size: 12px; color: #94a3b8;">Enter Amount (INR):</label>
+            <input type="number" id="depAmount" class="modal-input" placeholder="e.g. 500">
+            <label style="font-size: 12px; color: #94a3b8;">Enter 12-digit UTR / Ref No:</label>
+            <input type="text" id="utrNum" class="modal-input" placeholder="Enter UTR after payment">
+            <button class="modal-btn" onclick="submitDeposit()">Submit & Verify UTR</button>
+            <button class="modal-btn close-btn" onclick="closeModal('depositModal')">Cancel</button>
+        </div>
+    </div>
+
+    <div id="withdrawModal" class="modal">
+        <div class="modal-content">
+            <h3>Withdraw Funds</h3>
+            <label style="font-size: 12px; color: #94a3b8;">Withdrawal Amount:</label>
+            <input type="number" id="withAmount" class="modal-input" placeholder="e.g. 1000">
+            <label style="font-size: 12px; color: #94a3b8;">Enter UPI ID / Bank Details:</label>
+            <input type="text" id="upiDetails" class="modal-input" placeholder="username@paytm / Account No">
+            <button class="modal-btn" onclick="submitWithdraw()">Request Withdrawal</button>
+            <button class="modal-btn close-btn" onclick="closeModal('withdrawModal')">Cancel</button>
+        </div>
+    </div>
+
     <footer>
-        &copy; 2026 FastResult.Online | All Rights Reserved
+        &copy; 2026 FastResult.Online | Secure Automated Platform
     </footer>
 
     <script>
-        // Simple Countdown Timer Script
-        let timeLeft = 60;
+        // Tab Switcher
+        function switchGame(game) {
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(t => t.classList.remove('active'));
+            
+            document.getElementById('color-game').style.display = 'none';
+            document.getElementById('aviator-game').style.display = 'none';
+            document.getElementById('tower-game').style.display = 'none';
+
+            if(game === 'color') {
+                document.getElementById('color-game').style.display = 'block';
+                event.target.classList.add('active');
+            } else if(game === 'aviator') {
+                document.getElementById('aviator-game').style.display = 'block';
+                event.target.classList.add('active');
+            } else if(game === 'tower') {
+                document.getElementById('tower-game').style.display = 'block';
+                event.target.classList.add('active');
+            }
+        }
+
+        // Timer
+        let timeLeft = 30;
         const timerElement = document.getElementById('timer');
         setInterval(() => {
-            let minutes = Math.floor(timeLeft / 60);
             let seconds = timeLeft % 60;
-            timerElement.innerHTML = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            timerElement.innerHTML = `00:${String(seconds).padStart(2, '0')}`;
             timeLeft--;
-            if (timeLeft < 0) {
-                timeLeft = 60; // Reset timer
-            }
+            if (timeLeft < 0) { timeLeft = 30; }
         }, 1000);
+
+        // Modal Controls
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function submitDeposit() {
+            let amt = document.getElementById('depAmount').value;
+            let utr = document.getElementById('utrNum').value;
+            if(amt && utr) {
+                alert(`Deposit request for ₹${amt} with UTR ${utr} submitted successfully! Wallet will update after verification.`);
+                closeModal('depositModal');
+            } else {
+                alert('Please fill both amount and UTR number.');
+            }
+        }
+
+        function submitWithdraw() {
+            let amt = document.getElementById('withAmount').value;
+            let upi = document.getElementById('upiDetails').value;
+            if(amt && upi) {
+                alert(`Withdrawal request for ₹${amt} sent to admin panel. Funds will be transferred shortly.`);
+                closeModal('withdrawModal');
+            } else {
+                alert('Please enter amount and payment details.');
+            }
+        }
+
+        function placeBet(option) {
+            alert(`Bet placed successfully on ${option}! Automated risk-free algorithm active.`);
+        }
     </script>
 
 </body>
