@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP ROYAL CASINO - Admin Control Edition</title>
+    <title>FAST RESULT SCORES - Royal VIP Edition</title>
     <style>
         body { 
             background: #020617; 
@@ -19,7 +19,7 @@
             max-width: 440px; 
             background: linear-gradient(180deg, #090d16 0%, #020617 100%); 
             min-height: 100vh; 
-            box-shadow: 0 0 50px rgba(234, 179, 8, 0.15);
+            box-shadow: 0 0 50px rgba(234, 179, 8, 0.2);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -42,8 +42,9 @@
         .ticker-text { display: inline-block; animation: ticker 24s linear infinite; }
         @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
+        /* Royal Indian Celebrity VIP Banner */
         .promo-banner-large {
-            background: linear-gradient(135deg, #3b0764, #581c87, #1e1b4b);
+            background: linear-gradient(135deg, #451a03, #78350f, #1e1b4b);
             border: 2px solid #eab308;
             border-radius: 16px;
             margin: 14px 15px;
@@ -51,18 +52,18 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            box-shadow: 0 8px 30px rgba(234,179,8,0.3);
+            box-shadow: 0 8px 30px rgba(234,179,8,0.35);
             position: relative;
             overflow: hidden;
         }
         .promo-banner-large::after {
-            content: '5000x PRO';
+            content: 'VIP ROYAL';
             position: absolute;
             right: -25px;
             top: 10px;
             background: #eab308;
             color: #000;
-            font-size: 9px;
+            font-size: 8px;
             font-weight: bold;
             padding: 3px 30px;
             transform: rotate(45deg);
@@ -74,7 +75,7 @@
             border-radius: 50%;
             border: 3px solid #eab308;
             object-fit: cover;
-            box-shadow: 0 0 15px rgba(234,179,8,0.6);
+            box-shadow: 0 0 15px rgba(234,179,8,0.8);
             flex-shrink: 0;
         }
         .banner-info-large h4 { margin: 0 0 4px 0; font-size: 15px; color: #eab308; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
@@ -126,8 +127,11 @@
         .rocket-icon { font-size: 40px; transition: transform 0.2s; display: inline-block; }
         .multiplier { font-size: 38px; font-weight: bold; color: #eab308; text-shadow: 0 0 15px rgba(234,179,8,0.8); }
 
-        .ab-table { display: flex; justify-content: space-around; margin: 15px 0; }
-        .card-box { background: #fff; color: #000; width: 65px; height: 90px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; box-shadow: 0 4px 15px rgba(255,255,255,0.2); border: 2px solid #eab308; }
+        /* Upgraded Andar Bahar Live Card Flipping Styles */
+        .ab-table { display: flex; justify-content: space-around; align-items: center; margin: 15px 0; background: #030712; padding: 15px; border-radius: 14px; border: 1px solid #374151; }
+        .card-box { background: #ffffff; color: #dc2626; width: 70px; height: 95px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: bold; font-size: 22px; box-shadow: 0 6px 20px rgba(0,0,0,0.5); border: 2px solid #eab308; transition: transform 0.4s ease; }
+        .card-box.flipping { transform: rotateY(90deg) scale(0.9); }
+        .card-black { color: #090d16 !important; }
 
         .mines-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 15px 0; }
         .mine-tile { background: #030712; height: 52px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; border: 1px solid #374151; transition: 0.2s; }
@@ -142,7 +146,6 @@
 
         .res-text { font-size: 13px; margin-top: 10px; font-weight: bold; min-height: 22px; text-align: center; }
 
-        /* एडमिन टेबल स्टाइल */
         .admin-table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 10px; }
         .admin-table th, .admin-table td { border: 1px solid #374151; padding: 8px; text-align: left; }
         .admin-table th { background: #1f2937; color: #eab308; }
@@ -153,27 +156,28 @@
     <div class="app-container">
         
         <div class="header">
-            <span>👑 <b>VIP ROYAL CASINO</b> <span style="font-size:9px; background:#10b981; padding:2px 6px; border-radius:4px; color:#000; font-weight:bold;">SECURE SYNC</span></span>
+            <span>⚡ <b>FAST RESULT SCORES</b> <span style="font-size:9px; background:#10b981; padding:2px 6px; border-radius:4px; color:#000; font-weight:bold;">VIP LIVE</span></span>
             <div class="wallet-box">💰 ₹<span id="balance">251</span></div>
         </div>
 
         <div class="ticker-bar">
-            <span class="ticker-text">🔥 वीआईपी प्रो ऑफर: पहले डिपॉजिट पर 50% एक्स्ट्रा बोनस! ⚡ कलर और नंबर का रिजल्ट टाइमर के साथ एक साथ सिंक है! 💎 ग्लोबल ब्रांड एंबेसडर Alex के साथ खेलें!</span>
+            <span class="ticker-text">🔥 वीआईपी अपडेट: फास्ट रिजल्ट में 50% एक्स्ट्रा डिपॉजिट बोनस और लाइव कार्ड फ्लिपिंग एक्टिव है! ⚡</span>
         </div>
 
+        <!-- Royal Indian Celebrity Ambassador Banner -->
         <div class="promo-banner-large" id="mainBanner">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200" alt="Ambassador Alex" class="ambassador-img-large">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200" alt="Brand Ambassador" class="ambassador-img-large">
             <div class="banner-info-large">
-                <h4>⭐ Alex (International Star)</h4>
-                <p><b>Official Brand Ambassador</b><br>प्रमाणित 5000x गेमिंग प्लेटफॉर्म। सिंक्रोनाइज्ड कलर और नंबर ड्रॉ का आनंद लें!</p>
+                <h4>👑 Brand Ambassador VIP</h4>
+                <p><b>Fast Result Royal Gaming</b><br>भारत का सबसे भरोसेमंद और एडवांस्ड गेमिंग प्लेटफ़ॉर्म!</p>
             </div>
         </div>
 
         <div class="content">
             
             <div id="login-section" class="login-card">
-                <h2>🚀 वीआईपी प्रो परमानेंट लॉगिन</h2>
-                <p style="font-size: 12px; color: #94a3b8;">मोबाइल नंबर या एडमिन की (<b style="color:#eab308;">ADMIN777</b>) दर्ज करें (बोनस: ₹251)</p>
+                <h2>🚀 फास्ट रिजल्ट परमानेंट लॉगिन</h2>
+                <p style="font-size: 12px; color: #94a3b8;">मोबाइल नंबर या एडमिन (<b style="color:#eab308;">ADMIN777</b>) दर्ज करें (बोनस: ₹251)</p>
                 <input type="text" id="mobileInput" placeholder="मोबाइल नंबर या ADMIN777">
                 <button class="btn-primary" onclick="handleLogin()">सुरक्षित प्रवेश करें (₹251 बोनस)</button>
                 <p id="msg" style="color: #f87171; font-size: 13px;"></p>
@@ -184,8 +188,8 @@
                 <div class="game-grid" id="gameGridContainer">
                     <div class="game-card active" onclick="switchGame('color')">🎨 कलर & नंबर</div>
                     <div class="game-card" onclick="switchGame('aviator')">✈️ एविएटर प्रो</div>
-                    <div class="game-card" onclick="switchGame('spin')">🎡 सुपर व्हील</div>
-                    <div class="game-card" onclick="switchGame('andar')">🃏 अंदर-बाहर</div>
+                    <div class="game-card" onclick="switchGame('spin')">🎡 सुपर व्हील (37)</div>
+                    <div class="game-card" onclick="switchGame('andar')">🃏 अंदर-बाहर प्रो</div>
                     <div class="game-card" onclick="switchGame('mines')">💎 डायमंड माइंस</div>
                     <div class="game-card" onclick="switchGame('walletTab')" style="background: #92400e; color:#fff;">💳 वॉलेट</div>
                 </div>
@@ -205,7 +209,7 @@
 
                 <!-- 1. कलर और नंबर गेम -->
                 <div id="game-color" class="game-panel">
-                    <h3>🎨 कलर और नंबर (हाई डिफिकल्टी - हाउस प्रॉफिट)</h3>
+                    <h3>🎨 कलर और नंबर</h3>
                     <div class="time-tabs">
                         <div class="t-tab active" onclick="setTimerPeriod(30, this)">30 सेकंड</div>
                         <div class="t-tab" onclick="setTimerPeriod(60, this)">1 मिनट</div>
@@ -244,7 +248,7 @@
 
                 <!-- 2. एविएटर प्रो -->
                 <div id="game-aviator" class="game-panel hidden">
-                    <h3>✈️ एविएटर क्रैश प्रो (फास्ट क्रैश)</h3>
+                    <h3>✈️ एविएटर क्रैश प्रो</h3>
                     <div class="aviator-screen">
                         <div class="rocket-icon" id="rocketObj">🚀</div>
                         <div class="multiplier" id="aviatorMultiplier">1.00x</div>
@@ -259,23 +263,33 @@
                     <p id="aviatorResult" class="res-text"></p>
                 </div>
 
-                <!-- 3. व्हील ऑफ फॉर्च्यून -->
+                <!-- 3. सुपर व्हील (37 फ्रूट्स & जैकपॉट) -->
                 <div id="game-spin" class="game-panel hidden">
-                    <h3>🎡 व्हील ऑफ फॉर्च्यून (5000x प्रो)</h3>
-                    <div style="text-align: center; font-size: 55px; margin: 15px 0; transition: transform 1s ease-in-out;" id="wheelIcon">🎰</div>
-                    <p style="font-size: 11px; color: #eab308; text-align: center;">हाउस प्रॉफिट मोड एक्टिव</p>
-                    <button class="btn-primary" onclick="playSpin()">स्पिन करें</button>
+                    <h3>🎡 सुपर फ्रूट व्हील (37 सेगमेंट्स & जैकपॉट)</h3>
+                    <div style="text-align: center; font-size: 50px; margin: 15px 0; transition: transform 1s ease-in-out;" id="wheelIcon">🍒🍋🍊🍉⭐🔔🎰</div>
+                    <p style="font-size: 11px; color: #eab308; text-align: center;" id="wheelInfoText">कम बेट (जैसे ₹10) पर 100x जैकपॉट के चांस ज्यादा!</p>
+                    <button class="btn-primary" onclick="playAdvancedWheel()">व्हील स्पिन करें</button>
+                    <div class="history-container" style="margin-top:10px;">
+                        <div class="history-title"><span>🎰 पिछले विनिंग रिजल्ट्स</span></div>
+                        <div class="history-scroll" id="wheelHistoryBar"></div>
+                    </div>
                     <p id="spinResult" class="res-text"></p>
                 </div>
 
-                <!-- 4. अंदर-बाहर -->
+                <!-- 4. अंदर-बाहर प्रो (Live Card Flipping Effect) -->
                 <div id="game-andar" class="game-panel hidden">
-                    <h3>🃏 अंदर-बाहर लाइव टेबल</h3>
+                    <h3>🃏 अंदर-बाहर लाइव डीलर टेबल</h3>
                     <div class="ab-table">
-                        <div style="text-align:center;"><span style="font-size:11px; color:#94a3b8;">मेन कार्ड</span><div class="card-box" id="mainCard">Q♠</div></div>
-                        <div style="text-align:center;"><span style="font-size:11px; color:#94a3b8;">रिजल्ट</span><div class="card-box" id="resultCard" style="background:#111827; color:#fff;">?</div></div>
+                        <div style="text-align:center;">
+                            <span style="font-size:11px; color:#94a3b8; display:block; margin-bottom:5px;">मेन कार्ड (Dealer Card)</span>
+                            <div class="card-box" id="mainCard">Q♠</div>
+                        </div>
+                        <div style="text-align:center;">
+                            <span style="font-size:11px; color:#94a3b8; display:block; margin-bottom:5px;">लाइव रिजल्ट फ्लिप</span>
+                            <div class="card-box" id="resultCard" style="background:#1e293b; color:#eab308;">?</div>
+                        </div>
                     </div>
-                    <p style="font-size: 12px; color: #94a3b8; text-align: center;">टाइमर के भीतर चुनें:</p>
+                    <p style="font-size: 12px; color: #94a3b8; text-align: center;">अपनी पसंद चुनें:</p>
                     <div style="display: flex; gap: 10px; margin: 10px 0;">
                         <button class="btn-primary" onclick="placeAndarBaharBet('Andar')" style="background: #2563eb; color:#fff;">अंदर (1.9x)</button>
                         <button class="btn-primary" onclick="placeAndarBaharBet('Bahar')" style="background: #d97706; color:#fff;">बाहर (1.9x)</button>
@@ -285,13 +299,13 @@
                         <div class="history-title"><span>🃏 पिछली बाजी का रिकॉर्ड</span></div>
                         <div class="history-scroll" id="abHistoryBar"></div>
                     </div>
-                    <p id="abResult" class="res-text">बेट लगाएं और परिणाम का इंतज़ार करें।</p>
+                    <p id="abResult" class="res-text">बेट लगाएं और लाइव कार्ड फ्लिपिंग देखें।</p>
                 </div>
 
                 <!-- 5. डायमंड माइंस -->
                 <div id="game-mines" class="game-panel hidden">
-                    <h3>💎 सेफ डायमंड माइंस (हाई रिस्क)</h3>
-                    <p style="font-size: 12px; color: #f87171;">सावधान रहें! बम मिलने के चांस ज्यादा हैं।</p>
+                    <h3>💎 डायमंड माइंस</h3>
+                    <p style="font-size: 12px; color: #f87171;">हीरा खोजें और सुरक्षित रहें!</p>
                     <div class="mines-grid" id="minesContainer"></div>
                     <button class="btn-primary" onclick="initMinesGame()" style="background: #374151; color:#fff;">बोर्ड रीसेट करें</button>
                     <p id="minesResult" class="res-text"></p>
@@ -301,7 +315,7 @@
                 <div id="wallet-panel" class="game-panel hidden">
                     <h3>💳 यूपीआई वॉलेट & 50% बोनस</h3>
                     <div style="background:#030712; padding:12px; border-radius:8px; margin-bottom:12px; border:1px dashed #eab308; font-size:12px; color:#eab308;">
-                        🎁 स्पेशल ऑफर: डिपॉजिट करने पर पाएं **50% एक्स्ट्रा इंस्टेंट बोनस**!
+                        🎁 वीआईपी ऑफर: डिपॉजिट करने पर पाएं **50% एक्स्ट्रा इंस्टेंट बोनस**!
                     </div>
                     <input type="number" id="depositAmount" placeholder="डिपॉजिट राशि दर्ज करें (जैसे 500)">
                     <button class="btn-primary" onclick="addMoney()">डिपॉजिट करें & 50% बोनस जोड़ें</button>
@@ -322,39 +336,37 @@
                 <!-- प्रमोशन टैब -->
                 <div id="promo-panel" class="game-panel hidden">
                     <h3>📢 रेफरल & अर्निंग प्रोग्राम</h3>
-                    <p style="font-size: 12px; color: #94a3b8;">अपनी वीआईपी लिंक दोस्तों को भेजें और कमिशन कमाएं!</p>
-                    <input type="text" id="refLink" value="https://viproyalcasino.com/join?ref=VIP777" readonly style="font-size: 12px; text-align: center;">
+                    <p style="font-size: 12px; color: #94a3b8;">अपनी लिंक दोस्तों को भेजें और कमिशन कमाएं!</p>
+                    <input type="text" id="refLink" value="https://fastresultscores.com/join?ref=FAST777" readonly style="font-size: 12px; text-align: center;">
                     <button class="btn-primary" onclick="shareOnWhatsApp()" style="background: #25d366; color:#fff; margin-top: 8px;">📲 WhatsApp पर शेयर करें</button>
                 </div>
 
                 <!-- 👑 एडमिन कंट्रोल पैनल टैब -->
                 <div id="admin-panel" class="game-panel hidden" style="border: 2px solid #eab308;">
                     <h3 style="color: #eab308;">👑 मास्टर एडमिन कंट्रोल पैनल</h3>
-                    <p style="font-size: 11px; color: #94a3b8;">यहाँ सभी यूजर, उनके डिपॉजिट, विनिंग और विड्रॉल रिक्वेस्ट मैनेज करें:</p>
+                    <p style="font-size: 11px; color: #94a3b8;">यहाँ सभी यूजर, उनके डिपॉजिट, बैलेंस और विड्रॉल रिक्वेस्ट मैनेज करें:</p>
                     
                     <div style="background: #030712; padding: 10px; border-radius: 8px; margin-top: 10px;">
                         <h4 style="margin: 0 0 8px 0; font-size: 12px; color: #38bdf8;">👤 रजिस्टर्ड यूजर्स लिस्ट:</h4>
                         <div style="max-height: 150px; overflow-y: auto;">
                             <table class="admin-table">
                                 <thead>
-                                    <tr><th>यूजर आईडी / मोबाइल</th><th>बैलेंस (₹)</th></tr>
+                                    <tr><th>यूजर मोबाइल</th><th>बैलेंस (₹)</th></tr>
                                 </thead>
-                                <tbody id="adminUsersTableBody">
-                                    <!-- डायनेमिक लोड होगा -->
-                                </tbody>
+                                <tbody id="adminUsersTableBody"></tbody>
                             </table>
                         </div>
                     </div>
 
                     <div style="background: #030712; padding: 10px; border-radius: 8px; margin-top: 10px;">
-                        <h4 style="margin: 0 0 8px 0; font-size: 12px; color: #eab308;">⚙️ किसी भी यूजर के खाते में पॉइंट/रकम जोड़ें/काटें:</h4>
+                        <h4 style="margin: 0 0 8px 0; font-size: 12px; color: #eab308;">⚙️ किसी भी आईडी में पैसे जोड़ें या माइनस करें:</h4>
                         <input type="text" id="adminTargetUser" placeholder="यूजर मोबाइल नंबर दर्ज करें" style="font-size: 12px; padding: 8px;">
                         <input type="number" id="adminModifyAmount" placeholder="रकम (+ या - में जैसे 500 या -200)" style="font-size: 12px; padding: 8px;">
                         <button class="btn-primary" onclick="adminUpdateUserBalance()" style="padding: 8px; font-size: 12px;">खाता अपडेट करें</button>
                     </div>
 
                     <div style="background: #030712; padding: 10px; border-radius: 8px; margin-top: 10px;">
-                        <h4 style="margin: 0 0 8px 0; font-size: 12px; color: #ef4444;">💸 पेंडिंग विड्रॉल रिक्वेस्ट (अप्रूव/रिजेक्ट):</h4>
+                        <h4 style="margin: 0 0 8px 0; font-size: 12px; color: #ef4444;">💸 पेंडिंग विड्रॉल अप्रूवल:</h4>
                         <div id="adminWithdrawRequestsContainer" style="font-size: 11px; color: #cbd5e1; min-height: 40px;">
                             कोई पेंडिंग विड्रॉल नहीं है।
                         </div>
@@ -363,7 +375,7 @@
                 </div>
 
                 <div class="footer-legal">
-                    18+ | इस खेल में वित्तीय जोखिम शामिल है। © 2026 VIP Royal Casino. All Rights Reserved.
+                    18+ | इस खेल में वित्तीय जोखिम शामिल है। © 2026 Fast Result Scores. All Rights Reserved.
                 </div>
 
             </div>
@@ -389,15 +401,13 @@
         let activeAbBet = null;
         let isAdmin = false;
 
-        let colorHistoryData = [
-            {num: 2, color: 'Red'}, {num: 1, color: 'Green'}, {num: 4, color: 'Red'}, 
-            {num: 3, color: 'Green'}, {num: 8, color: 'Red'}, {num: 6, color: 'Red'}
-        ];
-        let aviatorHistoryData = ['1.05x', '1.12x', '1.02x', '1.20x', '1.08x', '1.15x'];
-        let abHistoryData = ['Andar', 'Bahar', 'Bahar', 'Andar', 'Bahar', 'Bahar'];
+        let colorHistoryData = [{num: 2, color: 'Red'}, {num: 1, color: 'Green'}, {num: 4, color: 'Red'}];
+        let aviatorHistoryData = ['1.05x', '1.12x', '1.20x'];
+        let abHistoryData = ['Andar', 'Bahar', 'Bahar'];
+        let wheelHistoryData = ['2x', '5x', '10x', '100x Jackpot'];
 
         window.onload = function() {
-            let savedMobile = localStorage.getItem('vip_active_mobile');
+            let savedMobile = localStorage.getItem('fast_active_mobile');
             if (savedMobile) {
                 document.getElementById('mobileInput').value = savedMobile;
                 handleLogin();
@@ -422,8 +432,6 @@
                 document.getElementById('login-section').classList.add('hidden');
                 document.getElementById('dashboard-section').classList.remove('hidden');
                 document.getElementById('nav-admin').style.display = "block";
-                
-                // एडमिन सीधा एडमिन पैनल खोलेगा
                 switchGame('adminTab');
                 loadAdminData();
                 return;
@@ -432,16 +440,15 @@
             if (inputVal.length >= 10 && !isNaN(inputVal)) {
                 isAdmin = false;
                 currentMobile = inputVal;
-                localStorage.setItem('vip_active_mobile', currentMobile);
+                localStorage.setItem('fast_active_mobile', currentMobile);
 
-                // यूजर डेटा रजिस्टर करें
-                let allUsers = JSON.parse(localStorage.getItem('vip_all_users') || "{}");
+                let allUsers = JSON.parse(localStorage.getItem('fast_all_users') || "{}");
                 if (allUsers[currentMobile]) {
                     userBalance = allUsers[currentMobile].balance;
                 } else {
-                    userBalance = 251; // नया यूजर बोनस ₹251
-                    allUsers[currentMobile] = { balance: userBalance, totalDeposit: 0, totalWithdraw: 0 };
-                    localStorage.setItem('vip_all_users', JSON.stringify(allUsers));
+                    userBalance = 251;
+                    allUsers[currentMobile] = { balance: userBalance };
+                    localStorage.setItem('fast_all_users', JSON.stringify(allUsers));
                 }
 
                 document.getElementById('balance').innerText = userBalance;
@@ -459,13 +466,13 @@
 
         function saveUserData() {
             if (currentMobile && !isAdmin) {
-                let allUsers = JSON.parse(localStorage.getItem('vip_all_users') || "{}");
+                let allUsers = JSON.parse(localStorage.getItem('fast_all_users') || "{}");
                 if (!allUsers[currentMobile]) {
-                    allUsers[currentMobile] = { balance: userBalance, totalDeposit: 0, totalWithdraw: 0 };
+                    allUsers[currentMobile] = { balance: userBalance };
                 } else {
                     allUsers[currentMobile].balance = userBalance;
                 }
-                localStorage.setItem('vip_all_users', JSON.stringify(allUsers));
+                localStorage.setItem('fast_all_users', JSON.stringify(allUsers));
             }
         }
 
@@ -509,13 +516,12 @@
                 switchGame('adminTab');
             } else if (tab === 'account') {
                 document.getElementById('nav-account').classList.add('active');
-                alert(`👤 वीआईपी अकाउंट ID: ${currentMobile} | बैलेंस: ₹${userBalance} सुरक्षित है।`);
+                alert(`👤 अकाउंट ID: ${currentMobile} | बैलेंस: ₹${userBalance}`);
             }
         }
 
-        // एडमिन डेटा लोडर फंक्शन
         function loadAdminData() {
-            let allUsers = JSON.parse(localStorage.getItem('vip_all_users') || "{}");
+            let allUsers = JSON.parse(localStorage.getItem('fast_all_users') || "{}");
             let tbody = document.getElementById('adminUsersTableBody');
             tbody.innerHTML = '';
             
@@ -530,8 +536,7 @@
                 });
             }
 
-            // विड्रॉल रिक्वेस्ट लोड करें
-            let requests = JSON.parse(localStorage.getItem('vip_withdraw_requests') || "[]");
+            let requests = JSON.parse(localStorage.getItem('fast_withdraw_requests') || "[]");
             let reqContainer = document.getElementById('adminWithdrawRequestsContainer');
             reqContainer.innerHTML = '';
             if (requests.length === 0) {
@@ -540,7 +545,7 @@
                 requests.forEach((req, idx) => {
                     let div = document.createElement('div');
                     div.style.cssText = "background: #111827; padding: 6px; margin-bottom: 4px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;";
-                    div.innerHTML = `<span><b>${req.mobile}</b> ने <b>₹${req.amount}</b> मांगे</span> <div><button onclick="approveWithdraw(${idx}, true)" style="background:#10b981; color:#000; padding:2px 6px; border-radius:4px; border:none; cursor:pointer; font-weight:bold;">दें</button> <button onclick="approveWithdraw(${idx}, false)" style="background:#ef4444; color:#fff; padding:2px 6px; border-radius:4px; border:none; cursor:pointer; font-weight:bold;">रद्द करें</button></div>`;
+                    div.innerHTML = `<span><b>${req.mobile}</b>: ₹${req.amount}</span> <div><button onclick="approveWithdraw(${idx}, true)" style="background:#10b981; color:#000; padding:2px 6px; border-radius:4px; border:none; cursor:pointer; font-weight:bold;">अप्रूव</button> <button onclick="approveWithdraw(${idx}, false)" style="background:#ef4444; color:#fff; padding:2px 6px; border-radius:4px; border:none; cursor:pointer; font-weight:bold;">रद्द</button></div>`;
                     reqContainer.appendChild(div);
                 });
             }
@@ -551,39 +556,38 @@
             let amt = parseInt(document.getElementById('adminModifyAmount').value);
             let msg = document.getElementById('adminMsg');
 
-            let allUsers = JSON.parse(localStorage.getItem('vip_all_users') || "{}");
+            let allUsers = JSON.parse(localStorage.getItem('fast_all_users') || "{}");
             if (allUsers[mob]) {
-                allUsers[mob].balance += amt;
-                localStorage.setItem('vip_all_users', JSON.stringify(allUsers));
+                allUsers[mob].balance += amt; 
+                localStorage.setItem('fast_all_users', JSON.stringify(allUsers));
                 msg.style.color = "#34d399";
-                msg.innerText = `✅ यूजर ${mob} का खाता সফলपूर्वक अपडेट हुआ! नया बैलेंस: ₹${allUsers[mob].balance}`;
+                msg.innerText = `✅ यूजर ${mob} का खाता अपडेट हुआ! नया बैलेंस: ₹${allUsers[mob].balance}`;
                 document.getElementById('adminTargetUser').value = '';
                 document.getElementById('adminModifyAmount').value = '';
                 loadAdminData();
             } else {
                 msg.style.color = "#f87171";
-                msg.innerText = `⚠️ यह मोबाइल नंबर डेटाबेस में नहीं मिला!`;
+                msg.innerText = `⚠️ मोबाइल नंबर डेटाबेस में नहीं मिला!`;
             }
         }
 
         function approveWithdraw(index, isApproved) {
-            let requests = JSON.parse(localStorage.getItem('vip_withdraw_requests') || "[]");
+            let requests = JSON.parse(localStorage.getItem('fast_withdraw_requests') || "[]");
             let req = requests[index];
-            let allUsers = JSON.parse(localStorage.getItem('vip_all_users') || "{}");
+            let allUsers = JSON.parse(localStorage.getItem('fast_all_users') || "{}");
 
             if (isApproved) {
-                alert(`✅ ${req.mobile} का ₹${req.amount} का विड्रॉल स्वीकृत कर दिया गया है!`);
+                alert(`✅ ${req.mobile} का ₹${req.amount} विड्रॉल पास कर दिया गया!`);
             } else {
-                // अगर रिजेक्ट हुआ तो पैसे यूजर के खाते में वापस जोड़ दें
                 if (allUsers[req.mobile]) {
                     allUsers[req.mobile].balance += req.amount;
-                    localStorage.setItem('vip_all_users', JSON.stringify(allUsers));
+                    localStorage.setItem('fast_all_users', JSON.stringify(allUsers));
                 }
-                alert(`❌ ${req.mobile} का विड्रॉल रद्द कर दिया गया, रकम खाते में लौटाई गई।`);
+                alert(`❌ विड्रॉल रद्द हुआ, रकम यूजर को लौटाई गई।`);
             }
 
             requests.splice(index, 1);
-            localStorage.setItem('vip_withdraw_requests', JSON.stringify(requests));
+            localStorage.setItem('fast_withdraw_requests', JSON.stringify(requests));
             loadAdminData();
         }
 
@@ -607,88 +611,91 @@
         }
 
         function placeColorBet(choice) {
-            if (userBalance < currentBet) { alert("बैलेंस कम है! कृपया डिपॉजिट करें।"); return; }
+            if (userBalance < currentBet) { alert("बैलेंस कम है!"); return; }
             activeColorBet = choice;
             document.getElementById('colorResult').style.color = "#38bdf8";
-            document.getElementById('colorResult').innerText = `✅ रंग '${choice}' पर ₹${currentBet} की बेट लग गई है।`;
+            document.getElementById('colorResult').innerText = `✅ रंग '${choice}' पर ₹${currentBet} की बेट लग गई।`;
         }
 
         function placeNumberBet(num) {
-            if (userBalance < currentBet) { alert("बैलेंस कम है! कृपया डिपॉजिट करें।"); return; }
+            if (userBalance < currentBet) { alert("बैलेंस कम है!"); return; }
             activeColorBet = 'Num_' + num;
             document.getElementById('colorResult').style.color = "#38bdf8";
-            document.getElementById('colorResult').innerText = `✅ नंबर '${num}' पर ₹${currentBet} की बेट लग गई है।`;
+            document.getElementById('colorResult').innerText = `✅ नंबर '${num}' पर ₹${currentBet} की बेट लग गई।`;
         }
 
         function placeAndarBaharBet(choice) {
-            if (userBalance < currentBet) { alert("बैलेंस कम है! कृपया डिपॉजिट करें।"); return; }
+            if (userBalance < currentBet) { alert("बैलेंस कम है!"); return; }
             activeAbBet = choice;
             document.getElementById('abResult').style.color = "#38bdf8";
-            document.getElementById('abResult').innerText = `✅ ${choice === 'Andar' ? 'अंदर' : 'बाहर'} पर ₹${currentBet} की बेट लग गई है।`;
+            document.getElementById('abResult').innerText = `✅ ${choice} पर ₹${currentBet} की बेट लग गई। (डालर कार्ड बांटे जा रहे हैं...)`;
         }
 
         function processTimerDraw() {
-            if (userBalance >= currentBet) {
+            if (userBalance >= currentBet && activeColorBet) {
+                userBalance -= currentBet;
                 const winningNum = Math.floor(Math.random() * 10);
-                let winningColor = 'Red';
-                if ([1, 3].includes(winningNum)) winningColor = 'Green';
-                else if (winningNum === 5) winningColor = 'Violet';
-                else winningColor = 'Red';
-
+                let winningColor = (winningNum === 1 || winningNum === 3) ? 'Green' : (winningNum === 5 ? 'Violet' : 'Red');
                 colorHistoryData.push({ num: winningNum, color: winningColor });
                 renderAllHistories();
 
-                if (activeColorBet) {
-                    userBalance -= currentBet;
-                    const res = document.getElementById('colorResult');
-                    let forceHouseWin = Math.random() < 0.70;
-
-                    if (activeColorBet.startsWith('Num_')) {
-                        const chosenNum = parseInt(activeColorBet.split('_')[1]);
-                        if (!forceHouseWin && chosenNum === winningNum) {
-                            let win = currentBet * 9;
-                            userBalance += win;
-                            res.style.color = "#34d399";
-                            res.innerText = `🎉 जैकपॉट! रिजल्ट -> नंबर: ${winningNum} (${winningColor}) | जीते ₹${win}!`;
-                        } else {
-                            res.style.color = "#f87171";
-                            res.innerText = `❌ हार गए! रिजल्ट -> नंबर: ${winningNum} (${winningColor}) (-₹${currentBet})`;
-                        }
+                const res = document.getElementById('colorResult');
+                if (activeColorBet.startsWith('Num_')) {
+                    let chosen = parseInt(activeColorBet.split('_')[1]);
+                    if (chosen === winningNum) {
+                        let win = currentBet * 9;
+                        userBalance += win;
+                        res.style.color = "#34d399";
+                        res.innerText = `🎉 जैकपॉट! नंबर ${winningNum} खुला, जीते ₹${win}!`;
                     } else {
-                        let isMatch = (!forceHouseWin && ((activeColorBet === winningColor) || (winningColor === 'Violet')));
-                        if (isMatch) {
-                            let winAmt = currentBet * 2;
-                            userBalance += winAmt;
-                            res.style.color = "#34d399";
-                            res.innerText = `🎉 शानदार जीत! रिजल्ट -> नंबर: ${winningNum} | कलर: ${winningColor} (+₹${winAmt})`;
-                        } else {
-                            res.style.color = "#f87171";
-                            res.innerText = `❌ हार गए! रिजल्ट -> नंबर: ${winningNum} | कलर: ${winningColor} (-₹${currentBet})`;
-                        }
+                        res.style.color = "#f87171";
+                        res.innerText = `❌ हार गए! नंबर ${winningNum} (${winningColor}) खुला।`;
                     }
-                    activeColorBet = null;
+                } else {
+                    if (activeColorBet === winningColor || winningColor === 'Violet') {
+                        let win = currentBet * 2;
+                        userBalance += win;
+                        res.style.color = "#34d399";
+                        res.innerText = `🎉 जीत गए! कलर ${winningColor} खुला (+₹${win})`;
+                    } else {
+                        res.style.color = "#f87171";
+                        res.innerText = `❌ हार गए! कलर ${winningColor} खुला।`;
+                    }
                 }
+                activeColorBet = null;
             }
 
-            if (activeAbBet) {
+            // Upgraded Andar Bahar Live Card Flipping Animation Logic
+            if (userBalance >= currentBet && activeAbBet) {
                 userBalance -= currentBet;
-                let forceHouseWinAB = Math.random() < 0.70;
-                const winner = forceHouseWinAB ? (activeAbBet === 'Andar' ? 'Bahar' : 'Andar') : activeAbBet;
-                abHistoryData.push(winner);
-                renderAllHistories();
+                const resCardBox = document.getElementById('resultCard');
+                resCardBox.classList.add('flipping');
+                
+                setTimeout(() => {
+                    let winner = Math.random() < 0.5 ? 'Andar' : 'Bahar';
+                    abHistoryData.push(winner);
+                    renderAllHistories();
 
-                document.getElementById('resultCard').innerText = winner === 'Andar' ? 'K♦' : '10♥';
-                const res = document.getElementById('abResult');
-                if (activeAbBet === winner) {
-                    let winAmt = currentBet * 1.9;
-                    userBalance += winAmt;
-                    res.style.color = "#34d399";
-                    res.innerText = `🎉 जीत गए! पत्ता ${winner === 'Andar' ? 'अंदर' : 'बाहर'} खुला (+₹${winAmt})`;
-                } else {
-                    res.style.color = "#f87171";
-                    res.innerText = `❌ हार गए! पत्ता ${winner === 'Andar' ? 'अंदर' : 'बाहर'} खुला (-₹${currentBet})`;
-                }
-                activeAbBet = null;
+                    // Stylish Card display formatting
+                    let cardDisplay = winner === 'Andar' ? 'K♦' : '10♥';
+                    resCardBox.innerText = cardDisplay;
+                    resCardBox.style.color = winner === 'Andar' ? '#dc2626' : '#2563eb';
+                    resCardBox.classList.remove('flipping');
+
+                    const res = document.getElementById('abResult');
+                    if (activeAbBet === winner) {
+                        let win = currentBet * 1.9;
+                        userBalance += win;
+                        res.style.color = "#34d399";
+                        res.innerText = `🎉 ${winner} खुला! जीते ₹${win}`;
+                    } else {
+                        res.style.color = "#f87171";
+                        res.innerText = `❌ हार गए! खुला: ${winner}`;
+                    }
+                    activeAbBet = null;
+                    document.getElementById('balance').innerText = userBalance;
+                    saveUserData();
+                }, 400);
             }
 
             userBalance = Math.floor(userBalance);
@@ -700,40 +707,94 @@
             const colorBar = document.getElementById('colorHistoryBar');
             colorBar.innerHTML = '';
             colorHistoryData.slice(-10).forEach(item => {
-                const badge = document.createElement('div');
-                badge.className = 'history-badge';
-                badge.innerText = item.num;
-                if (item.color === 'Red') badge.style.background = '#ef4444';
-                else if (item.color === 'Green') badge.style.background = '#10b981';
-                else badge.style.background = '#8b5cf6';
-                colorBar.appendChild(badge);
+                const b = document.createElement('div');
+                b.className = 'history-badge';
+                b.innerText = item.num;
+                b.style.background = item.color === 'Red' ? '#ef4444' : (item.color === 'Green' ? '#10b981' : '#8b5cf6');
+                colorBar.appendChild(b);
             });
 
             const avBar = document.getElementById('aviatorHistoryBar');
             avBar.innerHTML = '';
             aviatorHistoryData.slice(-10).forEach(item => {
-                const badge = document.createElement('div');
-                badge.className = 'history-badge';
-                badge.style.minWidth = '42px';
-                badge.style.borderRadius = '6px';
-                badge.style.fontSize = '10px';
-                badge.style.background = '#374151';
-                badge.innerText = item;
-                avBar.appendChild(badge);
+                const b = document.createElement('div');
+                b.className = 'history-badge';
+                b.style.minWidth = '40px'; b.style.borderRadius = '6px'; b.style.fontSize = '10px'; b.style.background = '#374151';
+                b.innerText = item;
+                avBar.appendChild(b);
             });
 
             const abBar = document.getElementById('abHistoryBar');
             abBar.innerHTML = '';
             abHistoryData.slice(-10).forEach(item => {
-                const badge = document.createElement('div');
-                badge.className = 'history-badge';
-                badge.style.minWidth = '45px';
-                badge.style.borderRadius = '6px';
-                badge.style.fontSize = '10px';
-                badge.style.background = item === 'Andar' ? '#2563eb' : '#d97706';
-                badge.innerText = item === 'Andar' ? 'अंदर' : 'बाहर';
-                abBar.appendChild(badge);
+                const b = document.createElement('div');
+                b.className = 'history-badge';
+                b.style.minWidth = '40px'; b.style.borderRadius = '6px'; b.style.fontSize = '10px';
+                b.style.background = item === 'Andar' ? '#2563eb' : '#d97706';
+                b.innerText = item === 'Andar' ? 'अंदर' : 'बाहर';
+                abBar.appendChild(b);
             });
+
+            const whBar = document.getElementById('wheelHistoryBar');
+            if(whBar) {
+                whBar.innerHTML = '';
+                wheelHistoryData.slice(-8).forEach(item => {
+                    const b = document.createElement('div');
+                    b.className = 'history-badge';
+                    b.style.minWidth = '45px'; b.style.borderRadius = '6px'; b.style.fontSize = '9px'; b.style.background = '#7c2d12';
+                    b.innerText = item;
+                    whBar.appendChild(b);
+                });
+            }
+        }
+
+        // Advanced Super Wheel with Bet-based Jackpot Logic (37 fruits/segments)
+        function playAdvancedWheel() {
+            if (userBalance < currentBet) { alert("बैलेंस कम है!"); return; }
+            userBalance -= currentBet;
+            document.getElementById('balance').innerText = userBalance;
+
+            const wheel = document.getElementById('wheelIcon');
+            const res = document.getElementById('spinResult');
+            wheel.style.transform = "rotate(1440deg)";
+            res.innerText = "37 फ्रूट व्हील घूम रहा है...";
+
+            setTimeout(() => {
+                wheel.style.transform = "rotate(0deg)";
+                
+                let multiplier = 0;
+                let prizeName = "0x";
+
+                let rand = Math.random();
+                if (currentBet <= 50 && rand < 0.15) {
+                    multiplier = 100;
+                    prizeName = "100x JACKPOT!";
+                } else if (rand < 0.35) {
+                    multiplier = 10;
+                    prizeName = "10x Fruit";
+                } else if (rand < 0.65) {
+                    multiplier = 2;
+                    prizeName = "2x Win";
+                } else {
+                    multiplier = 0;
+                    prizeName = "Miss";
+                }
+
+                let prize = currentBet * multiplier;
+                wheelHistoryData.push(prizeName);
+                renderAllHistories();
+
+                if (prize > 0) {
+                    userBalance += prize;
+                    res.style.color = "#34d399";
+                    res.innerText = `🎰 शानदार! ${prizeName} खुला, जीते ₹${prize}!`;
+                } else {
+                    res.style.color = "#f87171";
+                    res.innerText = `❌ खाली गया (-₹${currentBet})।`;
+                }
+                document.getElementById('balance').innerText = userBalance;
+                saveUserData();
+            }, 1200);
         }
 
         let aviatorInterval;
@@ -743,8 +804,7 @@
             document.getElementById('balance').innerText = userBalance;
 
             let mult = 1.00;
-            const crashAt = (Math.random() * 0.15 + 1.01).toFixed(2);
-            
+            const crashAt = (Math.random() * 0.2 + 1.01).toFixed(2);
             const mText = document.getElementById('aviatorMultiplier');
             const status = document.getElementById('aviatorStatus');
             const btn = document.getElementById('aviatorBtn');
@@ -774,7 +834,7 @@
                     aviatorHistoryData.push(window.crashAtVal + 'x');
                     renderAllHistories();
 
-                    status.innerText = "💥 बहुत जल्दी क्रैश हो गया!";
+                    status.innerText = "💥 क्रैश हो गया!";
                     mText.style.color = "#ef4444";
                     res.style.color = "#f87171";
                     res.innerText = `क्रैश पॉइंट: ${window.crashAtVal}x. -₹${currentBet}`;
@@ -811,33 +871,6 @@
             setTimeout(() => { document.getElementById('aviatorMultiplier').style.color = "#eab308"; }, 2000);
         }
 
-        function playSpin() {
-            if (userBalance < currentBet) { alert("बैलेंस कम है!"); return; }
-            userBalance -= currentBet;
-            document.getElementById('balance').innerText = userBalance;
-            const wheel = document.getElementById('wheelIcon');
-            const res = document.getElementById('spinResult');
-            wheel.style.transform = "rotate(1080deg)";
-            res.innerText = "पहिया घूम रहा है...";
-
-            setTimeout(() => {
-                wheel.style.transform = "rotate(0deg)";
-                const multipliers = [0, 0, 0, 0, 0, 0, 2, 5];
-                const mult = multipliers[Math.floor(Math.random() * multipliers.length)];
-                const prize = currentBet * mult;
-                if (prize > 0) {
-                    userBalance += prize;
-                    res.style.color = "#34d399";
-                    res.innerText = `🎉 जैकपॉट (${mult}x)! ₹${prize} जीत लिए!`;
-                } else {
-                    res.style.color = "#f87171";
-                    res.innerText = `❌ कुछ नहीं मिला (-₹${currentBet})।`;
-                }
-                document.getElementById('balance').innerText = userBalance;
-                saveUserData();
-            }, 1000);
-        }
-
         function initMinesGame() {
             const container = document.getElementById('minesContainer');
             container.innerHTML = '';
@@ -856,7 +889,7 @@
             if (userBalance < currentBet) { alert("बैलेंस कम है!"); return; }
             userBalance -= currentBet;
 
-            const isMine = Math.random() < 0.65;
+            const isMine = Math.random() < 0.6;
             const res = document.getElementById('minesResult');
             if (isMine) {
                 tile.innerText = '💣';
@@ -869,7 +902,7 @@
                 let win = currentBet * 1.5;
                 userBalance += win;
                 res.style.color = "#34d399";
-                res.innerText = `💎 हीरा मिल गया! (+₹${win})`;
+                res.innerText = `💎 हीरा मिला! (+₹${win})`;
             }
             document.getElementById('balance').innerText = userBalance;
             saveUserData();
@@ -877,38 +910,37 @@
 
         function addMoney() {
             const amt = parseInt(document.getElementById('depositAmount').value);
-            if (isNaN(amt) || amt <= 0) { alert("कृपया सही राशि दर्ज करें!"); return; }
+            if (isNaN(amt) || amt <= 0) { alert("सही राशि दर्ज करें!"); return; }
             const bonus = Math.floor(amt * 0.5);
             const totalAdded = amt + bonus;
             userBalance += totalAdded;
             document.getElementById('balance').innerText = userBalance;
             document.getElementById('walletMsg').style.color = "#34d399";
-            document.getElementById('walletMsg').innerText = `✅ ₹${amt} जमा हुए + ₹${bonus} (50% बोनस)! कुल: ₹${totalAdded}`;
+            document.getElementById('walletMsg').innerText = `✅ ₹${amt} + ₹${bonus} (50% बोनस) जोड़ा गया!`;
             document.getElementById('depositAmount').value = '';
             saveUserData();
         }
 
         function withdrawMoney() {
             const amt = parseInt(document.getElementById('withdrawAmount').value);
-            if (isNaN(amt) || amt <= 0) { alert("कृपया सही विड्रॉल राशि दर्ज करें!"); return; }
-            if (userBalance < amt) { alert("आपके वॉलेट में पर्याप्त बैलेंस नहीं है!"); return; }
+            if (isNaN(amt) || amt <= 0) { alert("सही राशि दर्ज करें!"); return; }
+            if (userBalance < amt) { alert("पर्याप्त बैलेंस नहीं है!"); return; }
             
             userBalance -= amt;
             document.getElementById('balance').innerText = userBalance;
 
-            // एडमिन विड्रॉल रिक्वेस्ट लिस्ट में जोड़ें
-            let requests = JSON.parse(localStorage.getItem('vip_withdraw_requests') || "[]");
+            let requests = JSON.parse(localStorage.getItem('fast_withdraw_requests') || "[]");
             requests.push({ mobile: currentMobile, amount: amt });
-            localStorage.setItem('vip_withdraw_requests', JSON.stringify(requests));
+            localStorage.setItem('fast_withdraw_requests', JSON.stringify(requests));
 
             document.getElementById('walletMsg').style.color = "#34d399";
-            document.getElementById('walletMsg').innerText = `✅ ₹${amt} का विड्रॉल अनुरोध एडमिन के पास भेज दिया गया है! अप्रूवल का इंतज़ार करें।`;
+            document.getElementById('walletMsg').innerText = `✅ विड्रॉल रिक्वेस्ट एडमिन को भेज दी गई है।`;
             document.getElementById('withdrawAmount').value = '';
             saveUserData();
         }
 
         function shareOnWhatsApp() {
-            const text = encodeURIComponent("🔥 वीआईपी प्रो कैसीनो पर आ जाओ! 50% बोनस मिल रहा है: https://viproyalcasino.com/join?ref=VIP777");
+            const text = encodeURIComponent("🔥 Fast Result Scores पर आ जाओ! वीआईपी गेम और 50% बोनस मिल रहा है: https://fastresultscores.com");
             window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
         }
     </script>
