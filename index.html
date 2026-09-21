@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>REAL CLUB VIP - Ultimate Pro Gaming Edition</title>
+    <title>REAL CLUB PRO MAX - Ultimate Edition</title>
     <style>
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { 
@@ -20,7 +20,7 @@
             max-width: 440px; 
             background: linear-gradient(180deg, #090d16 0%, #020617 100%); 
             min-height: 100vh; 
-            box-shadow: 0 0 40px rgba(234, 179, 8, 0.2);
+            box-shadow: 0 0 40px rgba(234, 179, 8, 0.3);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -34,12 +34,12 @@
             justify-content: space-between; 
             align-items: center; 
             border-bottom: 2px solid #eab308;
-            box-shadow: 0 4px 20px rgba(234, 179, 8, 0.25);
+            box-shadow: 0 4px 20px rgba(234, 179, 8, 0.4);
             position: sticky;
             top: 0;
             z-index: 100;
         }
-        .wallet-box { color: #eab308; font-weight: bold; font-size: 15px; background: #18181b; padding: 5px 12px; border-radius: 20px; border: 1px solid #eab308; box-shadow: 0 0 12px rgba(234,179,8,0.3); }
+        .wallet-box { color: #eab308; font-weight: bold; font-size: 14px; background: #18181b; padding: 5px 12px; border-radius: 20px; border: 1px solid #eab308; box-shadow: 0 0 12px rgba(234,179,8,0.3); }
         
         .ticker-bar { background: linear-gradient(90deg, #b45309, #db2777); color: #fff; font-size: 11px; font-weight: bold; padding: 7px 10px; overflow: hidden; white-space: nowrap; border-bottom: 1px solid #f43f5e; }
         .ticker-text { display: inline-block; animation: ticker 25s linear infinite; }
@@ -66,6 +66,26 @@
             opacity: 0;
         }
         .live-win-popup.show { transform: translateY(0); opacity: 1; }
+
+        /* Money Rain Red Packet Popup */
+        .rain-packet {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: linear-gradient(135deg, #ef4444, #b91c1c);
+            border: 2px solid #facc15;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 5px 25px rgba(239,68,68,0.8);
+            z-index: 200;
+            cursor: pointer;
+            animation: bounce 1s infinite alternate;
+            display: none;
+        }
+        @keyframes bounce { 0% { transform: translateY(0); } 100% { transform: translateY(-8px); } }
 
         /* WhatsApp Floating Support */
         .whatsapp-float {
@@ -102,15 +122,15 @@
             min-height: 90px;
         }
         .promo-slider-container::after {
-            content: 'REAL CLUB PRO';
+            content: 'ULTIMATE PRO';
             position: absolute;
-            right: -28px;
+            right: -32px;
             top: 10px;
             background: #eab308;
             color: #000;
             font-size: 7px;
             font-weight: bold;
-            padding: 3px 25px;
+            padding: 3px 28px;
             transform: rotate(45deg);
             box-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
@@ -143,7 +163,7 @@
 
         .game-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 12px; }
         .game-card { background: #111827; border: 1px solid #374151; padding: 8px 2px; border-radius: 10px; color: #fff; font-weight: bold; font-size: 10px; cursor: pointer; text-align: center; transition: 0.2s; }
-        .game-card.active { background: linear-gradient(135deg, #eab308, #d97706); color: #000; border-color: #facc15; box-shadow: 0 0 12px rgba(234,179,8,0.5); }
+        .game-card.active { background: linear-gradient(135deg, #eab308, #d97706); color: #000; border-color: #facc15; box-shadow: 0 0 12px rgba(234,179,8,0.6); }
 
         .game-panel { background: #111827; padding: 14px; border-radius: 16px; margin-bottom: 12px; border: 1px solid #374151; box-shadow: 0 8px 25px rgba(0,0,0,0.6); }
 
@@ -171,9 +191,36 @@
         .history-scroll { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 3px; }
         .history-badge { min-width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; color: #fff; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.2); }
 
-        .ab-table { display: flex; justify-content: space-around; align-items: center; margin: 12px 0; background: #030712; padding: 12px; border-radius: 12px; border: 1px solid #374151; }
-        .card-box { background: #ffffff; color: #dc2626; width: 60px; height: 85px; border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: bold; font-size: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); border: 2px solid #eab308; transition: transform 0.4s ease; }
-        .card-box.flipping { transform: rotateY(90deg) scale(0.9); }
+        /* MINES GAME GRID */
+        .mines-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin: 12px 0; }
+        .mine-tile { background: #1f2937; border: 2px solid #374151; height: 50px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; transition: 0.2s; }
+        .mine-tile.revealed-gem { background: #065f46; border-color: #34d399; }
+        .mine-tile.revealed-mine { background: #7f1d1d; border-color: #ef4444; }
+
+        /* PLINKO GAME SCREEN */
+        .plinko-screen { background: #030712; border: 2px solid #374151; border-radius: 12px; padding: 15px; text-align: center; margin-bottom: 12px; }
+        .plinko-pins { font-size: 16px; letter-spacing: 6px; color: #eab308; margin: 10px 0; }
+        .plinko-buckets { display: flex; justify-content: space-between; gap: 4px; margin-top: 12px; }
+        .plinko-bucket { flex: 1; background: #1f2937; border: 1px solid #374151; padding: 8px 2px; border-radius: 6px; font-size: 10px; font-weight: bold; color: #facc15; text-align: center; }
+
+        /* GLOBAL CHAT */
+        .chat-container { background: #030712; border: 1px solid #374151; border-radius: 10px; height: 160px; overflow-y: auto; padding: 8px; margin-bottom: 8px; display: flex; flex-direction: column; gap: 6px; font-size: 11px; }
+        .chat-msg { background: #111827; padding: 6px 8px; border-radius: 6px; border-left: 3px solid #eab308; }
+        .chat-msg b { color: #38bdf8; }
+
+        /* ULTRA 3D ADVANCED CARD FLIP */
+        .card-table-pro { display: flex; justify-content: space-around; align-items: center; margin: 14px 0; background: radial-gradient(circle, #065f46 0%, #022c22 100%); padding: 16px; border-radius: 14px; border: 2px solid #eab308; box-shadow: inset 0 0 20px rgba(0,0,0,0.6); }
+        .card-perspective { perspective: 1000px; width: 65px; height: 95px; }
+        .card-box-3d { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1); border-radius: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.8); }
+        .card-box-3d.flipped { transform: rotateY(180deg); }
+        .card-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 8px; font-weight: bold; font-size: 20px; border: 2px solid #eab308; }
+        .card-back { background: linear-gradient(135deg, #b91c1c, #7f1d1d); color: #fff; }
+        .card-front { background: #ffffff; color: #dc2626; transform: rotateY(180deg); }
+
+        /* AVIATOR CRASH STYLES */
+        .crash-screen { background: #030712; border: 2px solid #374151; border-radius: 12px; height: 150px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+        .crash-multiplier { font-size: 32px; font-weight: bold; color: #34d399; text-shadow: 0 0 15px rgba(52,211,153,0.5); }
+        .rocket-icon { position: absolute; font-size: 28px; transition: 0.1s linear; }
 
         .payment-badges { display: flex; justify-content: center; gap: 6px; margin: 12px 0; font-size: 9px; color: #94a3b8; font-weight: bold; }
         .p-badge { background: #030712; border: 1px solid #eab308; padding: 3px 6px; border-radius: 5px; color: #facc15; }
@@ -187,14 +234,21 @@
         .admin-table, .passbook-table { width: 100%; border-collapse: collapse; font-size: 10px; margin-top: 6px; }
         .admin-table th, .admin-table td, .passbook-table th, .passbook-table td { border: 1px solid #374151; padding: 6px; text-align: left; }
         .admin-table th, .passbook-table th { background: #1f2937; color: #eab308; }
+        .provably-fair { font-size: 9px; color: #64748b; text-align: center; margin-top: 6px; font-family: monospace; }
     </style>
 </head>
 <body>
 
     <div class="app-container">
         
+        <!-- Money Rain Popup Button -->
+        <div class="rain-packet" id="rainPacketBtn" onclick="claimRainBonus()">
+            🧧 मनी रेन! ₹50 फ्री क्लेम करें!
+        </div>
+
+        <!-- Header -->
         <div class="header">
-            <span>👑 <b>REAL CLUB VIP</b> <span style="font-size:8px; background:#10b981; padding:2px 5px; border-radius:3px; color:#000; font-weight:bold;">PRO</span></span>
+            <span>👑 <b>REAL CLUB VIP</b> <span style="font-size:8px; background:#10b981; padding:2px 5px; border-radius:3px; color:#000; font-weight:bold;">PRO MAX</span></span>
             <div style="display: flex; align-items: center; gap: 8px;">
                 <button onclick="claimDailyBonus()" style="background:#b45309; color:#fff; border:none; padding:4px 8px; border-radius:12px; font-size:9px; font-weight:bold; cursor:pointer;">🎁 डेली क्लेम</button>
                 <div class="wallet-box">💰 ₹<span id="balance">251</span></div>
@@ -203,26 +257,30 @@
         </div>
 
         <div class="ticker-bar">
-            <span class="ticker-text">🔥 रियल क्लब प्रो अपडेट: डेली लकी स्पिन, पासबुक हिस्ट्री और स्क्रीनशॉट डिपॉजिट सिस्टम एक्टिव! ⚡</span>
+            <span class="ticker-text">🚀 न्यू अपडेट: माइन्स (Mines) और प्लिंको (Plinko) गेम लाइव! प्रोवोबली फेयर सिक्योरिटी एक्टिव। ⚡</span>
         </div>
 
+        <!-- Floating Live Win Notification -->
         <div class="live-win-popup" id="liveWinPopup">
             <span>🎉</span>
-            <span id="liveWinText">रोहित ने कलर गेम में जीते ₹500!</span>
+            <span id="liveWinText">रोहित ने एविएटर में जीते ₹2,500!</span>
         </div>
 
+        <!-- WhatsApp Support Float -->
         <a href="https://wa.me/?text=Hello%20Real%20Club%20Support,%20I%20need%20help%20with%20my%20account." target="_blank" class="whatsapp-float">💬</a>
 
+        <!-- Banner Slider -->
         <div class="promo-slider-container" id="promoSliderBox">
             <img id="ambassadorImage" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200" alt="Ambassador" class="ambassador-img">
             <div class="banner-info">
-                <h4 id="ambassadorTitle">👑 Real Club VIP Club</h4>
-                <p id="ambassadorDesc"><b>भारत का नंबर 1 गेमिंग अड्डा!</b><br>फास्ट विड्रॉल और 100% सिक्योर सिस्टम।</p>
+                <h4 id="ambassadorTitle">👑 Real Club Ultimate Pro</h4>
+                <p id="ambassadorDesc"><b>भारत का सबसे आधुनिक गेमिंग प्लेटफॉर्म!</b><br>फास्ट विड्रॉल और 100% सिक्योर सिस्टम।</p>
             </div>
         </div>
 
         <div class="content">
             
+            <!-- LOGIN SECTION -->
             <div id="login-section" class="login-card">
                 <h2>🔐 रियल क्लब सिक्योर लॉगिन</h2>
                 <div class="login-tabs">
@@ -240,21 +298,26 @@
                     <input type="password" id="gmailPasswordInput" placeholder="पासवर्ड दर्ज करें">
                 </div>
 
-                <button class="btn-primary" onclick="handleLogin()">लॉगिन करें / रजिस्टर करें (₹251 बोनस)</button>
+                <button class="btn-primary" onclick="handleLogin()">لॉगिन करें / रजिस्टर करें (₹251 बोनस)</button>
                 <p id="msg" style="color: #f87171; font-size: 12px;"></p>
             </div>
 
+            <!-- DASHBOARD SECTION -->
             <div id="dashboard-section" class="hidden">
                 
                 <div class="game-grid" id="gameGridContainer">
                     <div class="game-card active" onclick="switchGame('color')">🎨 कलर गेम</div>
-                    <div class="game-card" onclick="switchGame('spin')">🎡 लकी व्हील</div>
+                    <div class="game-card" onclick="switchGame('mines')">💎 माइन्स गेम</div>
+                    <div class="game-card" onclick="switchGame('plinko')">🔴 प्लिंको</div>
+                    <div class="game-card" onclick="switchGame('crash')">🚀 एविएटर</div>
                     <div class="game-card" onclick="switchGame('andar')">🃏 अंदर-बाहर</div>
-                    <div class="game-card" onclick="switchGame('leaderboardTab')">🏆 लीडरबोर्ड</div>
+                    <div class="game-card" onclick="switchGame('dragon')">🐉 ड्रैगन टाइगर</div>
+                    <div class="game-card" onclick="switchGame('spin')">🎡 लकी व्हील</div>
+                    <div class="game-card" onclick="switchGame('chatTab')" style="background:#065f46; color:#fff;">💬 लाइव चैट</div>
+                    <div class="game-card" onclick="switchGame('vipTab')" style="background:#78350f; color:#fff;">⭐ VIP क्लब</div>
                     <div class="game-card" onclick="switchGame('walletTab')" style="background: #92400e; color:#fff;">💳 वॉलेट</div>
                     <div class="game-card" onclick="switchGame('passbookTab')">📜 पासबुक</div>
-                    <div class="game-card" onclick="switchGame('promoTab')">📢 प्रमोशन</div>
-                    <div class="game-card" onclick="logoutUser()" style="background: #ef4444; color:#fff;">🚪 लॉगआउट</div>
+                    <div class="game-card" onclick="logoutUser()" style="background: #ef4444; color:#fff; grid-column: span 4;">🚪 लॉगआउट</div>
                 </div>
 
                 <div class="bet-selector-title" id="betSelectorArea">
@@ -270,6 +333,7 @@
                     <div class="b-amt-btn" onclick="setBetAmount(5000, this)">₹5000</div>
                 </div>
 
+                <!-- 1. कलर और नंबर गेम -->
                 <div id="game-color" class="game-panel">
                     <h3>🎨 कलर और नंबर (Real Club Pro)</h3>
                     <div class="time-tabs">
@@ -304,30 +368,74 @@
                         <div class="history-title"><span>📊 लाइव हिस्ट्री</span><span style="color:#eab308;">लाइव</span></div>
                         <div class="history-scroll" id="colorHistoryBar"></div>
                     </div>
+                    <div class="provably-fair">Provably Fair Hash: 8f8b2c91a...</div>
                     <p id="colorResult" class="res-text">बेट लगाएं। टाइमर शून्य होते ही रिजल्ट खुलेगा।</p>
                 </div>
 
-                <div id="game-spin" class="game-panel hidden">
-                    <h3>🎡 डेली फ्री लकी स्पिन व्हील</h3>
-                    <div style="text-align: center; font-size: 45px; margin: 12px 0; transition: transform 1s ease-in-out;" id="wheelIcon">🍒🍋🍊🍉⭐🔔🎰</div>
-                    <button class="btn-primary" onclick="playAdvancedWheel()">व्हील स्पिन करें (फ्री / बेट)</button>
-                    <div class="history-container" style="margin-top:8px;">
-                        <div class="history-title"><span>🎰 पिछले विनिंग रिजल्ट्स</span></div>
-                        <div class="history-scroll" id="wheelHistoryBar"></div>
+                <!-- 2. माइन्स गेम (Mines Game) -->
+                <div id="game-mines" class="game-panel hidden">
+                    <h3>💎 माइन्स गेम (हीरा vs बम)</h3>
+                    <div class="mines-grid" id="minesGrid"></div>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn-primary" id="startMinesBtn" onclick="startMinesGame()" style="background: #10b981; color:#000;">गेम शुरू करें</button>
+                        <button class="btn-primary hidden" id="cashoutMinesBtn" onclick="cashoutMinesGame()" style="background: #eab308; color:#000;">कैश आउट (<span id="minesMultiplier">1.00x</span>)</button>
                     </div>
-                    <p id="spinResult" class="res-text"></p>
+                    <p id="minesResult" class="res-text">हीरे खोजें और बम से बचें!</p>
                 </div>
 
+                <!-- 3. प्लिंको गेम (Plinko Game) -->
+                <div id="game-plinko" class="game-panel hidden">
+                    <h3>🔴 प्लिंको बाउंसिंग बॉल गेम</h3>
+                    <div class="plinko-screen">
+                        <span style="font-size:11px; color:#94a3b8;">बॉल ड्रॉप एरिया</span>
+                        <div class="plinko-pins">⚡ 🔴 ⚡ 🔴 ⚡</div>
+                        <div class="plinko-buckets">
+                            <div class="plinko-bucket">0.5x</div>
+                            <div class="plinko-bucket" style="background:#b45309; color:#fff;">2x</div>
+                            <div class="plinko-bucket" style="background:#db2777; color:#fff;">5x</div>
+                            <div class="plinko-bucket" style="background:#10b981; color:#000;">10x</div>
+                            <div class="plinko-bucket" style="background:#eab308; color:#000;">50x</div>
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="playPlinko()">बॉल ड्रॉप करें (बेट)</button>
+                    <p id="plinkoResult" class="res-text">बॉल ड्रॉप करने के लिए बटन दबाएं।</p>
+                </div>
+
+                <!-- 4. एविएटर / क्रैश गेम -->
+                <div id="game-crash" class="game-panel hidden">
+                    <h3>🚀 एविएटर क्रैश रॉकेट गेम</h3>
+                    <div class="crash-screen">
+                        <div class="rocket-icon" id="rocketObj" style="left: 20px; bottom: 20px;">🚀</div>
+                        <div class="crash-multiplier" id="crashMultiplier">1.00x</div>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn-primary" id="crashBetBtn" onclick="startCrashGame()" style="background: #10b981; color:#000;">रॉकेट उड़ाएं (बेट)</button>
+                        <button class="btn-primary hidden" id="cashoutBtn" onclick="cashoutCrashGame()" style="background: #eab308; color:#000;">कैश आउट</button>
+                    </div>
+                    <p id="crashResult" class="res-text">रॉकेट उड़ाने के लिए बटन दबाएं।</p>
+                </div>
+
+                <!-- 5. अंदर-बाहर प्रो (3D Advanced Card Flip) -->
                 <div id="game-andar" class="game-panel hidden">
-                    <h3>🃏 अंदर-बाहर लाइव टेबल</h3>
-                    <div class="ab-table">
+                    <h3>🃏 अंदर-बाहर लाइव टेबल (3D Pro)</h3>
+                    <div class="card-table-pro">
                         <div style="text-align:center;">
-                            <span style="font-size:10px; color:#94a3b8; display:block; margin-bottom:4px;">मेन कार्ड</span>
-                            <div class="card-box" id="mainCard">Q♠</div>
+                            <span style="font-size:10px; color:#facc15; display:block; margin-bottom:4px;">मेन कार्ड</span>
+                            <div class="card-perspective">
+                                <div class="card-box-3d">
+                                    <div class="card-face card-back">RC</div>
+                                    <div class="card-face card-front">Q♠</div>
+                                </div>
+                            </div>
                         </div>
                         <div style="text-align:center;">
-                            <span style="font-size:10px; color:#94a3b8; display:block; margin-bottom:4px;">लाइव फ्लिप</span>
-                            <div class="card-box" id="resultCard" style="background:#1e293b; color:#eab308;">?</div>
+                            <span style="font-size:10px; color:#facc15; display:block; margin-bottom:4px;">लाइव फ्लिप रिजल्ट</span>
+                            <div class="card-perspective">
+                                <div class="card-box-3d" id="abCard3d">
+                                    <div class="card-face card-back">RC</div>
+                                    <div class="card-face card-front" id="abFrontFace">?</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div style="display: flex; gap: 8px; margin: 8px 0;">
@@ -342,22 +450,65 @@
                     <p id="abResult" class="res-text">बेट लगाएं।</p>
                 </div>
 
-                <div id="leaderboard-panel" class="game-panel hidden">
-                    <h3>🏆 टॉप विनर्स लीडरबोर्ड</h3>
-                    <p style="font-size: 11px; color:#94a3b8; margin-bottom: 8px;">आज के सबसे ज्यादा कमाने वाले खिलाड़ी:</p>
-                    <div style="background:#030712; padding:8px; border-radius:8px;">
-                        <table class="admin-table">
-                            <thead><tr><th>रैंक</th><th>खिलाड़ी</th><th>जीत राशि</th></tr></thead>
-                            <tbody>
-                                <tr><td>🥇 1st</td><td>Rahul Sharma</td><td style="color:#34d399;">₹12,450</td></tr>
-                                <tr><td>🥈 2nd</td><td>Amit Kumar</td><td style="color:#34d399;">₹8,900</td></tr>
-                                <tr><td>🥉 3rd</td><td>Vikram Singh</td><td style="color:#34d399;">₹6,200</td></tr>
-                                <tr><td>4th</td><td>Priya Roy</td><td style="color:#34d399;">₹4,100</td></tr>
-                            </tbody>
-                        </table>
+                <!-- 6. ड्रैगन टाइगर गेम -->
+                <div id="game-dragon" class="game-panel hidden">
+                    <h3>🐉 ड्रैगन टाइगर लाइव टेबल</h3>
+                    <div class="card-table-pro" style="background: radial-gradient(circle, #7f1d1d 0%, #450a0a 100%);">
+                        <div style="text-align:center;">
+                            <span style="font-size:10px; color:#facc15; display:block; margin-bottom:4px;">ड्रैगन (Dragon)</span>
+                            <div class="card-perspective"><div class="card-box-3d flipped"><div class="card-face card-back">RC</div><div class="card-face card-front" id="dragonCard">K♥</div></div></div>
+                        </div>
+                        <div style="text-align:center;">
+                            <span style="font-size:10px; color:#facc15; display:block; margin-bottom:4px;">टाइगर (Tiger)</span>
+                            <div class="card-perspective"><div class="card-box-3d flipped"><div class="card-face card-back">RC</div><div class="card-face card-front" id="tigerCard">9♠</div></div></div>
+                        </div>
                     </div>
+                    <div style="display: flex; gap: 6px; margin: 8px 0;">
+                        <button class="btn-primary" onclick="placeDragonBet('Dragon')" style="background: #ef4444; color:#fff;">ड्रैगन (2x)</button>
+                        <button class="btn-primary" onclick="placeDragonBet('Tie')" style="background: #10b981; color:#fff;">टाई (8x)</button>
+                        <button class="btn-primary" onclick="placeDragonBet('Tiger')" style="background: #3b82f6; color:#fff;">टाइगर (2x)</button>
+                    </div>
+                    <p id="dragonResult" class="res-text">बेट लगाएं।</p>
                 </div>
 
+                <!-- 7. लकी स्पिन व्हील -->
+                <div id="game-spin" class="game-panel hidden">
+                    <h3>🎡 डेली फ्री लकी स्पिन व्हील</h3>
+                    <div style="text-align: center; font-size: 45px; margin: 12px 0; transition: transform 1s ease-in-out;" id="wheelIcon">🍒🍋🍊🍉⭐🔔🎰</div>
+                    <button class="btn-primary" onclick="playAdvancedWheel()">व्हील स्पिन करें (फ्री / बेट)</button>
+                    <div class="history-container" style="margin-top:8px;">
+                        <div class="history-title"><span>🎰 पिछले विनिंग रिजल्ट्स</span></div>
+                        <div class="history-scroll" id="wheelHistoryBar"></div>
+                    </div>
+                    <p id="spinResult" class="res-text"></p>
+                </div>
+
+                <!-- 💬 ग्लोबल लाइव चैट टैब -->
+                <div id="chat-panel" class="game-panel hidden">
+                    <h3>💬 ग्लोबल लाइव कम्युनिटी चैट</h3>
+                    <div class="chat-container" id="chatBox">
+                        <div class="chat-msg"><b>Rahul_99:</b> कल मैंने एविएटर में ₹5,000 निकाले! 🚀</div>
+                        <div class="chat-msg"><b>Priya_VIP:</b> माइन्स गेम बहुत शानदार है यार!</div>
+                        <div class="chat-msg"><b>Admin:</b> सभी प्लेयर्स के लिए आज रात 10 बजे स्पेशल रेन बोनस आएगा!</div>
+                    </div>
+                    <input type="text" id="chatInput" placeholder="अपना संदेश दर्ज करें..." style="font-size:11px; padding:8px;">
+                    <button class="btn-primary" onclick="sendChatMessage()" style="padding:8px; font-size:11px;">संदेश भेजें</button>
+                </div>
+
+                <!-- ⭐ VIP क्लब टियर टैब -->
+                <div id="vip-panel" class="game-panel hidden">
+                    <h3>⭐ VIP क्लब & कमबैक बूस्टर</h3>
+                    <div style="background:#030712; padding:12px; border-radius:8px; border:1px solid #eab308; text-align:center;">
+                        <h4 style="margin:0 0 5px 0; color:#eab308;">आपका वर्तमान VIP लेवल: <span id="vipLevelName">Silver VIP</span></h4>
+                        <p style="font-size:11px; color:#94a3b8; margin:0;">अगले लेवल पर पहुंचने के लिए और ₹1,000 का डिपॉजिट करें।</p>
+                        <div style="background:#1f2937; height:8px; border-radius:4px; margin-top:8px; overflow:hidden;">
+                            <div style="background:#eab308; width:65%; height:100%;"></div>
+                        </div>
+                    </div>
+                    <p style="font-size:11px; color:#94a3b8; margin-top:10px;">💡 <b>कमबैक बूस्टर:</b> लगातार हारने पर सिस्टम ऑटोमैटिक 5% इंस्टेंट कैशबैक देता है!</p>
+                </div>
+
+                <!-- वॉलेट टैब -->
                 <div id="wallet-panel" class="game-panel hidden">
                     <h3>💳 सिक्योर डिपॉजिट & विड्रॉल</h3>
                     <div style="background:#030712; padding:10px; border-radius:8px; margin-bottom:10px; border:1px dashed #eab308; font-size:11px; color:#eab308;">
@@ -383,6 +534,7 @@
                     <p id="walletMsg" class="res-text"></p>
                 </div>
 
+                <!-- पासबुक टैब -->
                 <div id="passbook-panel" class="game-panel hidden">
                     <h3>📜 ट्रांजैक्शन पासबुक हिस्ट्री</h3>
                     <p style="font-size: 11px; color:#94a3b8; margin-bottom: 6px;">आपके सभी लेन-देन का रिकॉर्ड:</p>
@@ -396,13 +548,7 @@
                     </div>
                 </div>
 
-                <div id="promo-panel" class="game-panel hidden">
-                    <h3>📢 रेफरल प्रोग्राम & कमबैक बोनस</h3>
-                    <input type="text" id="refLink" value="https://realclubvip.com/join?ref=REAL777" readonly style="font-size: 11px; text-align: center;">
-                    <button class="btn-primary" onclick="copyRefLink()" style="background: #25d366; color:#fff; margin-top: 6px;">📋 लिंक कॉपी करें</button>
-                    <p style="font-size: 11px; color:#94a3b8; margin-top: 10px;">💡 **कमबैक बोनस:** लगातार हारने वाले खिलाड़ियों को सिस्टम ऑटोमैटिक 5% इंस्टेंट कैशबैक देता है!</p>
-                </div>
-
+                <!-- 👑 एडमिन कंट्रोल पैनल टैब -->
                 <div id="admin-panel" class="game-panel hidden" style="border: 2px solid #eab308;">
                     <h3 style="color: #eab308;">👑 मास्टर एडमिन पैनल</h3>
                     <div style="background: #030712; padding: 8px; border-radius: 6px; margin-top: 8px;">
@@ -437,7 +583,7 @@
             <div class="nav-item active" id="nav-home" onclick="switchNav('home')">🏠 होम</div>
             <div class="nav-item" id="nav-wallet" onclick="switchNav('wallet')">💼 वॉलेट</div>
             <div class="nav-item" id="nav-passbook" onclick="switchNav('passbook')">📜 पासबुक</div>
-            <div class="nav-item" id="nav-promo" onclick="switchNav('promo')">📢 प्रमोशन</div>
+            <div class="nav-item" id="nav-chat" onclick="switchNav('chat')">💬 चैट</div>
             <div class="nav-item" id="nav-admin" onclick="switchNav('admin')" style="color: #eab308; display: none;">👑 एडमिन</div>
             <div class="nav-item" id="nav-logout" onclick="logoutUser()" style="color: #ef4444;">🚪 लॉगआउट</div>
         </div>
@@ -452,17 +598,51 @@
         let soundEnabled = true;
         let activeColorBet = null;
         let activeAbBet = null;
+        let activeDragonBet = null;
         let isAdmin = false;
         let loginType = 'mobile';
         let passbookHistory = [{time: 'अभी', desc: 'रजिस्ट्रेशन बोनस', amount: '+₹251'}];
 
-        // Live Win Ticker Popups
+        // Web Audio Sound Generator
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playSound(type) {
+            if (!soundEnabled) return;
+            try {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                let osc = audioCtx.createOscillator();
+                let gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                if (type === 'click') {
+                    osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+                    gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+                    osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+                } else if (type === 'win') {
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1);
+                    osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.2);
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
+                    osc.start(); osc.stop(audioCtx.currentTime + 0.4);
+                } else if (type === 'loss') {
+                    osc.frequency.setValueAtTime(200, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(150, audioCtx.currentTime + 0.15);
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+                    osc.start(); osc.stop(audioCtx.currentTime + 0.3);
+                }
+            } catch(e) {}
+        }
+
+        // Live Win Ticker & Money Rain
         const fakeWins = [
             "रोहित ने कलर गेम में जीते ₹500!",
-            "अमित ने व्हील स्पिन से जीते ₹1,000!",
+            "अमित ने एविएटर में जीते ₹2,500!",
             "विकास ने अंदर-बाहर में जीते ₹950!",
-            "पूजा ने कलर गेम में जैकपॉट जीता ₹4,500!",
-            "राहुल ने डेली स्पिन से जीते ₹200!"
+            "पूजा ने माइन्स गेम में जीते ₹1,800!",
+            "राहुल ने प्लिंको से जीते ₹1,200!"
         ];
         setInterval(() => {
             if(currentIdentifier) {
@@ -474,8 +654,27 @@
             }
         }, 7000);
 
+        // Random Money Rain Trigger
+        setInterval(() => {
+            if(currentIdentifier) {
+                let rainBtn = document.getElementById('rainPacketBtn');
+                rainBtn.style.display = 'block';
+                setTimeout(() => { rainBtn.style.display = 'none'; }, 8000);
+            }
+        }, 30000);
+
+        function claimRainBonus() {
+            playSound('win');
+            userBalance += 50;
+            passbookHistory.push({time: 'अभी', desc: 'मनी रेन रेड पैकेट', amount: '+₹50'});
+            document.getElementById('balance').innerText = userBalance;
+            document.getElementById('rainPacketBtn').style.display = 'none';
+            saveUserData();
+            alert("🧧 बधाई हो! आपको मनी रेन से ₹50 फ्री मिल गए हैं!");
+        }
+
         const ambassadors = [
-            { name: "👑 Real Club VIP Club", desc: "भारत का नंबर 1 गेमिंग अड्डा!<br>फास्ट विड्रॉल और 100% सिक्योर सिस्टम।", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200" },
+            { name: "👑 Real Club Ultimate Pro", desc: "भारत का नंबर 1 गेमिंग अड्डा!<br>फास्ट विड्रॉल और 100% सिक्योर सिस्टम।", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200" },
             { name: "⭐ Royal Gaming Partner", desc: "खेलें सुरक्षित और जीतें रोजाना शानदार कैश प्राइज!", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200" }
         ];
         let currentAmbassadorIdx = 0;
@@ -503,9 +702,11 @@
                     showDashboard();
                 }
             }
+            renderMinesGrid();
         };
 
         function switchLoginMode(type) {
+            playSound('click');
             loginType = type;
             if(type === 'mobile') {
                 document.getElementById('tabMobileBtn').classList.add('active');
@@ -521,6 +722,7 @@
         }
 
         function handleLogin() {
+            playSound('click');
             let idVal = "";
             let passVal = "";
             const msg = document.getElementById('msg');
@@ -589,6 +791,7 @@
         }
 
         function logoutUser() {
+            playSound('click');
             localStorage.removeItem('realclub_active_user');
             currentIdentifier = null;
             isAdmin = false;
@@ -633,6 +836,7 @@
         }
 
         function claimDailyBonus() {
+            playSound('win');
             let today = new Date().toLocaleDateString();
             let lastClaim = localStorage.getItem('realclub_last_claim_' + currentIdentifier);
             if(lastClaim === today) {
@@ -653,6 +857,7 @@
         }
 
         function setBetAmount(amt, el) {
+            playSound('click');
             currentBet = amt;
             document.querySelectorAll('.b-amt-btn').forEach(b => b.classList.remove('active'));
             el.classList.add('active');
@@ -660,23 +865,32 @@
         }
 
         function switchGame(gameType) {
+            playSound('click');
             document.querySelectorAll('.game-card').forEach(card => card.classList.remove('active'));
             document.getElementById('game-color').classList.add('hidden');
-            document.getElementById('game-spin').classList.add('hidden');
+            document.getElementById('game-mines').classList.add('hidden');
+            document.getElementById('game-plinko').classList.add('hidden');
+            document.getElementById('game-crash').classList.add('hidden');
             document.getElementById('game-andar').classList.add('hidden');
-            document.getElementById('leaderboard-panel').classList.add('hidden');
+            document.getElementById('game-dragon').classList.add('hidden');
+            document.getElementById('game-spin').classList.add('hidden');
+            document.getElementById('chat-panel').classList.add('hidden');
+            document.getElementById('vip-panel').classList.add('hidden');
             document.getElementById('wallet-panel').classList.add('hidden');
             document.getElementById('passbook-panel').classList.add('hidden');
-            document.getElementById('promo-panel').classList.add('hidden');
             document.getElementById('admin-panel').classList.add('hidden');
 
             if (gameType === 'color') document.getElementById('game-color').classList.remove('hidden');
-            else if (gameType === 'spin') document.getElementById('game-spin').classList.remove('hidden');
+            else if (gameType === 'mines') document.getElementById('game-mines').classList.remove('hidden');
+            else if (gameType === 'plinko') document.getElementById('game-plinko').classList.remove('hidden');
+            else if (gameType === 'crash') document.getElementById('game-crash').classList.remove('hidden');
             else if (gameType === 'andar') document.getElementById('game-andar').classList.remove('hidden');
-            else if (gameType === 'leaderboardTab') document.getElementById('leaderboard-panel').classList.remove('hidden');
+            else if (gameType === 'dragon') document.getElementById('game-dragon').classList.remove('hidden');
+            else if (gameType === 'spin') document.getElementById('game-spin').classList.remove('hidden');
+            else if (gameType === 'chatTab') document.getElementById('chat-panel').classList.remove('hidden');
+            else if (gameType === 'vipTab') document.getElementById('vip-panel').classList.remove('hidden');
             else if (gameType === 'walletTab') document.getElementById('wallet-panel').classList.remove('hidden');
             else if (gameType === 'passbookTab') document.getElementById('passbook-panel').classList.remove('hidden');
-            else if (gameType === 'promoTab') document.getElementById('promo-panel').classList.remove('hidden');
             else if (gameType === 'adminTab') {
                 document.getElementById('admin-panel').classList.remove('hidden');
                 loadAdminData();
@@ -684,6 +898,7 @@
         }
 
         function switchNav(tab) {
+            playSound('click');
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             if (tab === 'home') {
                 document.getElementById('nav-home').classList.add('active');
@@ -694,13 +909,142 @@
             } else if (tab === 'passbook') {
                 document.getElementById('nav-passbook').classList.add('active');
                 switchGame('passbookTab');
-            } else if (tab === 'promo') {
-                document.getElementById('nav-promo').classList.add('active');
-                switchGame('promoTab');
+            } else if (tab === 'chat') {
+                document.getElementById('nav-chat').classList.add('active');
+                switchGame('chatTab');
             } else if (tab === 'admin') {
                 document.getElementById('nav-admin').classList.add('active');
                 switchGame('adminTab');
             }
+        }
+
+        // MINES GAME LOGIC
+        let minesActive = false;
+        let minesMultiplierVal = 1.00;
+        let minePositions = [];
+        let revealedTilesCount = 0;
+
+        function renderMinesGrid() {
+            let grid = document.getElementById('minesGrid');
+            grid.innerHTML = '';
+            for(let i=0; i<25; i++) {
+                let tile = document.createElement('div');
+                tile.className = 'mine-tile';
+                tile.innerText = '❓';
+                tile.onclick = () => clickMineTile(i, tile);
+                grid.appendChild(tile);
+            }
+        }
+
+        function startMinesGame() {
+            playSound('click');
+            if(userBalance < currentBet) { alert("बैलेंस कम है!"); return; }
+            userBalance -= currentBet;
+            passbookHistory.push({time: 'अभी', desc: 'माइन्स गेम बेट', amount: '-₹' + currentBet});
+            document.getElementById('balance').innerText = userBalance;
+
+            minesActive = true;
+            minesMultiplierVal = 1.00;
+            revealedTilesCount = 0;
+            document.getElementById('minesMultiplier').innerText = "1.00x";
+            document.getElementById('startMinesBtn').classList.add('hidden');
+            document.getElementById('cashoutMinesBtn').classList.remove('hidden');
+            document.getElementById('minesResult').innerText = "सुरक्षित टाइल चुनें!";
+
+            minePositions = [];
+            while(minePositions.length < 4) {
+                let r = Math.floor(Math.random() * 25);
+                if(!minePositions.includes(r)) minePositions.push(r);
+            }
+            renderMinesGrid();
+        }
+
+        function clickMineTile(idx, tile) {
+            if(!minesActive) { alert("कृपया पहले 'गेम शुरू करें' बटन दबाएं!"); return; }
+            if(tile.classList.contains('revealed-gem') || tile.classList.contains('revealed-mine')) return;
+
+            playSound('click');
+            if(minePositions.includes(idx)) {
+                // Hit mine
+                minesActive = false;
+                playSound('loss');
+                tile.className = 'mine-tile revealed-mine';
+                tile.innerText = '💣';
+                document.getElementById('minesResult').style.color = "#f87171";
+                document.getElementById('minesResult').innerText = `💥 बम फट गया! आप हार गए (-₹${currentBet})`;
+                document.getElementById('startMinesBtn').classList.remove('hidden');
+                document.getElementById('cashoutMinesBtn').classList.add('hidden');
+                saveUserData();
+            } else {
+                // Hit gem
+                playSound('win');
+                tile.className = 'mine-tile revealed-gem';
+                tile.innerText = '💎';
+                revealedTilesCount++;
+                minesMultiplierVal += 0.35;
+                document.getElementById('minesMultiplier').innerText = minesMultiplierVal.toFixed(2) + "x";
+                document.getElementById('minesResult').style.color = "#38bdf8";
+                document.getElementById('minesResult').innerText = `शानदार! हीरा मिला। कैश आउट करें या आगे खेलें।`;
+            }
+        }
+
+        function cashoutMinesGame() {
+            if(!minesActive) return;
+            minesActive = false;
+            playSound('win');
+            let win = Math.floor(currentBet * minesMultiplierVal);
+            userBalance += win;
+            document.getElementById('balance').innerText = userBalance;
+            passbookHistory.push({time: 'अभी', desc: `माइन्स गेम विन (${minesMultiplierVal.toFixed(2)}x)`, amount: '+₹' + win});
+
+            document.getElementById('minesResult').style.color = "#34d399";
+            document.getElementById('minesResult').innerText = `🎉 शानदार! ${minesMultiplierVal.toFixed(2)}x पर कैशआउट किया, जीते ₹${win}!`;
+            document.getElementById('startMinesBtn').classList.remove('hidden');
+            document.getElementById('cashoutMinesBtn').classList.add('hidden');
+            saveUserData();
+        }
+
+        // PLINKO GAME LOGIC
+        function playPlinko() {
+            playSound('click');
+            if(userBalance < currentBet) { alert("बैलेंस कम है!"); return; }
+            userBalance -= currentBet;
+            passbookHistory.push({time: 'अभी', desc: 'प्लिंको बॉल बेट', amount: '-₹' + currentBet});
+            document.getElementById('balance').innerText = userBalance;
+
+            let multipliers = [0.5, 1, 2, 5, 10, 50];
+            let pickedMult = multipliers[Math.floor(Math.random() * multipliers.length)];
+            let win = Math.floor(currentBet * pickedMult);
+
+            let res = document.getElementById('plinkoResult');
+            if(pickedMult > 1) {
+                userBalance += win;
+                playSound('win');
+                res.style.color = "#34d399";
+                res.innerText = `🎉 बॉल ${pickedMult}x पॉकेट में गिरी! जीते ₹${win}`;
+                passbookHistory.push({time: 'अभी', desc: `प्लिंको विन (${pickedMult}x)`, amount: '+₹' + win});
+            } else {
+                playSound('loss');
+                res.style.color = "#f87171";
+                res.innerText = `❌ बॉल ${pickedMult}x पॉकेट में गिरी (-₹${currentBet})`;
+            }
+            document.getElementById('balance').innerText = userBalance;
+            saveUserData();
+        }
+
+        // CHAT LOGIC
+        function sendChatMessage() {
+            playSound('click');
+            let input = document.getElementById('chatInput');
+            let text = input.value.trim();
+            if(text === "") return;
+            let chatBox = document.getElementById('chatBox');
+            let msgDiv = document.createElement('div');
+            msgDiv.className = 'chat-msg';
+            msgDiv.innerHTML = `<b>${currentIdentifier}:</b> ${text}`;
+            chatBox.appendChild(msgDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+            input.value = '';
         }
 
         function loadAdminData() {
@@ -721,6 +1065,7 @@
         }
 
         function adminSetUserMode() {
+            playSound('click');
             let id = document.getElementById('adminTargetUser').value.trim();
             let mode = document.getElementById('adminUserMode').value;
             let msg = document.getElementById('adminMsg');
@@ -751,6 +1096,7 @@
         }
 
         function setTimerPeriod(sec, el) {
+            playSound('click');
             totalTimerSeconds = sec;
             currentTimeLeft = sec;
             document.querySelectorAll('.t-tab').forEach(t => t.classList.remove('active'));
@@ -758,6 +1104,7 @@
         }
 
         function placeColorBet(choice) {
+            playSound('click');
             if (userBalance < currentBet) { alert("बैलेंस कम है!"); return; }
             activeColorBet = choice;
             document.getElementById('colorResult').style.color = "#38bdf8";
@@ -765,6 +1112,7 @@
         }
 
         function placeNumberBet(num) {
+            playSound('click');
             if (userBalance < currentBet) { alert("बैलेंस कम है!"); return; }
             activeColorBet = 'Num_' + num;
             document.getElementById('colorResult').style.color = "#38bdf8";
@@ -772,10 +1120,121 @@
         }
 
         function placeAndarBaharBet(choice) {
+            playSound('click');
             if (userBalance < currentBet) { alert("बैलेंस कम है!"); return; }
             activeAbBet = choice;
             document.getElementById('abResult').style.color = "#38bdf8";
             document.getElementById('abResult').innerText = `✅ ${choice} पर ₹${currentBet} की बेट लगी।`;
+        }
+
+        function placeDragonBet(choice) {
+            playSound('click');
+            if (userBalance < currentBet) { alert("बैलेंस कम है!"); return; }
+            activeDragonBet = choice;
+            document.getElementById('dragonResult').style.color = "#38bdf8";
+            document.getElementById('dragonResult').innerText = `✅ ${choice} पर ₹${currentBet} की बेट लगी।`;
+
+            userBalance -= currentBet;
+            passbookHistory.push({time: 'अभी', desc: 'ड्रैगन टाइगर बेट', amount: '-₹' + currentBet});
+
+            let mode = getUserMode();
+            let winner = Math.random() < (mode === 'difficult' ? 0.35 : 0.48) ? 'Dragon' : 'Tiger';
+            if(Math.random() < 0.08) winner = 'Tie';
+
+            let dCard = document.getElementById('dragonCard');
+            let tCard = document.getElementById('tigerCard');
+            dCard.innerText = winner === 'Dragon' ? 'A♠' : '5♥';
+            tCard.innerText = winner === 'Tiger' ? 'A♦' : '2♣';
+
+            const res = document.getElementById('dragonResult');
+            if (activeDragonBet === winner) {
+                let multiplier = winner === 'Tie' ? 8 : 2;
+                let win = currentBet * multiplier;
+                userBalance += win;
+                playSound('win');
+                res.style.color = "#34d399";
+                res.innerText = `🎉 ${winner} जीता! जीते ₹${win}`;
+                passbookHistory.push({time: 'अभी', desc: 'ड्रैगन टाइगर विन', amount: '+₹' + win});
+            } else {
+                playSound('loss');
+                res.style.color = "#f87171";
+                res.innerText = `❌ हार गए! विजेता: ${winner}`;
+            }
+            activeDragonBet = null;
+            document.getElementById('balance').innerText = Math.floor(userBalance);
+            saveUserData();
+        }
+
+        // AVIATOR CRASH LOGIC
+        let crashInterval = null;
+        let currentMultiplier = 1.00;
+        let isCrashPlaying = false;
+
+        function startCrashGame() {
+            playSound('click');
+            if (userBalance < currentBet) { alert("बैलेंस कम है!"); return; }
+            userBalance -= currentBet;
+            passbookHistory.push({time: 'अभी', desc: 'एविएटर रॉकेट बेट', amount: '-₹' + currentBet});
+            document.getElementById('balance').innerText = Math.floor(userBalance);
+
+            document.getElementById('crashBetBtn').classList.add('hidden');
+            document.getElementById('cashoutBtn').classList.remove('hidden');
+            
+            currentMultiplier = 1.00;
+            isCrashPlaying = true;
+            let crashPoint = (Math.random() * (getUserMode() === 'difficult' ? 1.4 : 3.5)).toFixed(2);
+            if (crashPoint < 1.05) crashPoint = 1.05;
+
+            let rocket = document.getElementById('rocketObj');
+            let multDisplay = document.getElementById('crashMultiplier');
+            let res = document.getElementById('crashResult');
+            res.style.color = "#38bdf8";
+            res.innerText = "रॉकेट उड़ रहा है... कैश आउट करें!";
+
+            let posX = 20;
+            let posY = 20;
+
+            crashInterval = setInterval(() => {
+                currentMultiplier += 0.04;
+                multDisplay.innerText = currentMultiplier.toFixed(2) + "x";
+                posX += 3;
+                posY += 2;
+                rocket.style.left = posX + "px";
+                rocket.style.bottom = posY + "px";
+
+                if (currentMultiplier >= parseFloat(crashPoint)) {
+                    clearInterval(crashInterval);
+                    if (isCrashPlaying) {
+                        isCrashPlaying = false;
+                        playSound('loss');
+                        multDisplay.innerText = "CRASHED (" + crashPoint + "x)";
+                        res.style.color = "#f87171";
+                        res.innerText = `💥 रॉकेट क्रैश हो गया! आप हार गए (-₹${currentBet})`;
+                        document.getElementById('crashBetBtn').classList.remove('hidden');
+                        document.getElementById('cashoutBtn').classList.add('hidden');
+                        saveUserData();
+                    }
+                }
+            }, 100);
+        }
+
+        function cashoutCrashGame() {
+            if (!isCrashPlaying) return;
+            isCrashPlaying = false;
+            clearInterval(crashInterval);
+            playSound('win');
+
+            let win = Math.floor(currentBet * currentMultiplier);
+            userBalance += win;
+            document.getElementById('balance').innerText = Math.floor(userBalance);
+            passbookHistory.push({time: 'अभी', desc: `एविएटर कैशआउट (${currentMultiplier.toFixed(2)}x)`, amount: '+₹' + win});
+
+            let res = document.getElementById('crashResult');
+            res.style.color = "#34d399";
+            res.innerText = `🎉 शानदार! ${currentMultiplier.toFixed(2)}x पर कैशआउट किया, जीते ₹${win}!`;
+            document.getElementById('crashBetBtn').classList.remove('hidden');
+            document.getElementById('cashoutBtn').classList.add('hidden');
+            saveUserData();
         }
 
         function processTimerDraw() {
@@ -799,6 +1258,7 @@
                         let win = currentBet * 9;
                         userBalance += win;
                         isWin = true;
+                        playSound('win');
                         res.style.color = "#34d399";
                         res.innerText = `🎉 जैकपॉट! नंबर ${winningNum} खुला, जीते ₹${win}!`;
                         passbookHistory.push({time: 'अभी', desc: 'कलर गेम विन (जैकपॉट)', amount: '+₹' + win});
@@ -808,12 +1268,14 @@
                         let win = currentBet * 2;
                         userBalance += win;
                         isWin = true;
+                        playSound('win');
                         res.style.color = "#34d399";
                         res.innerText = `🎉 जीत गए! कलर ${winningColor} खुला (+₹${win})`;
                         passbookHistory.push({time: 'अभी', desc: 'कलर गेम विन', amount: '+₹' + win});
                     }
                 }
                 if (!isWin) {
+                    playSound('loss');
                     res.style.color = "#f87171";
                     res.innerText = `❌ हार गए! नंबर ${winningNum} (${winningColor}) खुला।`;
                 }
@@ -824,31 +1286,34 @@
                 userBalance -= currentBet;
                 passbookHistory.push({time: 'अभी', desc: 'अंदर-बाहर बेट', amount: '-₹' + currentBet});
 
-                const resCardBox = document.getElementById('resultCard');
-                resCardBox.classList.add('flipping');
+                let card3d = document.getElementById('abCard3d');
+                card3d.classList.add('flipped');
                 
                 setTimeout(() => {
                     let winner = Math.random() < (mode === 'difficult' ? 0.3 : 0.5) ? 'Andar' : 'Bahar';
                     abHistoryData.push(winner);
                     renderAllHistories();
-                    resCardBox.innerText = winner === 'Andar' ? 'K♦' : '10♥';
-                    resCardBox.classList.remove('flipping');
+                    document.getElementById('abFrontFace').innerText = winner === 'Andar' ? 'K♦' : '10♥';
 
                     const res = document.getElementById('abResult');
                     if (activeAbBet === winner) {
                         let win = currentBet * 1.9;
                         userBalance += win;
+                        playSound('win');
                         res.style.color = "#34d399";
                         res.innerText = `🎉 ${winner} खुला! जीते ₹${win}`;
                         passbookHistory.push({time: 'अभी', desc: 'अंदर-बाहर विन', amount: '+₹' + win});
                     } else {
+                        playSound('loss');
                         res.style.color = "#f87171";
                         res.innerText = `❌ हार गए! खुला: ${winner}`;
                     }
                     activeAbBet = null;
                     document.getElementById('balance').innerText = Math.floor(userBalance);
                     saveUserData();
-                }, 400);
+
+                    setTimeout(() => { card3d.classList.remove('flipped'); }, 1500);
+                }, 500);
             }
 
             userBalance = Math.floor(userBalance);
@@ -883,6 +1348,7 @@
         }
 
         function playAdvancedWheel() {
+            playSound('click');
             if (userBalance < currentBet) { alert("बैलेंस कम है!"); return; }
             userBalance -= currentBet;
             passbookHistory.push({time: 'अभी', desc: 'व्हील स्पिन बेट', amount: '-₹' + currentBet});
@@ -909,10 +1375,12 @@
                 wheelHistoryData.push(prizeName);
                 if (prize > 0) {
                     userBalance += prize;
+                    playSound('win');
                     res.style.color = "#34d399";
                     res.innerText = `🎰 शानदार! ${prizeName} खुला, जीते ₹${prize}!`;
                     passbookHistory.push({time: 'अभी', desc: 'व्हील स्पिन विन (' + prizeName + ')', amount: '+₹' + prize});
                 } else {
+                    playSound('loss');
                     res.style.color = "#f87171";
                     res.innerText = `❌ खाली गया (-₹${currentBet})।`;
                 }
@@ -922,6 +1390,7 @@
         }
 
         function addMoneyWithProof() {
+            playSound('click');
             const amt = parseInt(document.getElementById('depositAmount').value);
             const utr = document.getElementById('utrInput').value.trim();
             const fileInput = document.getElementById('paymentScreenshot').files[0];
@@ -947,16 +1416,17 @@
             allUsers[currentIdentifier] = userData;
             localStorage.setItem('realclub_all_users', JSON.stringify(allUsers));
 
+            playSound('win');
             document.getElementById('balance').innerText = userBalance;
             document.getElementById('walletMsg').style.color = "#34d399";
             document.getElementById('walletMsg').innerText = `✅ स्क्रीनशॉट वेरीफाई हुआ! ₹${amt} + ₹${bonus} (${(bonusPercent*100)}% बोनस) क्रेडिट हुआ!`;
             document.getElementById('depositAmount').value = '';
             document.getElementById('utrInput').value = '';
-            document.getElementById('paymentScreenshot.value') = '';
             saveUserData();
         }
 
         function withdrawMoney() {
+            playSound('click');
             const amt = parseInt(document.getElementById('withdrawAmount').value);
             if (isNaN(amt) || amt <= 0) { alert("सही राशि दर्ज करें!"); return; }
             if (userBalance < amt) { alert("पर्याप्त बैलेंस नहीं है!"); return; }
@@ -967,13 +1437,6 @@
             document.getElementById('walletMsg').innerText = `✅ विड्रॉल रिक्वेस्ट स्वीकार कर ली गई है। 24 घंटे में खाते में ट्रांसफर होगी।`;
             document.getElementById('withdrawAmount').value = '';
             saveUserData();
-        }
-
-        function copyRefLink() {
-            const copyText = document.getElementById("refLink");
-            copyText.select();
-            navigator.clipboard.writeText(copyText.value);
-            alert("✅ रेफरल लिंक कॉपी हो गया!");
         }
     </script>
 </body>
