@@ -1,254 +1,220 @@
-const express = require('express');
-const mongoose = require('mongoose');
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAST RESULT ONLINE - Neon Casino</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap');
+        body { font-family: 'Poppins', sans-serif; background-color: #05050a; color: #ffffff; }
+        .neon-glow { text-shadow: 0 0 10px rgba(234, 179, 8, 0.7), 0 0 20px rgba(234, 179, 8, 0.5); }
+        .neon-box { box-shadow: 0 0 15px rgba(168, 85, 247, 0.2); border: 1px solid rgba(168, 85, 247, 0.4); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between pb-16">
 
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+    <!-- Top Header -->
+    <header class="bg-slate-900/90 border-b border-purple-900/50 p-4 sticky top-0 z-50 backdrop-blur flex justify-between items-center">
+        <h1 class="text-xl font-black text-yellow-400 neon-glow tracking-wider">⚡ FAST RESULT ONLINE</h1>
+        <div class="flex items-center gap-3">
+            <div class="bg-slate-800 px-3 py-1.5 rounded-full border border-slate-700 text-xs">
+                बैलेंस: <span id="user-wallet" class="text-emerald-400 font-bold">₹1,000</span>
+            </div>
+            <button onclick="openAdminModal()" class="bg-purple-600 hover:bg-purple-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg">👑 एडमिन</button>
+        </div>
+    </header>
 
-// --- 1. MongoDB डेटाबेस कनेक्शन ---
-mongoose.connect('mongodb://localhost:27017/gaming_platform', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => console.log('MongoDB Connected Successfully!'))
-  .catch(err => console.log('DB Connection Error:', err));
+    <!-- Main Container -->
+    <main class="max-w-md mx-auto w-full p-4 space-y-6 flex-1">
+        
+        <!-- Banner -->
+        <div class="bg-gradient-to-r from-purple-900 via-indigo-900 to-slate-900 p-5 rounded-2xl neon-box text-center">
+            <h2 class="text-lg font-bold text-yellow-400 mb-1">🔥 VIP Neon Casino Arena</h2>
+            <p class="text-xs text-slate-300">अपनी किस्मत आजमाएँ और बड़ा विन करें!</p>
+        </div>
 
+        <!-- Games Grid -->
+        <div class="grid grid-cols-2 gap-4">
+            <!-- Aviator Game Card -->
+            <div onclick="switchGame('aviator')" class="bg-slate-900/80 p-4 rounded-xl border border-purple-500/30 hover:border-yellow-400 cursor-pointer transition text-center">
+                <div class="text-3xl mb-2">🚀</div>
+                <h3 class="font-bold text-sm text-yellow-300">Aviator Crash</h3>
+                <p class="text-[10px] text-slate-400 mt-1">रॉकेट उड़ाओ और जीतो</p>
+            </div>
+            <!-- Fruit Slot Game Card -->
+            <div onclick="switchGame('slot')" class="bg-slate-900/80 p-4 rounded-xl border border-purple-500/30 hover:border-yellow-400 cursor-pointer transition text-center">
+                <div class="text-3xl mb-2">🍋</div>
+                <h3 class="font-bold text-sm text-yellow-300">Fruit Slot</h3>
+                <p class="text-[10px] text-slate-400 mt-1">लेमन-बेल एल्गोरिदम</p>
+            </div>
+        </div>
 
-// --- 2. डेटाबेस स्कीमा (Models) ---
-const UserSchema = new mongoose.Schema({
-    username: { type: String, required: true, unique: true },
-    balance: { type: Number, default: 1000 },
-    isBlocked: { type: Boolean, default: false },
-    createdAt: { type: Date, default: Date.now }
-});
-
-const BetSchema = new mongoose.Schema({
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    gameName: { type: String, required: true },
-    betAmount: { type: Number, required: true },
-    multiplier: { type: Number, default: 0 },
-    winAmount: { type: Number, default: 0 },
-    status: { type: String, enum: ['Pending', 'Won', 'Lost'], default: 'Pending' },
-    timestamp: { type: Date, default: Date.now }
-});
-
-const GameSettingSchema = new mongoose.Schema({
-    gameName: { type: String, unique: true, required: true },
-    rtpPercentage: { type: Number, default: 95 },
-    isActive: { type: Boolean, default: true }
-});
-
-const User = mongoose.model('User', UserSchema);
-const Bet = mongoose.model('Bet', BetSchema);
-const GameSetting = mongoose.model('GameSetting', GameSettingSchema);
-
-
-// --- 3. यूजर फ्रंटएंड और गेम इंटरफेस (User Zone) ---
-app.get('/', async (req, res) => {
-    res.send(`
-        <!DOCTYPE html>
-        <html lang="hi">
-        <head>
-            <meta charset="UTF-8">
-            <title>Gaming Platform - User Arena</title>
-            <script src="https://cdn.tailwindcss.com"></script>
-        </head>
-        <body class="bg-slate-950 text-white font-sans p-6">
-            <div class="max-w-4xl mx-auto">
-                <header class="flex justify-between items-center mb-6 bg-slate-900 p-4 rounded-xl border border-slate-800">
-                    <h1 class="text-xl font-bold text-amber-400">🎮 Game Zone (Color & Aviator)</h1>
-                    <div class="flex items-center gap-4">
-                        <span class="text-sm">बैलेंस: <strong id="balance-display" class="text-emerald-400">₹1,000</strong></span>
-                        <a href="/admin" class="bg-amber-500 text-slate-950 px-3 py-1.5 rounded text-xs font-bold hover:bg-amber-400">एडमिन पैनल</a>
-                    </div>
-                </header>
-
-                <div class="grid grid-cols-2 gap-6">
-                    <div class="bg-slate-900 p-5 rounded-xl border border-slate-800">
-                        <h3 class="font-bold text-lg mb-3 text-amber-300">🎨 Color Prediction Game</h3>
-                        <p class="text-xs text-slate-400 mb-4">रंग चुनें और अपनी किस्मत आजमाएँ!</p>
-                        <div class="flex gap-3 mb-4">
-                            <button onclick="playColorGame('Red', 100)" class="flex-1 bg-red-600 hover:bg-red-700 py-2 rounded font-bold text-sm">लाल (Red)</button>
-                            <button onclick="playColorGame('Green', 100)" class="flex-1 bg-green-600 hover:bg-green-700 py-2 rounded font-bold text-sm">हरा (Green)</button>
-                        </div>
-                        <p id="color-result" class="text-sm font-semibold text-center text-cyan-400"></p>
-                    </div>
-
-                    <div class="bg-slate-900 p-5 rounded-xl border border-slate-800">
-                        <h3 class="font-bold text-lg mb-3 text-amber-300">🚀 Aviator Rocket Game</h3>
-                        <p class="text-xs text-slate-400 mb-4">रॉकेट उड़ाओ और क्रैश होने से पहले कैश आउट करो!</p>
-                        <div id="aviator-screen" class="bg-slate-950 p-4 rounded text-center mb-4 border border-slate-800">
-                            <span id="multiplier" class="text-2xl font-black text-amber-400">1.00x</span>
-                        </div>
-                        <button onclick="playAviator(100)" class="w-full bg-emerald-600 hover:bg-emerald-700 py-2 rounded font-bold text-sm">₹100 बेट लगाएँ</button>
-                    </div>
-                </div>
+        <!-- Game Active Area -->
+        <div id="game-arena" class="bg-slate-900 p-5 rounded-2xl border border-slate-800 shadow-xl">
+            <h3 id="active-game-title" class="text-base font-bold text-yellow-400 mb-3 text-center">🚀 Aviator Rocket Game</h3>
+            
+            <div id="game-screen" class="bg-slate-950 p-6 rounded-xl text-center mb-4 border border-purple-900/40">
+                <div id="display-multiplier" class="text-3xl font-black text-yellow-400 neon-glow">1.00x</div>
+                <p class="text-xs text-slate-400 mt-2" id="game-status">बेट लगाकर राउंड शुरू करें</p>
             </div>
 
-            <script>
-                let balance = 1000;
-
-                function updateBalance(amt) {
-                    balance = amt;
-                    document.getElementById('balance-display').innerText = '₹' + balance;
-                }
-
-                // कलर गेम लॉजिक
-                async function playColorGame(color, amount) {
-                    if (balance < amount) {
-                        alert('अपर्याप्त बैलेंस!');
-                        return;
-                    }
-                    balance -= amount;
-                    updateBalance(balance);
-
-                    const colors = ['Red', 'Green'];
-                    const winningColor = colors[Math.floor(Math.random() * colors.length)];
-                    const resBox = document.getElementById('color-result');
-
-                    if (color === winningColor) {
-                        balance += amount * 2;
-                        updateBalance(balance);
-                        resBox.innerHTML = \`🎉 जीत गए! रिजल्ट: <span class="\${winningColor === 'Red' ? 'text-red-500' : 'text-green-500'}">\${winningColor}</span> (+₹\${amount * 2})\`;
-                    } else {
-                        resBox.innerHTML = \`❌ हार गए। रिजल्ट था: <span class="\${winningColor === 'Red' ? 'text-red-500' : 'text-green-500'}">\${winningColor}</span>\`;
-                    }
-
-                    // बैकएंड पर बेट रिकॉर्ड भेजना
-                    fetch('/api/place-bet', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ gameName: 'Color Game', betAmount: amount, status: color === winningColor ? 'Won' : 'Lost' })
-                    });
-                }
-
-                // एविएटर गेम लॉजिक
-                function playAviator(amount) {
-                    if (balance < amount) {
-                        alert('अपर्याप्त बैलेंस!');
-                        return;
-                    }
-                    balance -= amount;
-                    updateBalance(balance);
-
-                    let mult = 1.00;
-                    const multDisplay = document.getElementById('multiplier');
-                    let interval = setInterval(() => {
-                        mult += 0.15;
-                        multDisplay.innerText = mult.toFixed(2) + 'x';
-                        
-                        // रैंडम क्रैश कंडीशन
-                        if (Math.random() < 0.05 || mult > 5.0) {
-                            clearInterval(interval);
-                            multDisplay.innerText = '💥 Crash (' + mult.toFixed(2) + 'x)';
-                            
-                            fetch('/api/place-bet', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ gameName: 'Aviator', betAmount: amount, status: 'Lost' })
-                            });
-                        }
-                    }, 200);
-                }
-            </script>
-        </body>
-        </html>
-    `);
-});
-
-
-// --- 4. एडमिन पैनल रूट (Admin Dashboard) ---
-app.get('/admin', async (req, res) => {
-    const liveBets = await Bet.find().sort({ timestamp: -1 }).limit(10);
-    const totalUsers = await User.countDocuments();
-    
-    res.send(`
-        <!DOCTYPE html>
-        <html lang="hi">
-        <head>
-            <meta charset="UTF-8">
-            <title>Master Admin Dashboard</title>
-            <script src="https://cdn.tailwindcss.com"></script>
-        </head>
-        <body class="bg-slate-950 text-slate-100 font-sans p-6">
-            <div class="max-w-6xl mx-auto">
-                <header class="flex justify-between items-center mb-6 bg-slate-900 p-4 rounded-xl border border-slate-800">
-                    <h1 class="text-xl font-bold text-amber-400">🔥 Master Admin Panel & Live Feed</h1>
-                    <a href="/" class="bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded text-xs font-semibold">वेबसाइट पर जाएँ</a>
-                </header>
-
-                <div class="grid grid-cols-3 gap-6 mb-6">
-                    <div class="bg-slate-900 p-5 rounded-xl border border-slate-800">
-                        <p class="text-xs text-slate-400 uppercase">कुल रजिस्टर्ड यूजर्स</p>
-                        <h3 class="text-2xl font-bold text-amber-400 mt-1">${totalUsers}</h3>
-                    </div>
-                    <div class="bg-slate-900 p-5 rounded-xl border border-slate-800">
-                        <p class="text-xs text-slate-400 uppercase">सिस्टम स्टेटस</p>
-                        <h3 class="text-2xl font-bold text-emerald-400 mt-1">Active / Online</h3>
-                    </div>
-                    <div class="bg-slate-900 p-5 rounded-xl border border-slate-800">
-                        <p class="text-xs text-slate-400 uppercase">कंट्रोल मोड</p>
-                        <h3 class="text-2xl font-bold text-cyan-400 mt-1">Full-Stack Master</h3>
-                    </div>
-                </div>
-
-                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-lg">
-                    <h3 class="text-base font-bold text-amber-400 mb-4">⚡ रियल-टाइम लाइव बेटिंग फीड (Live Ticker)</h3>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left text-sm">
-                            <thead>
-                                <tr class="border-b border-slate-800 text-slate-400 text-xs">
-                                    <th class="p-3">गेम का नाम</th>
-                                    <th class="p-3">बेट राशि</th>
-                                    <th class="p-3">स्टेटस</th>
-                                    <th class="p-3">समय</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${liveBets.map(bet => `
-                                    <tr class="border-b border-slate-800/50">
-                                        <td class="p-3 text-amber-300">${bet.gameName}</td>
-                                        <td class="p-3">₹${bet.betAmount}</td>
-                                        <td class="p-3"><span class="${bet.status === 'Won' ? 'bg-emerald-950 text-emerald-400' : 'bg-rose-950 text-rose-400'} px-2 py-0.5 rounded text-xs">${bet.status}</span></td>
-                                        <td class="p-3 text-slate-400 text-xs">${new Date(bet.timestamp).toLocaleTimeString()}</td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            <div class="flex gap-2 mb-3">
+                <input type="number" id="bet-amount" value="100" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-center text-white font-bold focus:outline-none focus:border-yellow-400" placeholder="बेट राशि">
             </div>
-        </body>
-        </html>
-    `);
-});
 
+            <button onclick="playActiveGame()" id="action-btn" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 py-3 rounded-xl font-bold text-sm shadow-lg transition">₹100 बेट लगाएँ</button>
+        </div>
 
-// --- 5. बैकएंड एपीआई (API Endpoints) ---
-app.post('/api/place-bet', async (req, res) => {
-    try {
-        const { gameName, betAmount, status } = req.body;
-        // डिफ़ॉल्ट डमी यूजर आईडी या नया यूजर बना सकते हैं
-        let user = await User.findOne();
-        if (!user) {
-            user = await User.create({ username: 'player_1' });
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-slate-900/95 border-t border-purple-900/50 py-3 px-6 flex justify-around items-center backdrop-blur z-40">
+        <button onclick="switchGame('aviator')" class="text-xs text-yellow-400 font-semibold flex flex-col items-center">🏠 होम</button>
+        <button onclick="openDepositModal()" class="text-xs text-slate-300 hover:text-yellow-400 font-semibold flex flex-col items-center">💰 डिपॉजिट</button>
+        <button onclick="openAdminModal()" class="text-xs text-slate-300 hover:text-yellow-400 font-semibold flex flex-col items-center">👑 एडमिन</button>
+    </nav>
+
+    <!-- Admin Modal -->
+    <div id="admin-modal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-slate-900 border border-purple-600/50 w-full max-w-md rounded-2xl p-6 relative shadow-2xl">
+            <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white font-bold">✕</button>
+            <h3 class="text-lg font-bold text-yellow-400 mb-4">👑 Master Admin Panel</h3>
+            
+            <div id="admin-login-box" class="space-y-4">
+                <p class="text-xs text-slate-300">कृपया एडमिन क्रेडेंशियल दर्ज करें (ID: ADMIN777)</p>
+                <input type="text" id="admin-id-input" placeholder="Admin User ID (ADMIN777)" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-sm text-white">
+                <input type="password" id="admin-pass-input" placeholder="Password (admin123)" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-sm text-white">
+                <button onclick="verifyAdmin()" class="w-full bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-bold py-3 rounded-lg text-sm">लॉगिन करें</button>
+            </div>
+
+            <div id="admin-dashboard" class="hidden space-y-4">
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
+                    <p class="text-xs text-emerald-400 font-semibold">✔ एडमिन एक्सेस सक्रिय (Super Admin)</p>
+                    <p class="text-xs text-slate-300">यूजर का बैलेंस डायरेक्ट मॉडिफाई करें:</p>
+                    <input type="number" id="mod-balance-input" value="1000" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-white">
+                    <button onclick="updateUserBalance()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 rounded-lg text-xs">बैलेंस अपडेट करें (+/-)</button>
+                </div>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                    <h4 class="text-xs font-bold text-yellow-400 mb-2">पेंडिंग UTR / विथड्रॉल अप्रूवल</h4>
+                    <p class="text-xs text-slate-400">कोई पेंडिंग रिक्वेस्ट नहीं है।</p>
+                </div>
+                <button onclick="logoutAdmin()" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-bold py-2 rounded-lg text-xs">लॉग आउट</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Deposit Modal -->
+    <div id="deposit-modal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-slate-900 border border-purple-600/50 w-full max-w-md rounded-2xl p-6 relative">
+            <button onclick="closeDepositModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white font-bold">✕</button>
+            <h3 class="text-lg font-bold text-yellow-400 mb-3">💰 फंड डिपॉजिट (UPI QR)</h3>
+            <p class="text-xs text-slate-300 mb-4">नीचे दिए गए QR कोड पर स्कैन करके भुगतान करें और UTR दर्ज करें।</p>
+            <div class="bg-white p-4 rounded-xl w-40 h-40 mx-auto flex items-center justify-center mb-4 text-black font-bold text-xs">
+                [ UPI QR CODE ]
+            </div>
+            <input type="text" id="utr-input" placeholder="12-digit UTR Number" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-sm text-white mb-3">
+            <button onclick="submitDeposit()" class="w-full bg-emerald-600 hover:bg-emerald-500 font-bold py-3 rounded-lg text-sm">डिपॉजिट सबमिट करें</button>
+        </div>
+    </div>
+
+    <script>
+        let walletBalance = 1000;
+        let currentGame = 'aviator';
+
+        function updateWallet(val) {
+            walletBalance = val;
+            document.getElementById('user-wallet').innerText = '₹' + walletBalance;
         }
 
-        const newBet = await Bet.create({ 
-            userId: user._id, 
-            gameName, 
-            betAmount, 
-            status 
-        });
+        function switchGame(game) {
+            currentGame = game;
+            const title = document.getElementById('active-game-title');
+            if (game === 'aviator') {
+                title.innerText = '🚀 Aviator Rocket Game';
+                document.getElementById('display-multiplier').innerText = '1.00x';
+                document.getElementById('game-status').innerText = 'बेट लगाकर राउंड शुरू करें';
+            } else {
+                title.innerText = '🍋 Lemon-Bell Fruit Slot';
+                document.getElementById('display-multiplier').innerText = '🎰 READY';
+                document.getElementById('game-status').innerText = 'लकी स्लॉट स्पिन करें';
+            }
+        }
 
-        res.json({ success: true, message: 'Bet recorded successfully', newBet });
-    } catch (error) {
-        res.status(500).json({ success: false, error: error.message });
-    }
-});
+        function playActiveGame() {
+            let amount = parseInt(document.getElementById('bet-amount').value);
+            if (walletBalance < amount) {
+                alert('अपर्याप्त बैलेंस!');
+                return;
+            }
+            updateWallet(walletBalance - amount);
 
+            if (currentGame === 'aviator') {
+                let mult = 1.00;
+                let status = document.getElementById('game-status');
+                let disp = document.getElementById('display-multiplier');
+                status.innerText = 'रॉकेट उड़ रहा है...';
+                
+                let timer = setInterval(() => {
+                    mult += 0.2;
+                    disp.innerText = mult.toFixed(2) + 'x';
+                    if (Math.random() < 0.1 || mult > 4.0) {
+                        clearInterval(timer);
+                        disp.innerText = '💥 CRASH (' + mult.toFixed(2) + 'x)';
+                        status.innerText = 'आप हार गए!';
+                    }
+                }, 300);
+            } else {
+                let wins = [0, amount * 2, 0, 0, amount * 3];
+                let prize = wins[Math.floor(Math.random() * wins.length)];
+                let disp = document.getElementById('display-multiplier');
+                let status = document.getElementById('game-status');
+                
+                if (prize > 0) {
+                    updateWallet(walletBalance + prize);
+                    disp.innerText = '🎉 WIN ₹' + prize;
+                    status.innerText = 'शानदार जीत!';
+                } else {
+                    disp.innerText = '❌ 0x';
+                    status.innerText = 'अगली बार कोशिश करें!';
+                }
+            }
+        }
 
-// --- 6. सर्वर स्टार्ट ---
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running smoothly on port ${PORT}`);
-});
+        // Admin Modal Functions
+        function openAdminModal() { document.getElementById('admin-modal').classList.remove('hidden'); }
+        function closeAdminModal() { document.getElementById('admin-modal').classList.add('hidden'); }
+
+        function verifyAdmin() {
+            let id = document.getElementById('admin-id-input').value;
+            let pass = document.getElementById('admin-pass-input').value;
+            if (id === 'ADMIN777' && pass === 'admin123') {
+                document.getElementById('admin-login-box').classList.add('hidden');
+                document.getElementById('admin-dashboard').classList.remove('hidden');
+            } else {
+                alert('गलत यूजर आईडी या पासवर्ड!');
+            }
+        }
+
+        function updateUserBalance() {
+            let newAmt = parseInt(document.getElementById('mod-balance-input').value);
+            updateWallet(newAmt);
+            alert('बैलेंस सफलतापूर्वक अपडेट कर दिया गया है!');
+        }
+
+        function logoutAdmin() {
+            document.getElementById('admin-dashboard').classList.add('hidden');
+            document.getElementById('admin-login-box').classList.remove('hidden');
+            closeAdminModal();
+        }
+
+        // Deposit Modal Functions
+        function openDepositModal() { document.getElementById('deposit-modal').classList.remove('hidden'); }
+        function closeDepositModal() { document.getElementById('deposit-modal').classList.add('hidden'); }
+        function submitDeposit() {
+            alert('डिपॉजिट रिक्वेस्ट एडमिन अप्रूवल के लिए भेज दी गई है!');
+            closeDepositModal();
+        }
+    </script>
+</body>
+</html>
