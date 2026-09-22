@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>FAST RESULT ONLINE - Master Secured Edition</title>
+    <title>FAST RESULT ONLINE - Master Pro Edition</title>
     
     <!-- Firebase SDKs (v10) -->
     <script type="module">
@@ -74,99 +74,48 @@
         /* Age Verification Modal */
         #age-modal {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(2, 6, 23, 0.95);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            padding: 20px;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9999; padding: 20px;
         }
         .modal-content {
-            background: #111827;
-            padding: 25px;
-            border-radius: 16px;
-            text-align: center;
-            max-width: 320px;
-            border: 2px solid #ec4899;
-            box-shadow: 0 0 40px rgba(236, 72, 153, 0.6);
+            background: #111827; padding: 25px; border-radius: 16px; text-align: center; max-width: 320px;
+            border: 2px solid #ec4899; box-shadow: 0 0 40px rgba(236, 72, 153, 0.6);
         }
 
         .live-win-popup {
-            position: fixed;
-            bottom: 75px;
-            left: 15px;
-            background: rgba(17, 24, 39, 0.95);
-            border: 1px solid #ec4899;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 11px;
-            color: #fff;
-            box-shadow: 0 5px 25px rgba(236,72,153,0.7);
-            z-index: 99;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.4s ease;
-            transform: translateY(100px);
-            opacity: 0;
+            position: fixed; bottom: 75px; left: 15px;
+            background: rgba(17, 24, 39, 0.95); border: 1px solid #ec4899;
+            padding: 8px 12px; border-radius: 8px; font-size: 11px; color: #fff;
+            box-shadow: 0 5px 25px rgba(236,72,153,0.7); z-index: 99;
+            display: flex; align-items: center; gap: 8px; transition: 0.4s ease;
+            transform: translateY(100px); opacity: 0;
         }
         .live-win-popup.show { transform: translateY(0); opacity: 1; }
 
         canvas#coinRainCanvas {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 999;
-            display: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 999; display: none;
         }
 
         .whatsapp-float {
-            position: fixed;
-            bottom: 80px;
-            right: 15px;
-            background: #25d366;
-            color: #fff;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            box-shadow: 0 4px 20px rgba(37,211,102,0.8);
-            z-index: 99;
-            cursor: pointer;
-            text-decoration: none;
-            animation: bounce 2s infinite;
+            position: fixed; bottom: 80px; right: 15px; background: #25d366; color: #fff;
+            width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-size: 22px; box-shadow: 0 4px 20px rgba(37,211,102,0.8);
+            z-index: 99; cursor: pointer; text-decoration: none; animation: bounce 2s infinite;
         }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
         .promo-slider-container {
             background: linear-gradient(135deg, #831843, #581c87, #1e1b4b);
-            border: 2px solid #ec4899;
-            border-radius: 14px;
-            margin: 12px;
-            padding: 14px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 6px 30px rgba(236,72,153,0.5);
-            position: relative;
-            overflow: hidden;
-            min-height: 90px;
+            border: 2px solid #ec4899; border-radius: 14px; margin: 12px; padding: 14px;
+            display: flex; align-items: center; gap: 12px; box-shadow: 0 6px 30px rgba(236,72,153,0.5);
+            position: relative; overflow: hidden; min-height: 90px;
         }
         .ambassador-img {
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-            border: 2px solid #facc15;
-            object-fit: cover;
-            box-shadow: 0 0 15px rgba(250,204,21,0.8);
-            flex-shrink: 0;
+            width: 65px; height: 65px; border-radius: 50%; border: 2px solid #facc15;
+            object-fit: cover; box-shadow: 0 0 15px rgba(250,204,21,0.8); flex-shrink: 0;
         }
         .banner-info h4 { margin: 0 0 3px 0; font-size: 14px; color: #facc15; text-shadow: 0 0 8px rgba(250,204,21,0.6); }
         .banner-info p { margin: 0; font-size: 11px; color: #f1f5f9; line-height: 1.3; }
@@ -219,36 +168,19 @@
 
         .slot-machine-screen {
             background: radial-gradient(circle, #581c87 0%, #1e1b4b 100%);
-            border: 3px solid #facc15;
-            border-radius: 16px;
-            padding: 15px;
-            text-align: center;
-            margin-bottom: 12px;
+            border: 3px solid #facc15; border-radius: 16px; padding: 15px; text-align: center; margin-bottom: 12px;
             box-shadow: 0 0 25px rgba(250,204,21,0.6);
         }
-        .slot-reels-box {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 15px 0;
-        }
+        .slot-reels-box { display: flex; justify-content: center; gap: 10px; margin: 15px 0; }
         .slot-reel {
-            background: #030712;
-            border: 2px solid #ec4899;
-            width: 70px;
-            height: 80px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-            box-shadow: inset 0 0 15px rgba(236,72,153,0.7);
+            background: #030712; border: 2px solid #ec4899; width: 70px; height: 80px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 36px; box-shadow: inset 0 0 15px rgba(236,72,153,0.7);
         }
 
         .mines-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin: 12px 0; }
         .mine-tile { background: #1f2937; border: 2px solid #374151; height: 50px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; transition: 0.2s; }
         
-        .limbo-screen, .dice-screen, .plinko-screen, .spin-screen { background: #030712; border: 2px solid #4b5563; border-radius: 12px; padding: 15px; text-align: center; margin-bottom: 12px; }
+        .limbo-screen, .dice-screen, .plinko-screen, .spin-screen, .roulette-screen, .teenpatti-screen, .penalty-screen { background: #030712; border: 2px solid #4b5563; border-radius: 12px; padding: 15px; text-align: center; margin-bottom: 12px; }
         .limbo-multiplier { font-size: 40px; font-weight: bold; color: #34d399; text-shadow: 0 0 20px rgba(52,211,153,0.8); margin: 10px 0; }
 
         .crash-screen { background: #030712; border: 2px solid #4b5563; border-radius: 12px; height: 150px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
@@ -289,7 +221,7 @@
     <div class="app-container">
         
         <div class="header">
-            <span>⚡ <b>FAST RESULT</b> <span style="font-size:8px; background:#ec4899; padding:2px 5px; border-radius:3px; color:#fff; font-weight:bold;">MASTER CLOUD</span></span>
+            <span>⚡ <b>FAST RESULT</b> <span style="font-size:8px; background:#ec4899; padding:2px 5px; border-radius:3px; color:#fff; font-weight:bold;">MASTER PRO</span></span>
             <div style="display: flex; align-items: center; gap: 8px;">
                 <button onclick="claimDailyBonus()" style="background:linear-gradient(90deg,#f59e0b,#d97706); color:#000; border:none; padding:4px 8px; border-radius:12px; font-size:9px; font-weight:bold; cursor:pointer;">🎁 डेली क्लेम</button>
                 <div class="wallet-box">💰 ₹<span id="balance">251</span></div>
@@ -298,13 +230,13 @@
         </div>
 
         <div class="ticker-bar">
-            <span class="ticker-text">🎰 फायरबेस क्लाउड डेटाबेस, ट्रांजैक्शन सुरक्षा और ऑटो-चैट स्क्रॉल एक्टिव! 🚀</span>
-            <span class="online-badge" id="onlineCountBadge">🟢 1,642</span>
+            <span class="ticker-text">🎰 तीन पत्ती, रूले, पेनल्टी शूटआउट और वीआईपी लॉयल्टी सिस्टम लाइव! 🚀</span>
+            <span class="online-badge" id="onlineCountBadge">🟢 1,854</span>
         </div>
 
         <div class="live-win-popup" id="liveWinPopup">
             <span>🎉</span>
-            <span id="liveWinText">विकास ने फ्रूट स्लॉट में जीते ₹10,000!</span>
+            <span id="liveWinText">अमित ने तीन पत्ती में जीते ₹15,000!</span>
         </div>
 
         <a href="https://wa.me/?text=Hello%20Fast%20Result%20Support,%20I%20want%20to%20play%20casino%20games." target="_blank" class="whatsapp-float">💬</a>
@@ -312,8 +244,8 @@
         <div class="promo-slider-container">
             <img src="https://images.unsplash.com/photo-1511193311914-0346f16efe90?w=200" alt="Casino" class="ambassador-img">
             <div class="banner-info">
-                <h4>✨ Fast Result Master Casino</h4>
-                <p><b>पूर्णतः सुरक्षित क्लाउड सिस्टम!</b><br>100% डेटा लॉक्ड और डबल-क्लिक प्रोटेक्टेड।</p>
+                <h4>✨ Fast Result Master Pro</h4>
+                <p><b>नए गेम्स और वीआईपी फीचर्स के साथ!</b><br>100% सिक्योर क्लाउड और हैप्टिक फीडबैक।</p>
             </div>
         </div>
 
@@ -344,6 +276,9 @@
                 
                 <div class="game-grid">
                     <div class="game-card active" onclick="switchGame('fruitSlot')">🍋 फ्रूट स्लॉट</div>
+                    <div class="game-card" onclick="switchGame('teenPatti')">🎴 तीन पत्ती</div>
+                    <div class="game-card" onclick="switchGame('roulette')">🎡 रूले कसीनो</div>
+                    <div class="game-card" onclick="switchGame('penalty')">⚽ पेनल्टी शूट</div>
                     <div class="game-card" onclick="switchGame('color')">🎨 कलर गेम</div>
                     <div class="game-card" onclick="switchGame('spin')">🎡 लकी व्हील</div>
                     <div class="game-card" onclick="switchGame('mines')">💎 माइन्स</div>
@@ -353,6 +288,7 @@
                     <div class="game-card" onclick="switchGame('andar')">🃏 अंदर-बाहर</div>
                     <div class="game-card" onclick="switchGame('dragon')">🐉 ड्रैगन टाइगर</div>
                     <div class="game-card" onclick="switchGame('plinko')">🔴 प्लिंको</div>
+                    <div class="game-card" onclick="switchGame('vipTab')" style="background:#4c1d95; color:#fff;">💎 वीआईपी</div>
                     <div class="game-card" onclick="switchGame('referTab')" style="background:#b45309; color:#fff;">👥 रेफरल</div>
                     <div class="game-card" onclick="switchGame('chatTab')" style="background:#065f46; color:#fff;">💬 चैट</div>
                     <div class="game-card" onclick="switchGame('walletTab')" style="background: #92400e; color:#fff;">💳 वॉलेट</div>
@@ -389,7 +325,53 @@
                     <p id="slotResult" class="res-text">स्पिन बटन दबाएं।</p>
                 </div>
 
-                <!-- 2. कलर गेम -->
+                <!-- 🆕 2. तीन पत्ती गेम -->
+                <div id="game-teenPatti" class="game-panel hidden">
+                    <h3>🎴 तीन पत्ती प्रो (Teen Patti Classic)</h3>
+                    <div class="teenpatti-screen">
+                        <span style="font-size:11px; color:#facc15;">आपके 3 पत्ते:</span>
+                        <div style="display:flex; justify-content:center; gap:8px; margin:10px 0;" id="tpCards">
+                            <div class="slot-reel" style="width:50px; height:65px; font-size:20px;">A♠</div>
+                            <div class="slot-reel" style="width:50px; height:65px; font-size:20px;">K♠</div>
+                            <div class="slot-reel" style="width:50px; height:65px; font-size:20px;">Q♠</div>
+                        </div>
+                        <span style="font-size:11px; color:#34d399;" id="tpSeqText">पॉइंट्स / ट्रेल चेक करें</span>
+                    </div>
+                    <button class="btn-primary" onclick="playTeenPatti()">🃏 तीन पत्ती खेलें (बेट)</button>
+                    <p id="tpResult" class="res-text">बटन दबाएं।</p>
+                </div>
+
+                <!-- 🆕 3. रूले कसीनो गेम -->
+                <div id="game-roulette" class="game-panel hidden">
+                    <h3>🎡 यूरोपीयन रूले (Roulette)</h3>
+                    <div class="roulette-screen">
+                        <div style="font-size:35px; margin:5px 0;" id="rouletteWheelEmoji">🎡 🔴 32</div>
+                        <span style="font-size:11px; color:#facc15;">लाल/काला या नंबर पर दांव लगाएं (2x से 35x रिटर्न)</span>
+                    </div>
+                    <div style="display:flex; gap:6px; margin-bottom:8px;">
+                        <button class="btn-primary" onclick="playRoulette('Red')" style="background:#ef4444; color:#fff;">लाल (2x)</button>
+                        <button class="btn-primary" onclick="playRoulette('Black')" style="background:#1f2937; color:#fff;">काला (2x)</button>
+                        <button class="btn-primary" onclick="playRoulette('Green')" style="background:#10b981; color:#000;">हरा 0 (35x)</button>
+                    </div>
+                    <p id="rouletteResult" class="res-text">दांव लगाएं।</p>
+                </div>
+
+                <!-- 🆕 4. पेनल्टी शूटआउट गेम -->
+                <div id="game-penalty" class="game-panel hidden">
+                    <h3>⚽ पेनल्टी शूटआउट (Penalty Shootout)</h3>
+                    <div class="penalty-screen">
+                        <div style="font-size:40px; margin:10px 0;" id="penaltyGoalAnim">🥅 ⚽ 🧤</div>
+                        <span style="font-size:11px; color:#38bdf8;">गोलकीपर को चकमा दें और गोल करें!</span>
+                    </div>
+                    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:6px;">
+                        <button class="btn-primary" onclick="playPenalty(1)" style="background:#2563eb;">बायां कोना</button>
+                        <button class="btn-primary" onclick="playPenalty(2)" style="background:#d97706;">बीच में</button>
+                        <button class="btn-primary" onclick="playPenalty(3)" style="background:#10b981;">दायां कोना</button>
+                    </div>
+                    <p id="penaltyResult" class="res-text">दिशा चुनें और शूट करें।</p>
+                </div>
+
+                <!-- 5. कलर गेम -->
                 <div id="game-color" class="game-panel hidden">
                     <h3>🎨 कलर और नंबर (Cloud Secured)</h3>
                     <div class="time-tabs">
@@ -426,7 +408,7 @@
                     <p id="colorResult" class="res-text">बेट लगाएं।</p>
                 </div>
 
-                <!-- 3. लकी व्हील गेम -->
+                <!-- 6. लकी व्हील गेम -->
                 <div id="game-spin" class="game-panel hidden">
                     <h3>🎡 डेली फ्री लकी स्पिन व्हील</h3>
                     <div class="spin-screen">
@@ -437,7 +419,7 @@
                     <p id="wheelResult" class="res-text">किस्मत आजमाएं।</p>
                 </div>
 
-                <!-- 4. माइन्स गेम -->
+                <!-- 7. माइन्स गेम -->
                 <div id="game-mines" class="game-panel hidden">
                     <h3>💎 माइन्स गेम</h3>
                     <div class="mines-grid" id="minesGrid"></div>
@@ -445,7 +427,7 @@
                     <p id="minesResult" class="res-text">हीरा खोजें!</p>
                 </div>
 
-                <!-- 5. लिम्बो गेम -->
+                <!-- 8. लिम्बो गेम -->
                 <div id="game-limbo" class="game-panel hidden">
                     <h3>🚀 लिम्बो रॉकेट मल्टीप्लायर</h3>
                     <div class="limbo-screen">
@@ -457,7 +439,7 @@
                     <p id="limboResult" class="res-text">टारगेट सेट करें।</p>
                 </div>
 
-                <!-- 6. डाइस गेम -->
+                <!-- 9. डाइस गेम -->
                 <div id="game-dice" class="game-panel hidden">
                     <h3>🎲 लकी डाइस (High / Low)</h3>
                     <div class="dice-screen">
@@ -471,7 +453,7 @@
                     <p id="diceResult" class="res-text">डाइस पर बेट लगाएं।</p>
                 </div>
 
-                <!-- 7. एविएटर गेम -->
+                <!-- 10. एविएटर गेम -->
                 <div id="game-crash" class="game-panel hidden">
                     <h3>✈️ एविएटर क्रैश रॉकेट गेम</h3>
                     <div class="crash-screen">
@@ -485,7 +467,7 @@
                     <p id="crashResult" class="res-text">रॉकेट उड़ाने के लिए बटन दबाएं।</p>
                 </div>
 
-                <!-- 8. अंदर-बाहर -->
+                <!-- 11. अंदर-बाहर -->
                 <div id="game-andar" class="game-panel hidden">
                     <h3>🃏 अंदर-बाहर लाइव टेबल</h3>
                     <div class="card-table-pro">
@@ -499,7 +481,7 @@
                     <p id="andarResult" class="res-text">बेट लगाएं।</p>
                 </div>
 
-                <!-- 9. ड्रैगन टाइगर -->
+                <!-- 12. ड्रैगन टाइगर -->
                 <div id="game-dragon" class="game-panel hidden">
                     <h3>🐉 ड्रैगन टाइगर लाइव टेबल</h3>
                     <div class="card-table-pro" style="background: radial-gradient(circle, #7f1d1d 0%, #450a0a 100%);">
@@ -514,7 +496,7 @@
                     <p id="dtResult" class="res-text">बेट लगाएं।</p>
                 </div>
 
-                <!-- 10. प्लिंको -->
+                <!-- 13. प्लिंको -->
                 <div id="game-plinko" class="game-panel hidden">
                     <h3>🔴 प्लिंको बॉल ड्रॉप</h3>
                     <div class="plinko-screen">
@@ -525,6 +507,16 @@
                     </div>
                     <button class="btn-primary" id="plinkoBtn" onclick="playPlinko()">बॉल ड्रॉप करें</button>
                     <p id="plinkoResult" class="res-text">बटन दबाएं।</p>
+                </div>
+
+                <!-- 🆕 वीआईपी लॉयल्टी टियर पैनल -->
+                <div id="vip-panel" class="game-panel hidden">
+                    <h3>💎 वीआईपी लॉयल्टी टियर सिस्टम</h3>
+                    <div style="background:#030712; padding:12px; border-radius:8px; border:1px solid #facc15; text-align:center;">
+                        <div style="font-size:16px; color:#facc15; font-weight:bold;" id="vipTierName">⭐ VIP Bronze Member</div>
+                        <p style="font-size:11px; color:#cbd5e1; margin-top:6px;">आपका कैशबैक प्रतिशत: <b style="color:#34d399;" id="vipCbRate">1.5%</b></p>
+                        <p style="font-size:10px; color:#94a3b8;">जितना अधिक खेलेंगे, उतना उच्च वीआईपी टियर (Silver, Gold, Platinum) और बड़े बोनस मिलेंगे!</p>
+                    </div>
                 </div>
 
                 <!-- 👥 रेफरल टैब -->
@@ -540,7 +532,7 @@
                 <div id="chat-panel" class="game-panel hidden">
                     <h3>💬 ग्लोबल लाइव कम्युनिटी चैट</h3>
                     <div class="chat-container" id="chatBox">
-                        <div class="chat-msg"><b>Admin:</b> कसीनो गेम्स लाइव हैं! नींबू और घंटी स्लॉट खेलें!</div>
+                        <div class="chat-msg"><b>Admin:</b> तीन पत्ती और रूले गेम्स लाइव हैं! अपनी किस्मत आजमाएं!</div>
                     </div>
                     <input type="text" id="chatInput" placeholder="संदेश दर्ज करें..." style="font-size:11px; padding:8px;">
                     <button class="btn-primary" onclick="sendChatMessage()" style="padding:8px; font-size:11px;">संदेश भेजें</button>
@@ -640,7 +632,6 @@
         let passbookHistory = [{time: 'अभी', desc: 'रजिस्ट्रेशन बोनस', amount: '+₹251'}];
         let limboTarget = 2.0;
 
-        // आयु सत्यापन फंक्शन
         function verifyAge() {
             document.getElementById('age-modal').style.display = 'none';
             localStorage.setItem('ageVerified', 'true');
@@ -683,13 +674,14 @@
         }
 
         setInterval(() => {
-            let count = Math.floor(1500 + Math.random() * 500);
+            let count = Math.floor(1700 + Math.random() * 400);
             let badge = document.getElementById('onlineCountBadge');
             if(badge) badge.innerText = "🟢 " + count.toLocaleString();
         }, 5000);
 
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playSound(type) {
+            if (navigator.vibrate) navigator.vibrate(type === 'win' ? [50, 50, 50] : 100); // 📱 मोबाइल हैप्टिक फीडबैक वाइब्रेशन
             if (!soundEnabled) return;
             try {
                 if (audioCtx.state === 'suspended') audioCtx.resume();
@@ -783,6 +775,7 @@
             document.getElementById('login-section').classList.add('hidden');
             document.getElementById('dashboard-section').classList.remove('hidden');
             document.getElementById('myReferralLink').value = `https://fastresult.online/?ref=` + currentIdentifier;
+            updateVipTierInfo();
 
             if(isAdmin) {
                 document.getElementById('nav-admin').style.display = "block";
@@ -794,6 +787,15 @@
                 startGlobalTimer();
                 renderPassbook();
             }
+        }
+
+        function updateVipTierInfo() {
+            let tier = "Bronze (1.5% कैशबैक)";
+            if(userBalance > 2000) tier = "Silver (2.5% कैशबैक)";
+            if(userBalance > 10000) tier = "Gold (4.0% कैशबैक)";
+            if(userBalance > 50000) tier = "Platinum (7.0% कैशबैक)";
+            document.getElementById('vipTierName').innerText = "⭐ VIP " + tier.split(' ')[0];
+            document.getElementById('vipCbRate').innerText = tier.split('(')[1].replace(')', '');
         }
 
         function logoutUser() {
@@ -814,6 +816,7 @@
                 } catch(e) {}
             }
             renderPassbook();
+            updateVipTierInfo();
         }
 
         function renderPassbook() {
@@ -858,11 +861,14 @@
         }
 
         function switchGame(gameType) {
-            ['game-fruitSlot', 'game-color', 'game-mines', 'game-limbo', 'game-dice', 'game-crash', 'game-andar', 'game-dragon', 'game-spin', 'game-plinko', 'refer-panel', 'chat-panel', 'wallet-panel', 'passbook-panel', 'admin-panel'].forEach(id => {
+            ['game-fruitSlot', 'game-teenPatti', 'game-roulette', 'game-penalty', 'game-color', 'game-mines', 'game-limbo', 'game-dice', 'game-crash', 'game-andar', 'game-dragon', 'game-spin', 'game-plinko', 'vip-panel', 'refer-panel', 'chat-panel', 'wallet-panel', 'passbook-panel', 'admin-panel'].forEach(id => {
                 document.getElementById(id).classList.add('hidden');
             });
 
             if (gameType === 'fruitSlot') document.getElementById('game-fruitSlot').classList.remove('hidden');
+            else if (gameType === 'teenPatti') document.getElementById('game-teenPatti').classList.remove('hidden');
+            else if (gameType === 'roulette') document.getElementById('game-roulette').classList.remove('hidden');
+            else if (gameType === 'penalty') document.getElementById('game-penalty').classList.remove('hidden');
             else if (gameType === 'color') document.getElementById('game-color').classList.remove('hidden');
             else if (gameType === 'spin') document.getElementById('game-spin').classList.remove('hidden');
             else if (gameType === 'mines') document.getElementById('game-mines').classList.remove('hidden');
@@ -872,6 +878,7 @@
             else if (gameType === 'andar') document.getElementById('game-andar').classList.remove('hidden');
             else if (gameType === 'dragon') document.getElementById('game-dragon').classList.remove('hidden');
             else if (gameType === 'plinko') document.getElementById('game-plinko').classList.remove('hidden');
+            else if (gameType === 'vipTab') document.getElementById('vip-panel').classList.remove('hidden');
             else if (gameType === 'referTab') document.getElementById('refer-panel').classList.remove('hidden');
             else if (gameType === 'chatTab') document.getElementById('chat-panel').classList.remove('hidden');
             else if (gameType === 'walletTab') document.getElementById('wallet-panel').classList.remove('hidden');
@@ -893,82 +900,152 @@
 
         const fruitSymbols = ['🍋', '🍉', '🔔', '🍒', '7️⃣', '⭐'];
         
-        // 🔒 डबल-क्लिक प्रिवेंशन और सुरक्षित ट्रांजैक्शन के साथ फ्रूट स्लॉट गेम
         async function playFruitSlot() {
-            const btn = document.getElementById('slotBtn');
             if (userBalance < currentBet) { alert("बैलेंस कम है!"); return; }
+            userBalance -= currentBet;
+            passbookHistory.push({time: 'अभी', desc: 'फ्रूट स्लॉट बेट', amount: '-₹' + currentBet});
+            document.getElementById('balance').innerText = userBalance;
 
-            btn.disabled = true; // डबल क्लिक रोकें
-            try {
-                userBalance -= currentBet;
-                passbookHistory.push({time: 'अभी', desc: 'फ्रूट स्लॉट बेट', amount: '-₹' + currentBet});
-                document.getElementById('balance').innerText = userBalance;
+            let r1 = fruitSymbols[Math.floor(Math.random() * fruitSymbols.length)];
+            let r2 = fruitSymbols[Math.floor(Math.random() * fruitSymbols.length)];
+            let r3 = fruitSymbols[Math.floor(Math.random() * fruitSymbols.length)];
+            let isWin = (r1 === r2 && r2 === r3);
 
-                let r1 = fruitSymbols[Math.floor(Math.random() * fruitSymbols.length)];
-                let r2 = fruitSymbols[Math.floor(Math.random() * fruitSymbols.length)];
-                let r3 = fruitSymbols[Math.floor(Math.random() * fruitSymbols.length)];
-                let isWin = (r1 === r2 && r2 === r3);
+            document.getElementById('reel1').innerText = r1;
+            document.getElementById('reel2').innerText = r2;
+            document.getElementById('reel3').innerText = r3;
 
-                document.getElementById('reel1').innerText = r1;
-                document.getElementById('reel2').innerText = r2;
-                document.getElementById('reel3').innerText = r3;
-
-                let res = document.getElementById('slotResult');
-                let subText = document.getElementById('slotSubText');
-
-                if (isWin) {
-                    let win = currentBet * 50;
-                    userBalance += win;
-                    playSound('win');
-                    res.style.color = "#34d399";
-                    res.innerText = `🎉 स्लॉट जैकपॉट! जीते ₹${win}`;
-                    subText.innerText = `🔥 शानदार 50x विन!`;
-                    passbookHistory.push({time: 'अभी', desc: 'स्लॉट जैकपॉट', amount: '+₹' + win});
-                } else {
-                    playSound('loss');
-                    res.style.color = "#f87171";
-                    res.innerText = `❌ चूक गए (-₹${currentBet})`;
-                    subText.innerText = `⚡ अगली बार फिर कोशिश करें!`;
-                }
-
-                document.getElementById('balance').innerText = userBalance;
-                await saveCloudUserData();
-            } catch(err) {
-                console.error(err);
-            } finally {
-                setTimeout(() => { btn.disabled = false; }, 1200);
+            let res = document.getElementById('slotResult');
+            if (isWin) {
+                let win = currentBet * 50;
+                userBalance += win;
+                playSound('win');
+                res.style.color = "#34d399";
+                res.innerText = `🎉 स्लॉट जैकपॉट! जीते ₹${win}`;
+                passbookHistory.push({time: 'अभी', desc: 'स्लॉट जैकपॉट', amount: '+₹' + win});
+            } else {
+                playSound('loss');
+                res.style.color = "#f87171";
+                res.innerText = `❌ चूक गए (-₹${currentBet})`;
             }
+            document.getElementById('balance').innerText = userBalance;
+            await saveCloudUserData();
+        }
+
+        // 🆕 तीन पत्ती गेम लॉजिक
+        const tpCardList = ['A♠', 'K♥', 'Q♦', 'J♣', '10♠', '9♥', '8♦', '7♣', '6♠', '5♥'];
+        async function playTeenPatti() {
+            if (userBalance < currentBet) { alert("बैलेंस कम है!"); return; }
+            userBalance -= currentBet;
+            passbookHistory.push({time: 'अभी', desc: 'तीन पत्ती बेट', amount: '-₹' + currentBet});
+            
+            let c1 = tpCardList[Math.floor(Math.random() * tpCardList.length)];
+            let c2 = tpCardList[Math.floor(Math.random() * tpCardList.length)];
+            let c3 = tpCardList[Math.floor(Math.random() * tpCardList.length)];
+
+            document.getElementById('tpCards').innerHTML = `
+                <div class="slot-reel" style="width:50px; height:65px; font-size:20px;">${c1}</div>
+                <div class="slot-reel" style="width:50px; height:65px; font-size:20px;">${c2}</div>
+                <div class="slot-reel" style="width:50px; height:65px; font-size:20px;">${c3}</div>
+            `;
+
+            let isWin = (c1[0] === c2[0] || c2[0] === c3[0]) && Math.random() < 0.35;
+            let res = document.getElementById('tpResult');
+
+            if(isWin) {
+                let win = currentBet * 5;
+                userBalance += win;
+                playSound('win');
+                res.style.color = "#34d399";
+                res.innerText = `🎉 जोड़ी/ट्रेल जीत! जीते ₹${win}`;
+                passbookHistory.push({time: 'अभी', desc: 'तीन पत्ती विन', amount: '+₹' + win});
+            } else {
+                playSound('loss');
+                res.style.color = "#f87171";
+                res.innerText = `❌ हार गए (-₹${currentBet})`;
+            }
+            document.getElementById('balance').innerText = userBalance;
+            await saveCloudUserData();
+        }
+
+        // 🆕 रूले गेम लॉजिक
+        async function playRoulette(choice) {
+            if (userBalance < currentBet) { alert("बैलेंस कम है!"); return; }
+            userBalance -= currentBet;
+            passbookHistory.push({time: 'अभी', desc: 'रूले बेट', amount: '-₹' + currentBet});
+
+            let winningColor = Math.random() < 0.48 ? 'Red' : (Math.random() < 0.9 ? 'Black' : 'Green');
+            document.getElementById('rouletteWheelEmoji').innerText = `🎡 ${winningColor === 'Red' ? '🔴' : (winningColor === 'Black' ? '⚫' : '🟢')} ${Math.floor(Math.random()*36)}`;
+
+            let won = (choice === winningColor);
+            let multiplier = winningColor === 'Green' ? 35 : 2;
+            let res = document.getElementById('rouletteResult');
+
+            if(won) {
+                let win = currentBet * multiplier;
+                userBalance += win;
+                playSound('win');
+                res.style.color = "#34d399";
+                res.innerText = `🎉 रूले विन! जीते ₹${win}`;
+                passbookHistory.push({time: 'अभी', desc: 'रूले विन', amount: '+₹' + win});
+            } else {
+                playSound('loss');
+                res.style.color = "#f87171";
+                res.innerText = `❌ हार गए (-₹${currentBet})`;
+            }
+            document.getElementById('balance').innerText = userBalance;
+            await saveCloudUserData();
+        }
+
+        // 🆕 पेनल्टी शूटआउट गेम लॉजिक
+        async function playPenalty(pos) {
+            if (userBalance < currentBet) { alert("बैलेंस कम है!"); return; }
+            userBalance -= currentBet;
+            passbookHistory.push({time: 'अभी', desc: 'पेनल्टी बेट', amount: '-₹' + currentBet});
+
+            let gkPos = Math.floor(Math.random() * 3) + 1;
+            let isGoal = (pos !== gkPos);
+            let res = document.getElementById('penaltyResult');
+
+            document.getElementById('penaltyGoalAnim').innerText = isGoal ? '⚽ 🥅 💥 (गोल!)' : '🧤 🥅 ❌ (बचा लिया!)';
+
+            if(isGoal) {
+                let win = currentBet * 2;
+                userBalance += win;
+                playSound('win');
+                res.style.color = "#34d399";
+                res.innerText = `🎉 शानदार गोल! जीते ₹${win}`;
+                passbookHistory.push({time: 'अभी', desc: 'पेनल्टी गोल विन', amount: '+₹' + win});
+            } else {
+                playSound('loss');
+                res.style.color = "#f87171";
+                res.innerText = `❌ गोलकीपर ने रोक लिया (-₹${currentBet})`;
+            }
+            document.getElementById('balance').innerText = userBalance;
+            await saveCloudUserData();
         }
 
         async function playWheel() {
-            const btn = document.getElementById('wheelBtn');
             if (userBalance < currentBet) { alert("बैलेंस कम है!"); return; }
-            btn.disabled = true;
-            try {
-                userBalance -= currentBet;
-                passbookHistory.push({time: 'अभी', desc: 'व्हील बेट', amount: '-₹' + currentBet});
-                document.getElementById('balance').innerText = userBalance;
+            userBalance -= currentBet;
+            passbookHistory.push({time: 'अभी', desc: 'व्हील बेट', amount: '-₹' + currentBet});
 
-                let won = Math.random() < 0.25;
-                let res = document.getElementById('wheelResult');
-                if(won) {
-                    let win = currentBet * 10;
-                    userBalance += win;
-                    playSound('win');
-                    res.style.color = "#34d399";
-                    res.innerText = `🎉 व्हील विन! जीते ₹${win}`;
-                    passbookHistory.push({time: 'अभी', desc: 'व्हील विन', amount: '+₹'+win});
-                } else {
-                    playSound('loss');
-                    res.style.color = "#f87171";
-                    res.innerText = `❌ हार गए (-₹${currentBet})`;
-                }
-                document.getElementById('balance').innerText = userBalance;
-                await saveCloudUserData();
-            } catch(e) {
-            } finally {
-                setTimeout(() => { btn.disabled = false; }, 1000);
+            let won = Math.random() < 0.25;
+            let res = document.getElementById('wheelResult');
+            if(won) {
+                let win = currentBet * 10;
+                userBalance += win;
+                playSound('win');
+                res.style.color = "#34d399";
+                res.innerText = `🎉 व्हील विन! जीते ₹${win}`;
+                passbookHistory.push({time: 'अभी', desc: 'व्हील विन', amount: '+₹'+win});
+            } else {
+                playSound('loss');
+                res.style.color = "#f87171";
+                res.innerText = `❌ हार गए (-₹${currentBet})`;
             }
+            document.getElementById('balance').innerText = userBalance;
+            await saveCloudUserData();
         }
 
         function updateLimboTarget(val) {
@@ -977,32 +1054,26 @@
         }
 
         async function playLimbo() {
-            const btn = document.getElementById('limboBtn');
             if (userBalance < currentBet) { alert("बैलेंस कम है!"); return; }
-            btn.disabled = true;
-            try {
-                userBalance -= currentBet;
-                passbookHistory.push({time: 'अभी', desc: 'लिम्बो बेट', amount: '-₹' + currentBet});
-                let mult = (Math.random() * 3 + 1.0).toFixed(2);
-                document.getElementById('limboTargetDisplay').innerText = mult + "x";
-                let res = document.getElementById('limboResult');
-                if(parseFloat(mult) >= limboTarget && Math.random() < 0.3) {
-                    let win = Math.floor(currentBet * limboTarget);
-                    userBalance += win;
-                    playSound('win');
-                    res.style.color = "#34d399";
-                    res.innerText = `🎉 लिम्बो विन! जीते ₹${win}`;
-                    passbookHistory.push({time: 'अभी', desc: 'लिम्बो विन', amount: '+₹'+win});
-                } else {
-                    playSound('loss');
-                    res.style.color = "#f87171";
-                    res.innerText = `❌ टारगेट मिस (-₹${currentBet})`;
-                }
-                document.getElementById('balance').innerText = userBalance;
-                await saveCloudUserData();
-            } finally {
-                setTimeout(() => { btn.disabled = false; }, 1000);
+            userBalance -= currentBet;
+            passbookHistory.push({time: 'अभी', desc: 'लिम्बो बेट', amount: '-₹' + currentBet});
+            let mult = (Math.random() * 3 + 1.0).toFixed(2);
+            document.getElementById('limboTargetDisplay').innerText = mult + "x";
+            let res = document.getElementById('limboResult');
+            if(parseFloat(mult) >= limboTarget && Math.random() < 0.3) {
+                let win = Math.floor(currentBet * limboTarget);
+                userBalance += win;
+                playSound('win');
+                res.style.color = "#34d399";
+                res.innerText = `🎉 लिम्बो विन! जीते ₹${win}`;
+                passbookHistory.push({time: 'अभी', desc: 'लिम्बो विन', amount: '+₹'+win});
+            } else {
+                playSound('loss');
+                res.style.color = "#f87171";
+                res.innerText = `❌ टारगेट मिस (-₹${currentBet})`;
             }
+            document.getElementById('balance').innerText = userBalance;
+            await saveCloudUserData();
         }
 
         async function playDice(choice) {
@@ -1286,14 +1357,13 @@
             } catch(e) {}
         }
 
-        // 💬 ऑटो-स्क्रॉल ग्लोबल चैट फीचर
         function sendChatMessage() {
             let txt = document.getElementById('chatInput').value.trim();
             if(!txt) return;
             let chatBox = document.getElementById('chatBox');
             chatBox.innerHTML += `<div class="chat-msg"><b>${currentIdentifier || 'Guest'}:</b> ${txt}</div>`;
             document.getElementById('chatInput').value = '';
-            chatBox.scrollTop = chatBox.scrollHeight; // ऑटो-स्क्रॉल नीचे की ओर
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
     </script>
 </body>
