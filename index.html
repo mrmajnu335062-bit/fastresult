@@ -739,7 +739,6 @@
             }
 
             try {
-                // Point 1 & 5: Robust Cloud / Firebase Auth & Firestore synchronization
                 const userDocRef = window.FB.doc(window.FB.db, "users", idVal);
                 const userSnap = await window.FB.getDoc(userDocRef);
 
@@ -768,7 +767,6 @@
                     showDashboard();
                 }
             } catch(err) {
-                // Fallback local login simulation if firebase config keys are default/missing
                 currentIdentifier = idVal;
                 userBalance = 251;
                 isAdmin = false;
@@ -1220,7 +1218,7 @@
             userBalance += win;
             document.getElementById('balance').innerText = userBalance;
             playSound('win');
-            document.getElementById('crashResult').style.color = '#34d399';
+            document.getElementById('crashResult').style.color = "#34d399";
             document.getElementById('crashResult').innerText = `🎉 सफल कैशआउट! जीते ₹${win}`;
             passbookHistory.push({time: 'अभी', desc: 'एविएटर विन', amount: '+₹' + win});
             document.getElementById('crashBetBtn').classList.remove('hidden');
